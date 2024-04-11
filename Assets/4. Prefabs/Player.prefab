@@ -1394,8 +1394,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6560491113902336097}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: cea7b4908e889df4ea1487e9f97c3c67, type: 3}
-  m_Controller: {fileID: 9100000, guid: fad8dee88e0ba214db7a97335e17c099, type: 2}
+  m_Avatar: {fileID: 9000000, guid: 3254d93daab29bc4480ba7e838e5c1ca, type: 3}
+  m_Controller: {fileID: 9100000, guid: d38965aa89190d949b1c258345124f03, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1419,6 +1419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  dodgeCooltime: 1
 --- !u!136 &2775085481884500454
 CapsuleCollider:
   m_ObjectHideFlags: 0
