@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
 
     private bool isDodge;
     private bool onDodge;
-    private float dodgeCooltime;
+    private float dodgeTime;
 
     private Vector3 moveVec;
     private Vector3 dodgeVec;
@@ -66,15 +66,15 @@ public class Player : MonoBehaviour
             Invoke("NextDodge", 0.5f);//Dodge Cooltime
         }
 
-        if (dodgeCooltime <= 0)
+        if (dodgeTime <= 0)
         {
             speed = 5;
             if (isDodge)
-                dodgeCooltime = 0.25f;
+                dodgeTime = 0.25f;
         }
         else
         {
-            dodgeCooltime -= Time.deltaTime;
+            dodgeTime -= Time.deltaTime;
             speed = 15;
         }
 
