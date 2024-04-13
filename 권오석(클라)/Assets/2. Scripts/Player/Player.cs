@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     [Header("Player")]
     [SerializeField] private float speed;
+    [SerializeField] private float damege;
+    [SerializeField] private float meleeAtkRange;
 
     private bool sprint;
 
@@ -34,6 +36,11 @@ public class Player : MonoBehaviour
     {
         Move();
         Dodge();
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            MeleeAttack();
+        }
     }
 
     private void Move()
@@ -84,5 +91,10 @@ public class Player : MonoBehaviour
     private void NextDodge()
     {
         onDodge = false;
+    }
+
+    private void MeleeAttack()
+    {
+
     }
 }
