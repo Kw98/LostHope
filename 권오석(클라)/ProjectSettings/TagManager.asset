@@ -4,8 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Melee
   - Ground
+  - Wall
+  - Door
+  - Weapon
+  - Melee
+  - Range
   layers:
   - Default
   - TransparentFX
