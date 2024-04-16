@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2300000}
   - component: {fileID: 6412440}
   - component: {fileID: 7581603934195938933}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pillar_F
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

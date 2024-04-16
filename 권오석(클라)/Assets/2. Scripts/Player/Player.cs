@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private float dashTime;
     private Vector3 moveVec;
     private Vector3 dashVec;
+    public Camera followCamera;
 
     //Weapon
     private GameObject nearObject;
@@ -36,10 +37,13 @@ public class Player : MonoBehaviour
 
     //Other
     private Animator animator;
+    private Rigidbody rb;
+    private bool toWall; // 벽 충돌확인
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
     }
     
     // Start is called before the first frame update
@@ -52,6 +56,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Move();
+        Turn();
         Dash();
 
         Attack();
@@ -59,7 +64,7 @@ public class Player : MonoBehaviour
         Swap();
         Interaction();
 
-        if (isAtkMoving)
+        if (isAtkMoving) // 근접 공격 시 전진성
         {
             transform.position = Vector3.Lerp(transform.position, atkPosition, atkMoveSpeed * Time.deltaTime);
             if (Vector3.Distance(transform.position, atkPosition) < 0.1f)
@@ -69,31 +74,47 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Move()
+    private void Move() // 이동
     {
         float hMove = Input.GetAxisRaw("Horizontal");
         float vMove = Input.GetAxisRaw("Vertical");
         sprint = Input.GetButton("Sprint");
 
-        if (isSwap || !isFireReady)
-            return;
+        moveVec = new Vector3(hMove, 0, vMove).normalized;
 
         if (isDash)
             moveVec = dashVec;
 
-        moveVec = new Vector3(hMove, 0, vMove).normalized;
+        if (isSwap || !isFireReady)
+            return;
 
-        transform.position += moveVec * (sprint ? speed = 6 : speed) * Time.deltaTime;
+        if (!toWall)
+            transform.position += moveVec * (sprint ? speed = 6 : speed) * Time.deltaTime;
 
         animator.SetBool("isWalk", moveVec != Vector3.zero);
         animator.SetBool("isSprint", sprint);
-
-        transform.LookAt(transform.position + moveVec);
     }
 
-    private void Dash()
+    private void Turn() // 캐릭터 회전
     {
-        if (Input.GetButtonDown("Dash") && moveVec != Vector3.zero && !onDash && !isSwap)
+        transform.LookAt(transform.position + moveVec);
+
+        if (Input.GetButton("Fire1"))
+        {
+            Ray ray = followCamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit raycastHit;
+            if (Physics.Raycast(ray, out raycastHit, 100))
+            {
+                Vector3 vector = raycastHit.point - transform.position;
+                vector.y = 0;
+                transform.LookAt(transform.position + vector);
+            }
+        }
+    }
+
+    private void Dash() // 대쉬
+    {
+        if (Input.GetButtonDown("Dash") && moveVec != Vector3.zero && !onDash && !isSwap && !toWall)
         {
             Vector3 dashDirection = transform.forward;
             float dashDistance = 2.5f; // 대쉬 거리
@@ -117,7 +138,7 @@ public class Player : MonoBehaviour
         isDash = false;
     }
 
-    private IEnumerator Dash(Vector3 direction, float distance)
+    private IEnumerator Dash(Vector3 direction, float distance) // 대쉬
     {
         float dashTime = 0.3f; // 대쉬 지속 시간
         float elapsedTime = 0f;
@@ -137,7 +158,7 @@ public class Player : MonoBehaviour
         onDash = false;
     }
 
-    private void Attack()
+    private void Attack() // 공격
     {
         atk = Input.GetButtonDown("Fire1");
 
@@ -150,18 +171,18 @@ public class Player : MonoBehaviour
         if (atk && isFireReady && !isDash && !isSwap)
         {
             equipWeapon.Use();
-            animator.SetTrigger("Melee-Attack");
+            animator.SetTrigger(equipWeapon.type == Weapon.Type.Melee ? "Melee-Attack" : "Range-Attack");
             fireDelay = 0;
         }
     }
-    public void ActiveMeleeAttack() //애니메이션 추가
+    public void ActiveMeleeAttack() // 근접 공격 시 전진성
     {
         isAtkMoving = true;
 
         atkPosition = transform.position + transform.forward * 0.5f;
     }
 
-    private void Swap()
+    private void Swap() // 무기 교체
     {
         swapWeapon1 = Input.GetButtonDown("Swap1");
         swapWeapon2 = Input.GetButtonDown("Swap2");
@@ -196,7 +217,7 @@ public class Player : MonoBehaviour
         isSwap = false;
     }
 
-    private void Interaction()
+    private void Interaction() // 아이템 줍기
     {
         interaction = Input.GetButtonDown("Interaction");
 
@@ -211,6 +232,23 @@ public class Player : MonoBehaviour
                 Destroy(nearObject);
             }
         }
+    }
+
+    private void StopRotation() // 아이템 습득 후 회전 방지
+    {
+        rb.angularVelocity = Vector3.zero;
+    }
+
+    private void StopToWall() // 벽 충돌 확인
+    {
+        Debug.DrawRay(transform.position, transform.forward * 0.7f, Color.green);
+        toWall = Physics.Raycast(transform.position, transform.forward, 0.7f, LayerMask.GetMask("Wall"));
+    }
+
+    private void FixedUpdate()
+    {
+        StopRotation();
+        StopToWall();
     }
 
     private void OnTriggerStay(Collider other)

@@ -98,5 +98,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   damage: 0
-  atkSpeed: 0
+  atkSpeed: 0.5
   meleeArea: {fileID: 0}
+  bulletParent: {fileID: 0}
+  bulletPos: {fileID: 0}
+  bullet: {fileID: 34079806463167363, guid: a8b9ccb48eacacd4e80a70cf49c401ae, type: 3}

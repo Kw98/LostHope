@@ -8,7 +8,12 @@ public class Weapon : MonoBehaviour
     public Type type;
     public int damage;
     public float atkSpeed;
+
     public BoxCollider meleeArea;
+
+    public Transform bulletParent;
+    public Transform bulletPos;
+    public GameObject bullet;
 
     public void Use()
     {
@@ -16,6 +21,10 @@ public class Weapon : MonoBehaviour
         {
             StopCoroutine("MeleeAttack");
             StartCoroutine("MeleeAttack");
+        }
+        else if (type == Type.Range)
+        {
+            StartCoroutine("RangeAttack");
         }
     }
 
@@ -26,5 +35,13 @@ public class Weapon : MonoBehaviour
 
         yield return new WaitForSeconds(0.3f);
         meleeArea.enabled = false;
+    }
+    IEnumerator RangeAttack()
+    {
+        GameObject b = Instantiate(bullet, bulletPos.position, bulletPos.rotation);
+        b.transform.SetParent(bulletParent);
+        Rigidbody bRb = b.GetComponent<Rigidbody>();
+        bRb.velocity = bulletPos.forward * 50;
+        yield return null;
     }
 }

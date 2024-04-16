@@ -12,10 +12,15 @@ public class Item : MonoBehaviour
 
     private Transform player;
 
-    // Start is called before the first frame update
-    void Start()
+    private Rigidbody rb;
+    private SphereCollider spCollider;
+
+    private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        rb = GetComponent<Rigidbody>();
+        spCollider = GetComponent<SphereCollider>();
     }
 
     // Update is called once per frame
@@ -26,6 +31,15 @@ public class Item : MonoBehaviour
         if (distanceToPlayer > distance)
         {
             transform.Rotate(Vector3.up * 50 * Time.deltaTime);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            rb.isKinematic = true;
+            spCollider.enabled = false;
         }
     }
 }

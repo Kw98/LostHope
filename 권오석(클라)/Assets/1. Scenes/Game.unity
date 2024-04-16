@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 89813706}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -642,6 +642,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9097917240725312875, guid: 07da60ddb39beb54e99edb0d4d1d133f, type: 3}
+      propertyPath: followCamera
+      value: 
+      objectReference: {fileID: 963194227}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07da60ddb39beb54e99edb0d4d1d133f, type: 3}
 --- !u!4 &474506792 stripped
@@ -1200,7 +1204,7 @@ GameObject:
   - component: {fileID: 716238051}
   m_Layer: 0
   m_Name: Wall(2) (1)
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1330,7 +1334,7 @@ GameObject:
   - component: {fileID: 761708202}
   m_Layer: 0
   m_Name: Wall (1)
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1598,7 +1602,7 @@ GameObject:
   - component: {fileID: 982124611}
   m_Layer: 0
   m_Name: StartStage
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1695,7 +1699,7 @@ GameObject:
   - component: {fileID: 1437678024}
   m_Layer: 0
   m_Name: Wall(2) - Door
-  m_TagString: Door
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2803,10 +2807,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arch_A
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: de3b8c31d809a0442bdf5e22edaf92be, type: 3}
-      propertyPath: m_TagString
-      value: Wall
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: de3b8c31d809a0442bdf5e22edaf92be, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3048,7 +3048,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1958206695499247027, guid: 1d8477f8382018544a404b2ae49c59f9, type: 3}
       propertyPath: m_Name
-      value: Weapon_Gun
+      value: Drop Weapon_Gun
       objectReference: {fileID: 0}
     - target: {fileID: 1958206695499247030, guid: 1d8477f8382018544a404b2ae49c59f9, type: 3}
       propertyPath: m_RootOrder
@@ -3105,7 +3105,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8777415949768488321, guid: 9af4e437be0cc554aa547f23a636bfb4, type: 3}
       propertyPath: m_Name
-      value: Weapon_Sword
+      value: Drop Weapon_Sword
       objectReference: {fileID: 0}
     - target: {fileID: 8777415949768488322, guid: 9af4e437be0cc554aa547f23a636bfb4, type: 3}
       propertyPath: m_RootOrder

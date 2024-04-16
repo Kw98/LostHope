@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 400006}
   - component: {fileID: 1014124842043702030}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door_B
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,7 +63,7 @@ GameObject:
   - component: {fileID: 3330692}
   - component: {fileID: 2309046}
   - component: {fileID: 6450972}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 3315754}
   - component: {fileID: 2335270}
   - component: {fileID: 6408620}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Handle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 3324822}
   - component: {fileID: 2312142}
   - component: {fileID: 6414680}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Handle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
