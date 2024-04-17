@@ -217,7 +217,7 @@ public class Player : MonoBehaviour
         isSwap = false;
     }
 
-    private void Interaction() // 아이템 줍기
+    private void Interaction() // 아이템 줍기 (키 사용 x 자동습득)
     {
         interaction = Input.GetButtonDown("Interaction");
 
