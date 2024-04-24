@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject[] weapons;
     [SerializeField] private bool[] hasWeapons;
 
+    private Define.PlayerData data = new Define.PlayerData();
+
     //Move
     private bool sprint;
     private bool isDash;
@@ -40,6 +42,70 @@ public class Player : MonoBehaviour
     private Rigidbody rb;
     private bool toWall; // 벽 충돌확인
 
+    public float SetCurHP
+    {
+        get { return data.CurHP; }
+        set
+        {
+            data.CurHP = value;
+            //UI.Instance.RefreshHP(hpImage);
+
+            // Player Dead
+            //if (data.CurHP <= 0 && state != PlayerState.Dead)
+            //{
+            //    state = PlayerState.Dead;
+            //    sa.SetSprite(dead, 0.2f, Dead, 1f);
+            //}
+        }
+    }
+
+    public float SetMaxHP
+    {
+        get { return data.MaxHP; }
+        set
+        {
+            data.MaxHP = value;
+        }
+    }
+    public float SetExp
+    {
+        get { return data.Exp; }
+        set
+        {
+            data.Exp = value;
+            //UI.Instance.RefreshExp();
+        }
+    }
+
+    public float SetMaxExp
+    {
+        get { return data.MaxExp; }
+        set { data.MaxExp = value; }
+    }
+
+
+    public int SetLevel
+    {
+        get { return data.Level; }
+        set
+        {
+            data.Level = value;
+            //UI.Instance.RefreshLevel();
+        }
+    }
+
+    public float SetPower
+    {
+        get { return data.Power; }
+        set { data.Power = value; }
+    }
+
+    public float SetSpeed
+    {
+        get { return data.Speed; }
+        set { data.Speed = value; }
+    }
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -49,7 +115,15 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //Player State
+        SetMaxHP = SetCurHP = 100;
+        SetMaxExp = 100;
+
+        SetExp = 0;
+        SetLevel = 1;
+
+        SetPower = 5;
+        SetSpeed = 3;
     }
 
     // Update is called once per frame
