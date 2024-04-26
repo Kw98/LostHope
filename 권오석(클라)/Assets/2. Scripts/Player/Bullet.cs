@@ -6,9 +6,9 @@ public class Bullet : MonoBehaviour
 {
     public int damage;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Wall")
+        if (other.gameObject.tag == "Wall")
         {
             Destroy(gameObject);
         }

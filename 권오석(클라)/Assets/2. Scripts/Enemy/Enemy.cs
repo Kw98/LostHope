@@ -1,101 +1,105 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    private Player p;
+    [SerializeField] private int maxHP;
+    [SerializeField] private int curHP;
+    [SerializeField] private Transform target;
 
-    protected Define.MonsterData data = new Define.MonsterData();
+    public bool isChase;
 
-    private MonsterState state = MonsterState.Run;
+    private Rigidbody rb;
+    private CapsuleCollider capsuleCollider;
+    private Animator animator;
+    private NavMeshAgent nav;
 
-    private float hitTimer;
-    protected float moveDistance = 0f;
-    private float atkTimer;
-    public virtual void Init()
+    private void Awake()
     {
-        gameObject.tag = "monster";
-        //state = MonsterState.Run;
-        //GetComponent<Collider2D>().enabled = true;
+        rb = GetComponent<Rigidbody>();
+        capsuleCollider = GetComponent<CapsuleCollider>();
+        animator = GetComponent<Animator>();
+        nav = GetComponent<NavMeshAgent>();
+
+        Invoke("ChaseStart", 2);
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        curHP = maxHP;
+    }
+    private void ChaseStart()
+    {
+        isChase = true;
+        animator.SetBool("isWalk", true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Define.state != GameState.Play)
-            return;
+        if(isChase)
+            nav.SetDestination(target.position);
+    }
 
-        if (GameManager.Instance.P == null || state == MonsterState.Dead)
-            return;
-
-        if (p == null)
-            p = GameManager.Instance.P;
-
-        if (state == MonsterState.Hit)
+    private void FreezeVelocity()
+    {
+        if (isChase)
         {
-            hitTimer -= Time.deltaTime;
-            if (hitTimer <= 0)
-            {
-                //state = MonsterState.Run;
-            }
-            else
-                return;
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
         }
+    }
 
-        float mDis = Vector2.Distance(p.transform.position, transform.position);
-        if (mDis > data.AtkDistance)
+    private void FixedUpdate()
+    {
+        FreezeVelocity();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Melee")
         {
-            Vector2 dis = p.transform.position - transform.position;
-            Vector3 dir = dis.normalized * Time.deltaTime * data.Speed;
+            Weapon weapon = other.GetComponent<Weapon>();
+            curHP -= weapon.damage;
+            Debug.Log("Melee : " + curHP);
+            Vector3 reactVec = transform.position - other.transform.position;
 
-            transform.Translate(dir);
+            StartCoroutine(OnDamage(reactVec));
+        }
+        else if (other.tag == "Bullet")
+        {
+            Bullet bullet = other.GetComponent<Bullet>();
+            curHP -= bullet.damage;
+            Debug.Log("Range : " + curHP);
+            Vector3 reactVec = transform.position - other.transform.position;
+            Destroy(other.gameObject);
+
+            StartCoroutine(OnDamage(reactVec));
+        }
+    }
+
+    IEnumerator OnDamage(Vector3 reactVec)
+    {
+        yield return new WaitForSeconds(0.1f);
+        if (curHP > 0)
+        {
+            animator.SetTrigger("GetHit");
         }
         else
         {
-            atkTimer += Time.smoothDeltaTime;
+            gameObject.layer = 11;
+            isChase = false;
+            nav.enabled = false;
+            animator.SetTrigger("onDead");
 
-            if (atkTimer >= data.AtkDelay)
-            {
-                atkTimer = 0;
-                p.SetCurHP -= data.Power;
-            }
+            reactVec = reactVec.normalized;
+            reactVec += Vector3.up;
+            rb.AddForce(reactVec * 10, ForceMode.Impulse);
+
+            Destroy(gameObject, 1f);
         }
     }
-
-    public void Hit(int damage)
-    {
-        if (data.CurHP <= 0)
-            return;
-
-        data.CurHP -= damage;
-        hitTimer = data.HitDelayTime;
-        //state = MonsterState.Hit;
-
-        if (data.CurHP <= 0)
-        {
-            //state = MonsterState.Dead;
-            gameObject.tag = "Untagged";
-            //GetComponent<Collider2D>().enabled = false;
-        }
-    }
-
-    public void Dead()
-    {
-        //Exp e = Instantiate(exp, transform.position, Quaternion.identity);
-        //e.SetTarget(p);
-        //e.EXP = data.Exp;
-    }
-
-    //public void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    Bullet b = collision.GetComponent<Bullet>();
-
-    //    if (b != null)
-    //    {
-    //        Hit(b.Power);
-    //        Debug.Log($"Bullet : {b.Power}");
-    //        Destroy(collision.gameObject);
-    //    }
-    //}
 }
