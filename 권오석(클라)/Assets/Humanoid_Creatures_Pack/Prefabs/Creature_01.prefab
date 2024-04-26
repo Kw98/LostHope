@@ -1308,6 +1308,7 @@ MonoBehaviour:
   curHP: 0
   target: {fileID: 0}
   meleeArea: {fileID: 4387968727732731012}
+  chaseDistance: 7.5
   isChase: 0
   isAtk: 0
 --- !u!195 &6317173184022746412
@@ -1320,7 +1321,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 2
+  m_Speed: 2.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

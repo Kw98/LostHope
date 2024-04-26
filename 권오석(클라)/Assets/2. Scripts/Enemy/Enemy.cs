@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int curHP;
     [SerializeField] private Transform target;
     [SerializeField] private BoxCollider meleeArea;
+    [SerializeField] private float chaseDistance; // 플레이어 감지 범위
 
     public bool isChase;
     public bool isAtk;
@@ -23,7 +24,7 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
 
-        Invoke("ChaseStart", 2);
+        //Invoke("ChaseStart", 2);
     }
 
     // Start is called before the first frame update
@@ -31,29 +32,53 @@ public class Enemy : MonoBehaviour
     {
         curHP = maxHP;
     }
-    private void ChaseStart()
+
+    private void OnDrawGizmos()
     {
-        isChase = true;
-        animator.SetBool("isWalk", true);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, chaseDistance);
     }
+
+    //private void ChaseStart()
+    //{
+    //    isChase = true;
+    //    animator.SetBool("isWalk", true);
+    //}
 
     // Update is called once per frame
     void Update()
     {
-        if (nav.enabled)
+        Targeting();
+        float distanceToTarget = Vector3.Distance(transform.position, target.position);
+        if (distanceToTarget < chaseDistance && !isChase)
         {
+            isChase = true;
             nav.SetDestination(target.position);
             nav.isStopped = !isChase;
-
-            if (nav.velocity.magnitude > 0)
-            {
-                animator.SetBool("isWalk", true);
-            }
-            else
-            {
-                animator.SetBool("isWalk", false);
-            }
+            
+            animator.SetBool("isWalk", true);
+            //ChaseStart();
         }
+        else if (distanceToTarget >= chaseDistance && isChase) // 추적 중지
+        {
+            isChase = false;
+            animator.SetBool("isWalk", false);
+        }
+
+        //if (nav.enabled)
+        //{
+        //    nav.SetDestination(target.position);
+        //    nav.isStopped = !isChase;
+
+        //    if (nav.velocity.magnitude > 0)
+        //    {
+        //        animator.SetBool("isWalk", true);
+        //    }
+        //    else
+        //    {
+        //        animator.SetBool("isWalk", false);
+        //    }
+        //}
     }
 
     private void FreezeVelocity()
@@ -67,8 +92,8 @@ public class Enemy : MonoBehaviour
 
     private void Targeting()
     {
-        float targetRadius = 1.5f;
-        float targetRange = 3f;
+        float targetRadius = 1.0f;
+        float targetRange = 0.5f;
 
         RaycastHit[] rayHits =
             Physics.SphereCastAll(transform.position
@@ -89,7 +114,7 @@ public class Enemy : MonoBehaviour
         isAtk = true;
         animator.SetBool("isAtk1", true);
 
-        yield return new WaitForSeconds(0.3f);
+        //yield return new WaitForSeconds(0.3f);
         meleeArea.enabled = true;
         yield return new WaitForSeconds(1.5f);
         meleeArea.enabled = false;
@@ -103,7 +128,6 @@ public class Enemy : MonoBehaviour
     private void FixedUpdate()
     {
         FreezeVelocity();
-        Targeting();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -135,6 +159,8 @@ public class Enemy : MonoBehaviour
         if (curHP > 0)
         {
             animator.SetTrigger("GetHit");
+            transform.position = Vector3.zero;
+            yield return new WaitForSeconds(1f);
         }
         else
         {
