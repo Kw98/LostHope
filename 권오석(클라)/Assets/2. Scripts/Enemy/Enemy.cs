@@ -8,18 +8,18 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int maxHP;
     [SerializeField] private int curHP;
     [SerializeField] private Transform target;
+    [SerializeField] private BoxCollider meleeArea;
 
     public bool isChase;
+    public bool isAtk;
 
     private Rigidbody rb;
-    private CapsuleCollider capsuleCollider;
     private Animator animator;
     private NavMeshAgent nav;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        capsuleCollider = GetComponent<CapsuleCollider>();
         animator = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
 
@@ -40,8 +40,20 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isChase)
+        if (nav.enabled)
+        {
             nav.SetDestination(target.position);
+            nav.isStopped = !isChase;
+
+            if (nav.velocity.magnitude > 0)
+            {
+                animator.SetBool("isWalk", true);
+            }
+            else
+            {
+                animator.SetBool("isWalk", false);
+            }
+        }
     }
 
     private void FreezeVelocity()
@@ -53,9 +65,45 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void Targeting()
+    {
+        float targetRadius = 1.5f;
+        float targetRange = 3f;
+
+        RaycastHit[] rayHits =
+            Physics.SphereCastAll(transform.position
+                                  , targetRadius
+                                  , transform.forward
+                                  , targetRange
+                                  , LayerMask.GetMask("Player"));
+
+        if (rayHits.Length > 0 && !isAtk)
+        {
+            StartCoroutine(Attack());
+        }
+    }
+
+    IEnumerator Attack()
+    {
+        isChase = false;
+        isAtk = true;
+        animator.SetBool("isAtk1", true);
+
+        yield return new WaitForSeconds(0.3f);
+        meleeArea.enabled = true;
+        yield return new WaitForSeconds(1.5f);
+        meleeArea.enabled = false;
+        yield return new WaitForSeconds(1f);
+
+        isChase = true;
+        isAtk = false;
+        animator.SetBool("isAtk1", false);
+    }
+
     private void FixedUpdate()
     {
         FreezeVelocity();
+        Targeting();
     }
 
     private void OnTriggerEnter(Collider other)

@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Player")]
+    [SerializeField] private int maxHP;
+    [SerializeField] private int curHP;
     [SerializeField] private float speed;
     [SerializeField] private GameObject[] weapons;
     [SerializeField] private bool[] hasWeapons;
@@ -39,6 +41,7 @@ public class Player : MonoBehaviour
     private Animator animator;
     private Rigidbody rb;
     private bool toWall; // 벽 충돌확인
+    private bool isDamage;
 
     private void Awake()
     {
@@ -49,7 +52,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        curHP = maxHP;
     }
 
     // Update is called once per frame
@@ -249,6 +252,28 @@ public class Player : MonoBehaviour
     {
         StopRotation();
         StopToWall();
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "EnemyAtk")
+        {
+            if (!isDamage)
+            {
+                Bullet enemyAtk = other.GetComponent<Bullet>();
+                curHP -= enemyAtk.damage;
+                StartCoroutine(OnDamage());
+            }
+        }
+    }
+
+    IEnumerator OnDamage()
+    {
+        isDamage = true;
+        animator.SetTrigger("GetHit");
+
+        yield return new WaitForSeconds(1f);
+
+        isDamage = false;
     }
 
     private void OnTriggerStay(Collider other)
