@@ -114,7 +114,7 @@ public class Enemy : MonoBehaviour
         isAtk = true;
         animator.SetBool("isAtk1", true);
 
-        //yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(1f);
         meleeArea.enabled = true;
         yield return new WaitForSeconds(1.5f);
         meleeArea.enabled = false;

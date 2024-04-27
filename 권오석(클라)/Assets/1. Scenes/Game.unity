@@ -7618,11 +7618,6 @@ PrefabInstance:
       objectReference: {fileID: 963194227}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07da60ddb39beb54e99edb0d4d1d133f, type: 3}
---- !u!4 &474506792 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6560491113902699905, guid: 07da60ddb39beb54e99edb0d4d1d133f, type: 3}
-  m_PrefabInstance: {fileID: 474506791}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &476559270
 GameObject:
   m_ObjectHideFlags: 0
@@ -9669,7 +9664,7 @@ PrefabInstance:
     - target: {fileID: 6506138495450131137, guid: 83ded7fd4c5c3c54da3de86e243625ef, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 474506792}
+      objectReference: {fileID: 2001683108}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83ded7fd4c5c3c54da3de86e243625ef, type: 3}
 --- !u!1001 &629804038
@@ -14960,7 +14955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9645e87fcd122aa47898ea192bc78158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 2001683108}
   offset: {x: -3, y: 9, z: -3}
 --- !u!1 &966341330
 GameObject:
@@ -31150,6 +31145,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 8811c9285b2bf334fb3e80d71c9e001b, type: 3}
   m_PrefabInstance: {fileID: 2000017715}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &2001683108 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8633470733093477751, guid: 62d2839909570514e9951e86fb273e8a, type: 3}
+  m_PrefabInstance: {fileID: 9115095247522345735}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2002550759
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33329,6 +33329,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 978379964023249252, guid: 62d2839909570514e9951e86fb273e8a, type: 3}
+      propertyPath: followCamera
+      value: 
+      objectReference: {fileID: 963194227}
     - target: {fileID: 8633470733093477751, guid: 62d2839909570514e9951e86fb273e8a, type: 3}
       propertyPath: m_RootOrder
       value: 4
