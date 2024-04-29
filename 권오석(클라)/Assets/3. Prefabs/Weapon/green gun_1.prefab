@@ -12,13 +12,13 @@ GameObject:
   - component: {fileID: 1005299181760115659}
   - component: {fileID: 997148780256847783}
   - component: {fileID: 1278972077}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: green gun_1
   m_TagString: Range
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &978792804752971787
 Transform:
   m_ObjectHideFlags: 0
