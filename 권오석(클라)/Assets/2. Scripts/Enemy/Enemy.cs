@@ -23,8 +23,6 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
-
-        //Invoke("ChaseStart", 2);
     }
 
     // Start is called before the first frame update
@@ -39,46 +37,28 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, chaseDistance);
     }
 
-    //private void ChaseStart()
-    //{
-    //    isChase = true;
-    //    animator.SetBool("isWalk", true);
-    //}
-
     // Update is called once per frame
     void Update()
     {
+        if (nav.enabled)
+        {
+            nav.SetDestination(target.position);
+            nav.isStopped = !isChase;
+        }
+
         Targeting();
         float distanceToTarget = Vector3.Distance(transform.position, target.position);
         if (distanceToTarget < chaseDistance && !isChase)
         {
             isChase = true;
-            nav.SetDestination(target.position);
-            nav.isStopped = !isChase;
             
             animator.SetBool("isWalk", true);
-            //ChaseStart();
         }
         else if (distanceToTarget >= chaseDistance && isChase) // 추적 중지
         {
             isChase = false;
             animator.SetBool("isWalk", false);
         }
-
-        //if (nav.enabled)
-        //{
-        //    nav.SetDestination(target.position);
-        //    nav.isStopped = !isChase;
-
-        //    if (nav.velocity.magnitude > 0)
-        //    {
-        //        animator.SetBool("isWalk", true);
-        //    }
-        //    else
-        //    {
-        //        animator.SetBool("isWalk", false);
-        //    }
-        //}
     }
 
     private void FreezeVelocity()
@@ -92,8 +72,8 @@ public class Enemy : MonoBehaviour
 
     private void Targeting()
     {
-        float targetRadius = 1.0f;
-        float targetRange = 0.5f;
+        float targetRadius = 10f;
+        float targetRange = 5f;
 
         RaycastHit[] rayHits =
             Physics.SphereCastAll(transform.position
@@ -104,25 +84,24 @@ public class Enemy : MonoBehaviour
 
         if (rayHits.Length > 0 && !isAtk)
         {
-            StartCoroutine(Attack());
+            Invoke("OnAtk", 0.3f);
         }
     }
-
-    IEnumerator Attack()
+    private void OnAtk()
     {
         isChase = false;
         isAtk = true;
-        animator.SetBool("isAtk1", true);
-
-        yield return new WaitForSeconds(1f);
+        animator.SetTrigger("isAtk");
         meleeArea.enabled = true;
-        yield return new WaitForSeconds(1.5f);
-        meleeArea.enabled = false;
-        yield return new WaitForSeconds(1f);
 
+        Invoke("offAtk", 1.5f);
+    }
+
+    private void offAtk()
+    {
         isChase = true;
         isAtk = false;
-        animator.SetBool("isAtk1", false);
+        meleeArea.enabled = false;
     }
 
     private void FixedUpdate()
