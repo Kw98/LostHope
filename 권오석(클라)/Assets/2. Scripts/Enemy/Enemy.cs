@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
 
     public bool isChase;
     public bool isAtk;
+    private bool isMove;
 
     private Rigidbody rb;
     private Animator animator;
@@ -28,6 +29,8 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isMove = true;
+
         curHP = maxHP;
     }
 
@@ -40,18 +43,24 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (nav.enabled)
+        if (isMove)
         {
-            nav.SetDestination(target.position);
-            nav.isStopped = !isChase;
+            if (nav.enabled)
+            {
+                nav.SetDestination(target.position);
+                nav.isStopped = !isChase;
+            }
+            ChasePlayer();
+            Targeting();
         }
+    }
 
-        Targeting();
+    private void ChasePlayer()
+    {
         float distanceToTarget = Vector3.Distance(transform.position, target.position);
         if (distanceToTarget < chaseDistance && !isChase)
         {
             isChase = true;
-            
             animator.SetBool("isWalk", true);
         }
         else if (distanceToTarget >= chaseDistance && isChase) // 추적 중지
@@ -72,36 +81,55 @@ public class Enemy : MonoBehaviour
 
     private void Targeting()
     {
-        float targetRadius = 10f;
+        float targetRadius = 0.5f;
         float targetRange = 5f;
 
-        RaycastHit[] rayHits =
-            Physics.SphereCastAll(transform.position
-                                  , targetRadius
-                                  , transform.forward
-                                  , targetRange
-                                  , LayerMask.GetMask("Player"));
+        RaycastHit rayHits;
+        bool search = Physics.SphereCast(transform.position
+                                            , targetRadius
+                                            , transform.forward
+                                            , out rayHits
+                                            , targetRange
+                                            , LayerMask.GetMask("Player"));
 
-        if (rayHits.Length > 0 && !isAtk)
+        if (search && !isAtk)
         {
-            Invoke("OnAtk", 0.3f);
+            float distance = Vector3.Distance(transform.position
+                                              , rayHits.collider.transform.position);
+            if (distance < 2)
+            {
+                Invoke("OnAtk", 0.3f);
+            }
         }
     }
+
+    public void OnAtkCollider()
+    {
+        meleeArea.enabled = true;
+    }
+
+    public void OffAtkCollider()
+    {
+        meleeArea.enabled = false;
+    }
+
     private void OnAtk()
     {
-        isChase = false;
+        isMove = false;
         isAtk = true;
         animator.SetTrigger("isAtk");
-        meleeArea.enabled = true;
 
         Invoke("offAtk", 1.5f);
     }
 
+    public void OnChase()
+    {
+        isMove = true;
+    }
+
     private void offAtk()
     {
-        isChase = true;
         isAtk = false;
-        meleeArea.enabled = false;
     }
 
     private void FixedUpdate()
@@ -138,7 +166,6 @@ public class Enemy : MonoBehaviour
         if (curHP > 0)
         {
             animator.SetTrigger("GetHit");
-            transform.position = Vector3.zero;
             yield return new WaitForSeconds(1f);
         }
         else
