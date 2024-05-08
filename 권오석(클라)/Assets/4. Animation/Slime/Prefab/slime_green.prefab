@@ -437,7 +437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 496b8517b6d230043abe3487615e0c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 100
+  maxHP: 10
   curHP: 0
   target: {fileID: 0}
   meleeArea: {fileID: 3428606069743732449}
@@ -502,4 +502,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c4fb81c5267dcf43a07610cb3654778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 1

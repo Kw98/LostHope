@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  damage: 10
+  damage: 2
   atkSpeed: 0.35
   meleeArea: {fileID: 5822277463260528891}
   bulletParent: {fileID: 0}
