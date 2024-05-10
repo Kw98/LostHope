@@ -16,7 +16,7 @@ GameObject:
   m_Name: Torch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &410932
@@ -115,7 +115,7 @@ GameObject:
   m_Name: Flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &416354
@@ -4932,7 +4932,7 @@ GameObject:
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &402428
@@ -4943,7 +4943,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 151766}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
-  m_LocalPosition: {x: -0.332, y: 0.656, z: -0.024}
+  m_LocalPosition: {x: -0.375, y: 0.656, z: -0.024}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4962,7 +4962,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.9485294, g: 0.59393716, b: 0.27200472, a: 1}
-  m_Intensity: 3
+  m_Intensity: 5
   m_Range: 7
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208

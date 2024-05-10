@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4656471467176370319
 Transform:
   m_ObjectHideFlags: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   damage: 2
-  atkSpeed: 0.35
+  atkSpeed: 1
   meleeArea: {fileID: 5822277463260528891}
   bulletParent: {fileID: 0}
   bulletPos: {fileID: 0}

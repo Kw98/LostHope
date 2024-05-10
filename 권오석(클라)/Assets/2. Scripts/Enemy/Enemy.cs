@@ -5,10 +5,12 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Enemy")]
     [SerializeField] private int maxHP;
     [SerializeField] private int curHP;
-    [SerializeField] private Transform target;
+
     [SerializeField] private BoxCollider meleeArea;
+    [SerializeField] private Transform target;
     [SerializeField] private float chaseDistance; // 플레이어 감지 범위
 
     public bool isChase;
@@ -19,11 +21,15 @@ public class Enemy : MonoBehaviour
     private Animator animator;
     private NavMeshAgent nav;
 
+    private Define.Data data;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
+
+        data = new Define.Data();
     }
 
     // Start is called before the first frame update
@@ -32,6 +38,9 @@ public class Enemy : MonoBehaviour
         isMove = true;
 
         curHP = maxHP;
+
+        data.MaxHP = 30;
+        data.CurHP = data.MaxHP;
     }
 
     private void OnDrawGizmos()

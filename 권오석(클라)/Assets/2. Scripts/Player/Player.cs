@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//UI hp,mp / ¸Ê 2°³ Ãß°¡ / ¹ÚÁã¸÷ Ãß°¡ÇØ¾ßÇÔ - 0510
 public class Player : MonoBehaviour
 {
     [Header("Player")]
     [SerializeField] private int maxHP;
     [SerializeField] private int curHP;
     [SerializeField] private float speed;
+
     [SerializeField] private GameObject[] weapons;
     [SerializeField] private bool[] hasWeapons;
 
@@ -261,6 +262,7 @@ public class Player : MonoBehaviour
             {
                 Bullet enemyAtk = other.GetComponent<Bullet>();
                 curHP -= enemyAtk.damage;
+                Debug.Log("Player HP : " + curHP);
                 StartCoroutine(OnDamage());
             }
         }
