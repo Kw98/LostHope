@@ -1928,14 +1928,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03b2fa14d617f584cbf71fe36ea576f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 30
-  curHP: 0
-  speed: 3
   weapons:
   - {fileID: 222001454251924476}
   - {fileID: 7473711242915036789}
   hasWeapons: 0000
   followCamera: {fileID: 0}
+  maxHP: 0
+  curHP: 0
+  curLevel: 0
 --- !u!136 &8858404319332373219
 CapsuleCollider:
   m_ObjectHideFlags: 0

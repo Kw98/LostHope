@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//UI hp,mp / 맵 2개 추가 / 박쥐몹 추가해야함 - 0510
+//맵 문 작동 추가 / 박쥐몹 추가해야함 - 0510
 public class Player : MonoBehaviour
 {
-    [Header("Player")]
-    [SerializeField] private int maxHP;
-    [SerializeField] private int curHP;
-    [SerializeField] private float speed;
-
     [SerializeField] private GameObject[] weapons;
     [SerializeField] private bool[] hasWeapons;
+    [SerializeField] Camera followCamera;
+
+    [Header("Player")]
+    public int maxHP;
+    public int curHP;
+    public int curLevel;
+    private float speed;
 
     //Move
     private bool sprint;
@@ -19,7 +21,6 @@ public class Player : MonoBehaviour
     private float dashTime;
     private Vector3 moveVec;
     private Vector3 dashVec;
-    public Camera followCamera;
 
     //Weapon
     private GameObject nearObject;
@@ -42,7 +43,6 @@ public class Player : MonoBehaviour
     private Animator animator;
     private Rigidbody rb;
     private bool toWall; // 벽 충돌확인
-    private bool isDamage;
 
     private void Awake()
     {
@@ -53,7 +53,10 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        maxHP = 30;
         curHP = maxHP;
+        curLevel = 1;
+        speed = 3;
     }
 
     // Update is called once per frame
@@ -76,6 +79,12 @@ public class Player : MonoBehaviour
                 isAtkMoving = false;
             }
         }
+    }
+
+    private void LevelUp()
+    {
+        curLevel++;
+        Debug.Log("Level UP! Lv : " + curLevel);
     }
 
     private void Move() // 이동
@@ -258,24 +267,27 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "EnemyAtk")
         {
-            if (!isDamage)
-            {
-                Bullet enemyAtk = other.GetComponent<Bullet>();
-                curHP -= enemyAtk.damage;
-                Debug.Log("Player HP : " + curHP);
-                StartCoroutine(OnDamage());
-            }
+            Bullet enemyAtk = other.GetComponent<Bullet>();
+            curHP -= enemyAtk.damage;
+            Debug.Log("Player HP : " + curHP);
+            StartCoroutine(OnDamage());
         }
     }
 
     IEnumerator OnDamage()
     {
-        isDamage = true;
-        animator.SetTrigger("GetHit");
+        if (curHP > 0)
+        {
+            animator.SetTrigger("GetHit");
 
-        yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1f);
+        }
+        else
+        {
+            animator.SetTrigger("onDead");
 
-        isDamage = false;
+            Destroy(gameObject, 1f);
+        }
     }
 
     private void OnTriggerStay(Collider other)

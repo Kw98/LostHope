@@ -80,7 +80,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: FPS
+  m_Text: 'FPS : 000.00'
 --- !u!114 &5479500355839338177
 MonoBehaviour:
   m_ObjectHideFlags: 0

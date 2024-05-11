@@ -35,7 +35,7 @@ public class FpsCounter : MonoBehaviour
         {
             // 소수점 2자리로 표시
             float fps = accum / frames;
-            string format = System.String.Format("{0:F2} FPS", fps);
+            string format = System.String.Format("FPS : {0:F2}", fps);
             // FPS 텍스트 설정
             textFpsCounter.text = format;
 

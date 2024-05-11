@@ -5,42 +5,32 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    [Header("Enemy")]
-    [SerializeField] private int maxHP;
-    [SerializeField] private int curHP;
-
     [SerializeField] private BoxCollider meleeArea;
     [SerializeField] private Transform target;
     [SerializeField] private float chaseDistance; // 플레이어 감지 범위
 
-    public bool isChase;
-    public bool isAtk;
-    private bool isMove;
+    protected int maxHP;
+    protected int curHP;
 
+    private bool isChase;
+    private bool isAtk;
+    private bool isMove;
+    
     private Rigidbody rb;
     private Animator animator;
     private NavMeshAgent nav;
-
-    private Define.Data data;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
-
-        data = new Define.Data();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         isMove = true;
-
-        curHP = maxHP;
-
-        data.MaxHP = 30;
-        data.CurHP = data.MaxHP;
     }
 
     private void OnDrawGizmos()
@@ -52,6 +42,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.P == null)
+            return;
+
         if (isMove)
         {
             if (nav.enabled)
