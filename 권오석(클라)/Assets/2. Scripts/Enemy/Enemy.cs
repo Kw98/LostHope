@@ -2,30 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
+
 //박쥐몹 추가 불가
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private BoxCollider meleeArea;
     [SerializeField] private Transform target;
-    [SerializeField] private float chaseDistance; // 플레이어 감지 범위
-
+    
+    protected float chaseDistance; // 플레이어 감지 범위
     protected Define.MonsterData data = new Define.MonsterData();
 
     private bool isChase;
     private bool isAtk;
-    private bool isMove;
+    private bool isMove = true;
     
     private Rigidbody rb;
     private Animator animator;
     private NavMeshAgent nav;
+
+    public static event Action<Enemy> OnEnemyDie;
 
     public virtual void Init()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
-
-        isMove = true;
     }
 
     private void OnDrawGizmos()
@@ -117,9 +119,10 @@ public class Enemy : MonoBehaviour
         animator.SetTrigger("isAtk");
 
         Invoke("offAtk", 1.5f);
+        Invoke("OnChase", 1.5f);
     }
 
-    public void OnChase()
+    private void OnChase()
     {
         isMove = true;
     }
@@ -177,6 +180,7 @@ public class Enemy : MonoBehaviour
             rb.AddForce(reactVec * 10, ForceMode.Impulse);
 
             Destroy(gameObject, 1f);
+            OnEnemyDie?.Invoke(this);
         }
     }
 }

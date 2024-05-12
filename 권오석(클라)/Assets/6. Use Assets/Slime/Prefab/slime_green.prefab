@@ -388,7 +388,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meleeArea: {fileID: 3428606069743732449}
   target: {fileID: 0}
-  chaseDistance: 6
 --- !u!54 &408236697
 Rigidbody:
   m_ObjectHideFlags: 0

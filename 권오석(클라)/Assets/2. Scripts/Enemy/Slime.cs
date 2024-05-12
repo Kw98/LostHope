@@ -12,6 +12,7 @@ public class Slime : Enemy
 
     public override void Init()
     {
+        chaseDistance = 6;
         data.CurHP = 10;
 
         base.Init();
