@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &403747334208891709
 Transform:
   m_ObjectHideFlags: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
   meleeArea: {fileID: 0}
   bulletParent: {fileID: 0}
   bulletPos: {fileID: 0}
-  bullet: {fileID: 34079806463167363, guid: a8b9ccb48eacacd4e80a70cf49c401ae, type: 3}
+  bullet: {fileID: 1000012871492402, guid: c56d61f4cf63d834482119e0cc90eff5, type: 3}
 --- !u!1 &403747334209386271
 GameObject:
   m_ObjectHideFlags: 0

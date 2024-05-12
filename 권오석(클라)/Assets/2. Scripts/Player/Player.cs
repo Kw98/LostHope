@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//맵 문 작동 추가 / 박쥐몹 추가해야함 - 0510
+//맵 문 작동 추가
 public class Player : MonoBehaviour
 {
     [SerializeField] private GameObject[] weapons;
@@ -267,7 +267,7 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "EnemyAtk")
         {
-            Bullet enemyAtk = other.GetComponent<Bullet>();
+            EnemyAtk enemyAtk = other.GetComponent<EnemyAtk>();
             curHP -= enemyAtk.damage;
             Debug.Log("Player HP : " + curHP);
             StartCoroutine(OnDamage());

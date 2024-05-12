@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+//박쥐몹 추가 불가
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private BoxCollider meleeArea;
     [SerializeField] private Transform target;
     [SerializeField] private float chaseDistance; // 플레이어 감지 범위
 
-    protected int maxHP;
-    protected int curHP;
+    protected Define.MonsterData data = new Define.MonsterData();
 
     private bool isChase;
     private bool isAtk;
@@ -20,16 +19,12 @@ public class Enemy : MonoBehaviour
     private Animator animator;
     private NavMeshAgent nav;
 
-    private void Awake()
+    public virtual void Init()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
         isMove = true;
     }
 
@@ -144,8 +139,8 @@ public class Enemy : MonoBehaviour
         if (other.tag == "Melee")
         {
             Weapon weapon = other.GetComponent<Weapon>();
-            curHP -= weapon.damage;
-            Debug.Log("Melee : " + curHP);
+            data.CurHP -= weapon.damage;
+            Debug.Log("Melee : " + data.CurHP);
             Vector3 reactVec = transform.position - other.transform.position;
 
             StartCoroutine(OnDamage(reactVec));
@@ -153,8 +148,8 @@ public class Enemy : MonoBehaviour
         else if (other.tag == "Bullet")
         {
             Bullet bullet = other.GetComponent<Bullet>();
-            curHP -= bullet.damage;
-            Debug.Log("Range : " + curHP);
+            data.CurHP -= bullet.damage;
+            Debug.Log("Range : " + data.CurHP);
             Vector3 reactVec = transform.position - other.transform.position;
             Destroy(other.gameObject);
 
@@ -165,7 +160,7 @@ public class Enemy : MonoBehaviour
     IEnumerator OnDamage(Vector3 reactVec)
     {
         yield return new WaitForSeconds(0.1f);
-        if (curHP > 0)
+        if (data.CurHP > 0)
         {
             animator.SetTrigger("GetHit");
             yield return new WaitForSeconds(1f);

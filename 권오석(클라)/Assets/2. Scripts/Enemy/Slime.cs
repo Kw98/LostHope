@@ -7,13 +7,13 @@ public class Slime : Enemy
     // Start is called before the first frame update
     void Start()
     {
-        maxHP = 10;
-        curHP = maxHP;
+        Init();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Init()
     {
-        
+        data.CurHP = 10;
+
+        base.Init();
     }
 }

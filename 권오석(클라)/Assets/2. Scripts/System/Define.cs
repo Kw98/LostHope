@@ -8,14 +8,13 @@ public static class Define
 {
     public class Data
     {
-        public float CurHP;
-        public float MaxHP;
-        public float Power;
+        public int CurHP;
+        public int MaxHP;
     }
 
     public class PlayerData : Data
     {
-        
+        public int Level;
     }
 
     public class MonsterData : Data

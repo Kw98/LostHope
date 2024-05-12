@@ -41,7 +41,7 @@ public class Weapon : MonoBehaviour
         GameObject b = Instantiate(bullet, bulletPos.position, bulletPos.rotation);
         b.transform.SetParent(bulletParent);
         Rigidbody bRb = b.GetComponent<Rigidbody>();
-        bRb.velocity = bulletPos.forward * 50;
+        bRb.velocity = bulletPos.up * 30;
         yield return null;
     }
 }
