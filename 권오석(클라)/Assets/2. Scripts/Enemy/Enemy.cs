@@ -4,14 +4,13 @@ using UnityEngine;
 using UnityEngine.AI;
 using System;
 
-//박쥐몹 추가 불가
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private BoxCollider meleeArea;
     [SerializeField] private Transform target;
     
     protected float chaseDistance; // 플레이어 감지 범위
-    protected Define.MonsterData data = new Define.MonsterData();
+    public Define.MonsterData data = new Define.MonsterData();
 
     private bool isChase;
     private bool isAtk;
@@ -180,7 +179,9 @@ public class Enemy : MonoBehaviour
             rb.AddForce(reactVec * 10, ForceMode.Impulse);
 
             Destroy(gameObject, 1f);
+
             OnEnemyDie?.Invoke(this);
         }
+        FindObjectOfType<EnemyUI>().UpdateUI();
     }
 }

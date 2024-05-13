@@ -13,7 +13,8 @@ public class Bat : Enemy
     public override void Init()
     {
         chaseDistance = 7;
-        data.CurHP = 8;
+        data.MaxHP = 8;
+        data.CurHP = data.MaxHP;
 
         base.Init();
     }

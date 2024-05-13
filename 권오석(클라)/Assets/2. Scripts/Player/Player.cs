@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//맵 문 작동 추가
+
 public class Player : MonoBehaviour
 {
     [SerializeField] private GameObject[] weapons;

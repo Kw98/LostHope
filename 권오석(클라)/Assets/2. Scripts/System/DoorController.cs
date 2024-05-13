@@ -22,9 +22,14 @@ public class DoorController : MonoBehaviour
     private void EnemyDead(Enemy enemy)
     {
         bool allDead = true;
-        foreach (GameObject enmeyObj in enemies)
+        for (int i = 0; i < enemies.Length; i++)
         {
-            if (enmeyObj != null)
+            if (enemies[i] == enemy.gameObject)
+            {
+                enemies[i] = null;
+            }
+
+            if (enemies[i] != null)
             {
                 allDead = false;
                 break;
