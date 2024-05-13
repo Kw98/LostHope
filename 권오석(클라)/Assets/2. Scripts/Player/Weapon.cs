@@ -30,12 +30,13 @@ public class Weapon : MonoBehaviour
 
     IEnumerator MeleeAttack()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.15f);
         meleeArea.enabled = true;
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         meleeArea.enabled = false;
     }
+
     IEnumerator RangeAttack()
     {
         GameObject b = Instantiate(bullet, bulletPos.position, bulletPos.rotation);

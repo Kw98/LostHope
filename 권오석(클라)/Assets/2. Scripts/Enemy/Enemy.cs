@@ -89,7 +89,7 @@ public class Enemy : MonoBehaviour
                                             , out rayHits
                                             , targetRange
                                             , LayerMask.GetMask("Player"));
-
+        Debug.Log($"search:{search}, isAtk:{isAtk}");
         if (search && !isAtk)
         {
             float distance = Vector3.Distance(transform.position
@@ -176,7 +176,7 @@ public class Enemy : MonoBehaviour
 
             reactVec = reactVec.normalized;
             reactVec += Vector3.up;
-            rb.AddForce(reactVec * 10, ForceMode.Impulse);
+            rb.AddForce(reactVec * 5, ForceMode.Impulse);
 
             Destroy(gameObject, 1f);
 
