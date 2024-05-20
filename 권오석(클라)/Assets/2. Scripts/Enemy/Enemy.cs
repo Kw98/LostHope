@@ -89,7 +89,7 @@ public class Enemy : MonoBehaviour
                                             , out rayHits
                                             , targetRange
                                             , LayerMask.GetMask("Player"));
-        Debug.Log($"search:{search}, isAtk:{isAtk}");
+
         if (search && !isAtk)
         {
             float distance = Vector3.Distance(transform.position

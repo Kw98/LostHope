@@ -715,9 +715,9 @@ GameObject:
   m_Component:
   - component: {fileID: 404892}
   - component: {fileID: 9570210}
+  - component: {fileID: 8224002834924682279}
   - component: {fileID: 1497977724940875546}
   - component: {fileID: 88536065676240434}
-  - component: {fileID: 8224002834924682279}
   - component: {fileID: 937600445}
   m_Layer: 10
   m_Name: Bat_Monster
@@ -766,6 +766,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8224002834924682279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2022e0fb565b0934a9107c90a9ef83a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleeArea: {fileID: 8184229899214042248}
+  target: {fileID: 0}
 --- !u!54 &1497977724940875546
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -795,20 +809,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.35, y: 1.15, z: 0.85}
   m_Center: {x: 0, y: 0.45, z: 0}
---- !u!114 &8224002834924682279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 151936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2022e0fb565b0934a9107c90a9ef83a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meleeArea: {fileID: 8184229899214042248}
-  target: {fileID: 0}
 --- !u!195 &937600445
 NavMeshAgent:
   m_ObjectHideFlags: 0
