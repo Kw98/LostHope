@@ -324,7 +324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400016}
   - component: {fileID: 9500000}
-  - component: {fileID: 6048019465293555648}
+  - component: {fileID: 2363094684918046081}
   - component: {fileID: 1527318092162380706}
   - component: {fileID: 3274309948784979491}
   - component: {fileID: 6922404818317880706}
@@ -375,7 +375,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6048019465293555648
+--- !u!114 &2363094684918046081
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -384,7 +384,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa1e2d4399cc9674698ca583482d56eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dfde25e36f7d7e409eb3bd58f95affe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   meleeArea: {fileID: 2249091546587130273}
@@ -498,7 +498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7c45b4d9272b941a7def2e8fccbaae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 3
 --- !u!1 &1700983468667787509
 GameObject:
   m_ObjectHideFlags: 0
