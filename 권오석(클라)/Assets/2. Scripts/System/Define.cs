@@ -10,6 +10,7 @@ public static class Define
     {
         public int CurHP;
         public int MaxHP;
+        public int Power;
     }
 
     public class PlayerData : Data
