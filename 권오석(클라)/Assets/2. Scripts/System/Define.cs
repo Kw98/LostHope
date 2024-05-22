@@ -11,11 +11,12 @@ public static class Define
         public int CurHP;
         public int MaxHP;
         public int Power;
+        public int Level;
     }
 
     public class PlayerData : Data
     {
-        public int Level;
+        
     }
 
     public class MonsterData : Data
