@@ -4,29 +4,40 @@ using UnityEngine;
 using UnityEngine.AI;
 using System;
 
-public class Enemy : MonoBehaviour
+public class Monster : MonoBehaviour
 {
     [SerializeField] private BoxCollider meleeArea;
     [SerializeField] private Transform target;
     
     protected float chaseDistance; // 플레이어 감지 범위
     public Define.MonsterData data = new Define.MonsterData();
+    protected MonsterAtk monsterAtk;
+
+    protected Rigidbody rb;
+    protected Animator animator;
+    protected NavMeshAgent nav;
 
     private bool isChase;
     private bool isAtk;
-    private bool isMove = true;
-    
-    private Rigidbody rb;
-    private Animator animator;
-    private NavMeshAgent nav;
+    private bool isMove;
 
-    public static event Action<Enemy> OnEnemyDie;
+    public static event Action<Monster> OnMonsterDie;
+
+    private void Awake()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            target = player.transform;
+        }
+    }
 
     public virtual void Init()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
+        isMove = true;
     }
 
     private void OnDrawGizmos()
@@ -39,6 +50,9 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         if (GameManager.Instance.P == null)
+            return;
+
+        if (target == null)
             return;
 
         if (isMove)
@@ -180,8 +194,8 @@ public class Enemy : MonoBehaviour
 
             Destroy(gameObject, 1f);
 
-            OnEnemyDie?.Invoke(this);
+            OnMonsterDie?.Invoke(this);
         }
-        FindObjectOfType<EnemyUI>().UpdateUI();
+        FindObjectOfType<MonsterUI>().UpdateUI();
     }
 }

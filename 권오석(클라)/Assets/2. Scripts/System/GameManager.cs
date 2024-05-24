@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : SingleTon<GameManager>
+public class GameManager : Singleton<GameManager>
 {
     private Player p;
     public Player P
@@ -15,5 +15,9 @@ public class GameManager : SingleTon<GameManager>
             }
             return p;
         }
+    }
+    public void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
     }
 }

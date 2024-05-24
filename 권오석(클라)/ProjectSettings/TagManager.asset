@@ -11,8 +11,8 @@ TagManager:
   - Melee
   - Range
   - Bullet
-  - Enemy
-  - EnemyAtk
+  - Monster
+  - MonsterAtk
   layers:
   - Default
   - TransparentFX
@@ -24,9 +24,9 @@ TagManager:
   - Wall
   - Player
   - Player Bullet
-  - Enemy
-  - Enemy Dead
-  - EnemyAtk
+  - Monster
+  - Monster Dead
+  - MonsterAtk
   - Torch
   - Weapon
   - 

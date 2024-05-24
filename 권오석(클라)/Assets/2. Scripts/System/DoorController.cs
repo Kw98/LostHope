@@ -4,32 +4,32 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
-    [SerializeField] private GameObject[] enemies;
+    [SerializeField] private GameObject[] monsters;
 
     private bool isOpen = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        Enemy.OnEnemyDie += EnemyDead;
+        Monster.OnMonsterDie += MonsterDead;
     }
 
     private void OnDestroy()
     {
-        Enemy.OnEnemyDie -= EnemyDead;
+        Monster.OnMonsterDie -= MonsterDead;
     }
 
-    private void EnemyDead(Enemy enemy)
+    private void MonsterDead(Monster monster)
     {
         bool allDead = true;
-        for (int i = 0; i < enemies.Length; i++)
+        for (int i = 0; i < monsters.Length; i++)
         {
-            if (enemies[i] == enemy.gameObject)
+            if (monsters[i] == monster.gameObject)
             {
-                enemies[i] = null;
+                monsters[i] = null;
             }
 
-            if (enemies[i] != null)
+            if (monsters[i] != null)
             {
                 allDead = false;
                 break;

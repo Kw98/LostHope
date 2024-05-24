@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EliteBat : Enemy
+public class EliteBat : Monster
 {
+    [SerializeField] private int dataIndex;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,8 +14,13 @@ public class EliteBat : Enemy
     public override void Init()
     {
         chaseDistance = 7;
-        data.MaxHP = 16;
-        data.CurHP = data.MaxHP;
+        data.CurHP = 16;
+
+        JsonData.MonsterJsonData jData = JsonData.Instance.mj.monster[dataIndex];
+
+        data.Power = jData.power;
+        data.AtkDelay = jData.atkdelay;
+        data.Speed = jData.speed;
 
         base.Init();
     }

@@ -243,7 +243,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c63b1b0eb605db54abbfdde05b3ccf41, type: 2}
+  - {fileID: 2100000, guid: a361e7b478543cc4e8b8aa0b741c51bc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -324,13 +324,13 @@ GameObject:
   m_Component:
   - component: {fileID: 400016}
   - component: {fileID: 9500000}
-  - component: {fileID: 2363094684918046081}
+  - component: {fileID: 6048019465293555648}
   - component: {fileID: 1527318092162380706}
   - component: {fileID: 3274309948784979491}
   - component: {fileID: 6922404818317880706}
   m_Layer: 10
-  m_Name: slime_gold
-  m_TagString: Enemy
+  m_Name: slime_red
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -344,7 +344,7 @@ Transform:
   m_GameObject: {fileID: 100016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 854831821240064479}
@@ -375,7 +375,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2363094684918046081
+--- !u!114 &6048019465293555648
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -384,11 +384,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 100016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dfde25e36f7d7e409eb3bd58f95affe, type: 3}
+  m_Script: {fileID: 11500000, guid: fa1e2d4399cc9674698ca583482d56eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   meleeArea: {fileID: 2249091546587130273}
-  target: {fileID: 4580395908430909670, guid: 8d9f40d8a8f226040b7cbc2ca2d5a3ec, type: 3}
+  target: {fileID: 0}
+  dataIndex: 0
 --- !u!54 &1527318092162380706
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -432,7 +433,7 @@ NavMeshAgent:
   m_Acceleration: 5
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 2.5
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
@@ -452,8 +453,8 @@ GameObject:
   - component: {fileID: 2249091546587130273}
   - component: {fileID: 94595340714989602}
   m_Layer: 12
-  m_Name: EnemyAtk
-  m_TagString: EnemyAtk
+  m_Name: MonsterAtk
+  m_TagString: MonsterAtk
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -498,7 +499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7c45b4d9272b941a7def2e8fccbaae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
+  damage: 1
 --- !u!1 &1700983468667787509
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,7 +690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf729e6c7cbebe4428adb0720871e0f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
+  monster: {fileID: 0}
   curHPImage: {fileID: 0}
 --- !u!1 &8227603453592236602
 GameObject:

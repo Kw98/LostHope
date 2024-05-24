@@ -265,12 +265,16 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "EnemyAtk")
+        if (other.tag == "MonsterAtk")
         {
-            EnemyAtk enemyAtk = other.GetComponent<EnemyAtk>();
-            curHP -= enemyAtk.damage;
-            Debug.Log("Player HP : " + curHP);
-            StartCoroutine(OnDamage());
+            Monster monster = other.GetComponentInParent<Monster>();
+            if (monster != null)
+            {
+                int damage = monster.data.Power;
+                curHP -= damage;
+                Debug.Log("Player HP : " + curHP);
+                StartCoroutine(OnDamage());
+            }
         }
     }
 

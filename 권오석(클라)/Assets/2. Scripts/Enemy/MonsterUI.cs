@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class EnemyUI : MonoBehaviour
+public class MonsterUI : MonoBehaviour
 {
-    public Enemy enemy;
+    public Monster monster;
 
     [Header("HP")]
     [SerializeField] private Image curHPImage;
@@ -18,12 +18,12 @@ public class EnemyUI : MonoBehaviour
     {
         camera = Camera.main.transform;
 
-        enemy = GetComponentInParent<Enemy>();
+        monster = GetComponentInParent<Monster>();
 
         Transform child = transform.GetChild(0).GetChild(0);
         curHPImage = child.GetComponent<Image>();
 
-        if (enemy != null)
+        if (monster != null)
         {
             UpdateUI();
         }
@@ -35,7 +35,7 @@ public class EnemyUI : MonoBehaviour
         transform.LookAt(transform.position + camera.rotation * Vector3.forward,
                             camera.rotation * Vector3.up);
 
-        if (enemy != null)
+        if (monster != null)
         {
             UpdateUI();
         }
@@ -44,7 +44,7 @@ public class EnemyUI : MonoBehaviour
     public void UpdateUI()
     {
         //HP
-        float hpFillAmount = (float)enemy.data.CurHP / enemy.data.MaxHP;
+        float hpFillAmount = (float)monster.data.CurHP / monster.data.MaxHP;
         curHPImage.fillAmount = hpFillAmount;
     }
 }

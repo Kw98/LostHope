@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.029087335, g: 0.0298977, b: 0.029896766, a: 1}
+  m_IndirectSpecularColor: {r: 0.029087335, g: 0.0298977, b: 0.029896773, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -712,11 +712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601243faa6b6d7f40b70481f739531b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 1786282352}
-  - {fileID: 1835780373}
-  - {fileID: 1213973259}
-  - {fileID: 248191891}
+  monsters: []
 --- !u!1 &27078603
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,7 +751,7 @@ Transform:
   - {fileID: 70668391}
   - {fileID: 2048206167}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &29062097
 PrefabInstance:
@@ -1085,7 +1081,7 @@ GameObject:
   m_Component:
   - component: {fileID: 56069501}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3101,20 +3097,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7702008784548624824, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 543450652169417109}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
 --- !u!4 &248191890 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400016, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
-  m_PrefabInstance: {fileID: 248191889}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &248191891 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100016, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
   m_PrefabInstance: {fileID: 248191889}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &254410937
@@ -4479,11 +4466,6 @@ Transform:
   m_Father: {fileID: 70668391}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &349913099 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 151936, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
-  m_PrefabInstance: {fileID: 1203943447}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &350244075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5336,10 +5318,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7702008784548624824, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 543450652169417109}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
 --- !u!4 &408236694 stripped
@@ -5404,6 +5382,53 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a06d34869919f8646b564dcd7350f9aa, type: 3}
+--- !u!1 &422196342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 422196343}
+  - component: {fileID: 422196344}
+  m_Layer: 0
+  m_Name: '[ JsonData ]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &422196343
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422196342}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1318191005}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &422196344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422196342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3dd226a734520c4d915c57146b52195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterJson: {fileID: 4900000, guid: a41fdc7fd9db95e41b0ac5641b21a9c7, type: 3}
+  mj:
+    monster: []
 --- !u!1001 &428219712
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6919,20 +6944,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2015006547712113633, guid: 64d98a9c53db0324cb453f30db83fffb, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 2043488118}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64d98a9c53db0324cb453f30db83fffb, type: 3}
 --- !u!4 &562434420 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 404892, guid: 64d98a9c53db0324cb453f30db83fffb, type: 3}
-  m_PrefabInstance: {fileID: 562434419}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &562434421 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 151936, guid: 64d98a9c53db0324cb453f30db83fffb, type: 3}
   m_PrefabInstance: {fileID: 562434419}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &563179210
@@ -8007,7 +8023,7 @@ GameObject:
   - component: {fileID: 632197775}
   - component: {fileID: 632197774}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8914,7 +8930,7 @@ GameObject:
   m_Component:
   - component: {fileID: 692042653}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9275,7 +9291,7 @@ GameObject:
   m_Component:
   - component: {fileID: 720164663}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9553,20 +9569,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8224002834924682279, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 2043488118}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
 --- !u!4 &737584266 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 404892, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
-  m_PrefabInstance: {fileID: 737584265}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &737584267 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 151936, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
   m_PrefabInstance: {fileID: 737584265}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &737601383
@@ -10576,12 +10583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601243faa6b6d7f40b70481f739531b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 1920839131}
-  - {fileID: 2137162671}
-  - {fileID: 1755737803}
-  - {fileID: 1253458450}
-  - {fileID: 2102162857}
+  monsters: []
 --- !u!1001 &842793584
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11254,11 +11256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601243faa6b6d7f40b70481f739531b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 1708935443}
-  - {fileID: 349913099}
-  - {fileID: 1373524480}
-  - {fileID: 1629502524}
+  monsters: []
 --- !u!1001 &889696546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12063,7 +12061,7 @@ Transform:
   - {fileID: 1299832543}
   - {fileID: 8636858}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &966341330
 GameObject:
@@ -12690,7 +12688,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1018759204}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12833,10 +12831,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7702008784548624824, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 543450652169417109}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
 --- !u!4 &1035414155 stripped
@@ -13592,7 +13586,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1102609024
 Transform:
   m_ObjectHideFlags: 0
@@ -13912,20 +13906,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8224002834924682279, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 2043488118}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
 --- !u!4 &1120335950 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 404892, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
-  m_PrefabInstance: {fileID: 1120335949}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1120335951 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 151936, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
   m_PrefabInstance: {fileID: 1120335949}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1122439028
@@ -14228,12 +14213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601243faa6b6d7f40b70481f739531b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 1920839131}
-  - {fileID: 2137162671}
-  - {fileID: 1755737803}
-  - {fileID: 1253458450}
-  - {fileID: 2102162857}
+  monsters: []
 --- !u!1001 &1162980732
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14602,10 +14582,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8224002834924682279, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 543450652169417109}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
 --- !u!1001 &1209610018
@@ -14787,20 +14763,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7702008784548624824, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 543450652169417109}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
 --- !u!4 &1213973258 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400016, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
-  m_PrefabInstance: {fileID: 1213973257}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1213973259 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100016, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
   m_PrefabInstance: {fileID: 1213973257}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1215052001
@@ -14875,7 +14842,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1219761560}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15142,20 +15109,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6048019465293555648, guid: d42180469663aac46858d70c0c4cd3c5, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 543450652169417109}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d42180469663aac46858d70c0c4cd3c5, type: 3}
 --- !u!4 &1253458449 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400016, guid: d42180469663aac46858d70c0c4cd3c5, type: 3}
-  m_PrefabInstance: {fileID: 1253458448}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1253458450 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100016, guid: d42180469663aac46858d70c0c4cd3c5, type: 3}
   m_PrefabInstance: {fileID: 1253458448}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1261631370
@@ -15230,7 +15188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1265784060}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15770,6 +15728,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8777415949768488322, guid: 9af4e437be0cc554aa547f23a636bfb4, type: 3}
   m_PrefabInstance: {fileID: 8777415949234362400}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1318191003
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1318191005}
+  - component: {fileID: 1318191004}
+  m_Layer: 0
+  m_Name: '[ GameManager ]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1318191004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318191003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78cf6f0c7465fdb46ad58b5c70419a25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1318191005
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318191003}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 422196343}
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1322437271
 GameObject:
   m_ObjectHideFlags: 0
@@ -15921,20 +15924,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8224002834924682279, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 2043488118}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
 --- !u!4 &1334103099 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 404892, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
-  m_PrefabInstance: {fileID: 1334103098}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1334103100 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 151936, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
   m_PrefabInstance: {fileID: 1334103098}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1335010248
@@ -16011,12 +16005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601243faa6b6d7f40b70481f739531b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 1578651954}
-  - {fileID: 1334103100}
-  - {fileID: 737584267}
-  - {fileID: 1120335951}
-  - {fileID: 562434421}
+  monsters: []
 --- !u!1 &1335064982
 GameObject:
   m_ObjectHideFlags: 0
@@ -16688,20 +16677,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6048019465293555648, guid: d42180469663aac46858d70c0c4cd3c5, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 543450652169417109}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d42180469663aac46858d70c0c4cd3c5, type: 3}
 --- !u!4 &1373524479 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400016, guid: d42180469663aac46858d70c0c4cd3c5, type: 3}
-  m_PrefabInstance: {fileID: 1373524478}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1373524480 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100016, guid: d42180469663aac46858d70c0c4cd3c5, type: 3}
   m_PrefabInstance: {fileID: 1373524478}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1374953463
@@ -16964,12 +16944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601243faa6b6d7f40b70481f739531b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 1920839131}
-  - {fileID: 2137162671}
-  - {fileID: 1755737803}
-  - {fileID: 1253458450}
-  - {fileID: 2102162857}
+  monsters: []
 --- !u!1001 &1409006379
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17158,12 +17133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601243faa6b6d7f40b70481f739531b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 1578651954}
-  - {fileID: 1334103100}
-  - {fileID: 737584267}
-  - {fileID: 1120335951}
-  - {fileID: 562434421}
+  monsters: []
 --- !u!1001 &1422871942
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18492,10 +18462,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2363094684918046081, guid: 32733f8e0a36a524897f6579d5c0f4e7, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 2043488118}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32733f8e0a36a524897f6579d5c0f4e7, type: 3}
 --- !u!4 &1523521003 stripped
@@ -19412,20 +19378,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8224002834924682279, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 2043488118}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
 --- !u!4 &1578651953 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 404892, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
-  m_PrefabInstance: {fileID: 1578651952}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1578651954 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 151936, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
   m_PrefabInstance: {fileID: 1578651952}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1581347621
@@ -20123,20 +20080,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8224002834924682279, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 543450652169417109}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
 --- !u!4 &1629502523 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 404892, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
-  m_PrefabInstance: {fileID: 1629502522}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1629502524 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 151936, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
   m_PrefabInstance: {fileID: 1629502522}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1634462837
@@ -20517,11 +20465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601243faa6b6d7f40b70481f739531b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 1786282352}
-  - {fileID: 1835780373}
-  - {fileID: 1213973259}
-  - {fileID: 248191891}
+  monsters: []
 --- !u!1 &1684645172
 GameObject:
   m_ObjectHideFlags: 0
@@ -21095,20 +21039,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6048019465293555648, guid: d42180469663aac46858d70c0c4cd3c5, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 543450652169417109}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d42180469663aac46858d70c0c4cd3c5, type: 3}
 --- !u!4 &1708935442 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400016, guid: d42180469663aac46858d70c0c4cd3c5, type: 3}
-  m_PrefabInstance: {fileID: 1708935441}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1708935443 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100016, guid: d42180469663aac46858d70c0c4cd3c5, type: 3}
   m_PrefabInstance: {fileID: 1708935441}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1709359472
@@ -21309,12 +21244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601243faa6b6d7f40b70481f739531b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 1920839131}
-  - {fileID: 2137162671}
-  - {fileID: 1755737803}
-  - {fileID: 1253458450}
-  - {fileID: 2102162857}
+  monsters: []
 --- !u!1 &1716428383
 GameObject:
   m_ObjectHideFlags: 0
@@ -21812,20 +21742,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7702008784548624824, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 543450652169417109}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
 --- !u!4 &1755737802 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400016, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
-  m_PrefabInstance: {fileID: 1755737801}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1755737803 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100016, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
   m_PrefabInstance: {fileID: 1755737801}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1755761569 stripped
@@ -22204,20 +22125,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7702008784548624824, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 543450652169417109}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
 --- !u!4 &1786282351 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400016, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
-  m_PrefabInstance: {fileID: 1786282350}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1786282352 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100016, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
   m_PrefabInstance: {fileID: 1786282350}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1797859691
@@ -22390,12 +22302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601243faa6b6d7f40b70481f739531b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 1920839131}
-  - {fileID: 2137162671}
-  - {fileID: 1755737803}
-  - {fileID: 1253458450}
-  - {fileID: 2102162857}
+  monsters: []
 --- !u!1001 &1801260837
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22726,20 +22633,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7702008784548624824, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 543450652169417109}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
 --- !u!4 &1835780372 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400016, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
-  m_PrefabInstance: {fileID: 1835780371}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1835780373 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100016, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
   m_PrefabInstance: {fileID: 1835780371}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1838891744
@@ -22797,10 +22695,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6048019465293555648, guid: d42180469663aac46858d70c0c4cd3c5, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 543450652169417109}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d42180469663aac46858d70c0c4cd3c5, type: 3}
 --- !u!4 &1838891745 stripped
@@ -22987,10 +22881,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7702008784548624824, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 543450652169417109}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
 --- !u!4 &1862427280 stripped
@@ -23072,11 +22962,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601243faa6b6d7f40b70481f739531b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 1708935443}
-  - {fileID: 349913099}
-  - {fileID: 1373524480}
-  - {fileID: 1629502524}
+  monsters: []
 --- !u!1001 &1870280353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24142,11 +24028,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
   m_PrefabInstance: {fileID: 1920481412}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1920839131 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100016, guid: 4d0ca1dde8779cc418e5d77f802f46b4, type: 3}
-  m_PrefabInstance: {fileID: 408236693}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1920991172
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24388,10 +24269,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6048019465293555648, guid: d42180469663aac46858d70c0c4cd3c5, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 543450652169417109}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d42180469663aac46858d70c0c4cd3c5, type: 3}
 --- !u!4 &1937610445 stripped
@@ -24751,12 +24628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601243faa6b6d7f40b70481f739531b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 1920839131}
-  - {fileID: 2137162671}
-  - {fileID: 1755737803}
-  - {fileID: 1253458450}
-  - {fileID: 2102162857}
+  monsters: []
 --- !u!1001 &1966322140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25388,11 +25260,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 410932, guid: 731670d05affd0045a25600d2045889f, type: 3}
   m_PrefabInstance: {fileID: 2039678119}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2043488118 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4580395908430909670, guid: 8d9f40d8a8f226040b7cbc2ca2d5a3ec, type: 3}
-  m_PrefabInstance: {fileID: 4580395910187480976}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2048206166
 GameObject:
   m_ObjectHideFlags: 0
@@ -25888,20 +25755,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8224002834924682279, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 543450652169417109}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
 --- !u!4 &2102162856 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 404892, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
-  m_PrefabInstance: {fileID: 2102162855}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2102162857 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 151936, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
   m_PrefabInstance: {fileID: 2102162855}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2107789597
@@ -26122,11 +25980,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1 &2137162671 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100016, guid: d42180469663aac46858d70c0c4cd3c5, type: 3}
-  m_PrefabInstance: {fileID: 438194024951797551}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2142838969
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26363,10 +26216,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6048019465293555648, guid: d42180469663aac46858d70c0c4cd3c5, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 543450652169417109}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d42180469663aac46858d70c0c4cd3c5, type: 3}
 --- !u!4 &543450652169417109 stripped
@@ -26502,11 +26351,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4580395908430909669, guid: 8d9f40d8a8f226040b7cbc2ca2d5a3ec, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: '[ Player ]'
       objectReference: {fileID: 0}
     - target: {fileID: 4580395908430909670, guid: 8d9f40d8a8f226040b7cbc2ca2d5a3ec, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4580395908430909670, guid: 8d9f40d8a8f226040b7cbc2ca2d5a3ec, type: 3}
       propertyPath: m_LocalPosition.x

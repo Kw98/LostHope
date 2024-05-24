@@ -721,7 +721,7 @@ GameObject:
   - component: {fileID: 937600445}
   m_Layer: 10
   m_Name: Bat_Monster
-  m_TagString: Enemy
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -779,7 +779,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleeArea: {fileID: 8184229899214042248}
-  target: {fileID: 4580395908430909670, guid: 8d9f40d8a8f226040b7cbc2ca2d5a3ec, type: 3}
+  target: {fileID: 0}
+  dataIndex: 2
 --- !u!54 &1497977724940875546
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -823,7 +824,7 @@ NavMeshAgent:
   m_Acceleration: 5
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 1.5
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
@@ -1496,7 +1497,7 @@ GameObject:
   - component: {fileID: 3306344178976130545}
   - component: {fileID: 1817792841043505774}
   - component: {fileID: 796297380731697826}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: EnemyHP_BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1575,7 +1576,7 @@ GameObject:
   - component: {fileID: 280501120585403851}
   - component: {fileID: 8055954662789547337}
   - component: {fileID: 4983362232011079991}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Enemy HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1676,7 +1677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf729e6c7cbebe4428adb0720871e0f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
+  monster: {fileID: 0}
   curHPImage: {fileID: 0}
 --- !u!1 &8802272178634954897
 GameObject:
@@ -1689,9 +1690,9 @@ GameObject:
   - component: {fileID: 5005232375851459709}
   - component: {fileID: 8184229899214042248}
   - component: {fileID: 1284046735769397489}
-  m_Layer: 12
-  m_Name: EnemyAtk
-  m_TagString: EnemyAtk
+  m_Layer: 10
+  m_Name: MonsterAtk
+  m_TagString: MonsterAtk
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1748,7 +1749,7 @@ GameObject:
   - component: {fileID: 487944360487649183}
   - component: {fileID: 7872865904108435940}
   - component: {fileID: 8139112288358801286}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: EnemyHP_Cur
   m_TagString: Untagged
   m_Icon: {fileID: 0}

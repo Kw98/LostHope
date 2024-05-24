@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: -7020559947678662715}
   m_Layer: 10
   m_Name: slime_purple
-  m_TagString: Enemy
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -382,10 +382,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 496b8517b6d230043abe3487615e0c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 100
-  curHP: 0
-  target: {fileID: 0}
   meleeArea: {fileID: 0}
-  chaseDistance: 8
-  isChase: 0
-  isAtk: 0
+  target: {fileID: 0}

@@ -12,6 +12,7 @@ public static class Define
         public int MaxHP;
         public int Power;
         public int Level;
+        public float Speed;
     }
 
     public class PlayerData : Data
