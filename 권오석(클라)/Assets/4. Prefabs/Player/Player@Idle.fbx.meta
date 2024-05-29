@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 072ba766156776a428bc3b09577b699f
+guid: ef7970764c5a8f94886823f8216dd1e8
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -29,14 +29,7 @@ ModelImporter:
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
-    extraExposedTransformPaths:
-    - cornea
-    - eye
-    - eyebrows
-    - face
-    - hair
-    - hend
-    - man
+    extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
     isReadable: 0
@@ -82,53 +75,12 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips:
-  - ef7970764c5a8f94886823f8216dd1e8
+  referencedClips: []
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton:
-    - name: Player(Clone)
-      parentName: 
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: man
-      parentName: Player(Clone)
-      position: {x: -0, y: -0.6030584, z: -0.037991207}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-      scale: {x: 1, y: 1, z: 1}
-    - name: face
-      parentName: Player(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eye
-      parentName: Player(Clone)
-      position: {x: 0.03377183, y: -0.040325575, z: 0.013810507}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-      scale: {x: 1, y: 1, z: 1}
-    - name: cornea
-      parentName: Player(Clone)
-      position: {x: -0, y: -0.039478168, z: 0.0152212735}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-      scale: {x: 1, y: 1, z: 1}
-    - name: hair
-      parentName: Player(Clone)
-      position: {x: 0.049820453, y: 0.07127738, z: -0.01296886}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyebrows
-      parentName: Player(Clone)
-      position: {x: -0, y: -0.04426213, z: 0.032607548}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-      scale: {x: 1, y: 1, z: 1}
-    - name: hend
-      parentName: Player(Clone)
-      position: {x: -0, y: -0.6030584, z: -0.037991207}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-      scale: {x: 1, y: 1, z: 1}
+    skeleton: []
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -143,9 +95,9 @@ ModelImporter:
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 3
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0

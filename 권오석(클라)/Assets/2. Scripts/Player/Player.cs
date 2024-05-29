@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
     {
         transform.LookAt(transform.position + moveVec);
 
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
             Ray ray = followCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit raycastHit;
@@ -188,11 +188,12 @@ public class Player : MonoBehaviour
             fireDelay = 0;
         }
     }
+
     public void ActiveMeleeAttack() // 근접 공격 시 전진성
     {
         isAtkMoving = true;
 
-        atkPosition = transform.position + transform.forward * 0.5f;
+        atkPosition = transform.position + transform.forward * 0.7f;
     }
 
     private void Swap() // 무기 교체

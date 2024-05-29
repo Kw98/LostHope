@@ -21,6 +21,8 @@ public class Monster : MonoBehaviour
     private bool isAtk;
     private bool isMove;
 
+    private bool alreadyCollided = false; // 히트 시 충돌 플래그 설정
+
     public static event Action<Monster> OnMonsterDie;
 
     private void Awake()
@@ -152,6 +154,9 @@ public class Monster : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //if (alreadyCollided)
+            //return;
+
         if (other.tag == "Melee")
         {
             Weapon weapon = other.GetComponent<Weapon>();
@@ -160,6 +165,8 @@ public class Monster : MonoBehaviour
             Vector3 reactVec = transform.position - other.transform.position;
 
             StartCoroutine(OnDamage(reactVec));
+
+            //alreadyCollided = true;
         }
         else if (other.tag == "Bullet")
         {
@@ -170,7 +177,10 @@ public class Monster : MonoBehaviour
             Destroy(other.gameObject);
 
             StartCoroutine(OnDamage(reactVec));
+
+            //alreadyCollided = true;
         }
+        //alreadyCollided = false;
     }
 
     IEnumerator OnDamage(Vector3 reactVec)
