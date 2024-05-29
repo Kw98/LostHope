@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
     {
         transform.LookAt(transform.position + moveVec);
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1"))
         {
             Ray ray = followCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit raycastHit;
