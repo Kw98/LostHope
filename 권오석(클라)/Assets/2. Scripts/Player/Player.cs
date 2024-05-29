@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private GameObject[] weapons;
+    [SerializeField] private GameObject subWeapon;
     [SerializeField] private bool[] hasWeapons;
     [SerializeField] Camera followCamera;
 
@@ -207,8 +208,8 @@ public class Player : MonoBehaviour
             return;
 
         int weaponIndex = -1;
-        if (swapWeapon1) weaponIndex = 0;
-        if (swapWeapon2) weaponIndex = 1;
+        if (swapWeapon1) weaponIndex = 0; // 근접무기
+        if (swapWeapon2) weaponIndex = 1; // 권총
 
         if ((swapWeapon1 || swapWeapon2) && !isDash && !isSwap)
         {
@@ -218,6 +219,11 @@ public class Player : MonoBehaviour
             equipWeaponIndex = weaponIndex;
             equipWeapon = weapons[weaponIndex].GetComponent<Weapon>();
             equipWeapon.gameObject.SetActive(true);
+
+            if (swapWeapon1 == true) // 보조무기 활성화
+                subWeapon.SetActive(true);
+            else
+                subWeapon.SetActive(false);
 
             animator.SetTrigger("doSwap");
             isSwap = true;

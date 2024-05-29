@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3001386356312230305}
   - component: {fileID: 102948041293101491}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: Melee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,13 +57,13 @@ GameObject:
   - component: {fileID: 3391976281340235486}
   - component: {fileID: 1968019391778182350}
   - component: {fileID: 7331098539629511495}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: sword_right
-  m_TagString: Untagged
+  m_TagString: Melee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2517289841701441926
 Transform:
   m_ObjectHideFlags: 0

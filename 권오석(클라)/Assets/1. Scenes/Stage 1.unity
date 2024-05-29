@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.029087335, g: 0.0298977, b: 0.029896766, a: 1}
+  m_IndirectSpecularColor: {r: 0.029087335, g: 0.0298977, b: 0.029896773, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -26463,10 +26463,6 @@ PrefabInstance:
     - target: {fileID: 8777415949768488321, guid: 9af4e437be0cc554aa547f23a636bfb4, type: 3}
       propertyPath: m_Name
       value: Drop Weapon_Sword
-      objectReference: {fileID: 0}
-    - target: {fileID: 8777415949768488321, guid: 9af4e437be0cc554aa547f23a636bfb4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8777415949768488322, guid: 9af4e437be0cc554aa547f23a636bfb4, type: 3}
       propertyPath: m_RootOrder

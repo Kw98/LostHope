@@ -21,7 +21,7 @@ public class Monster : MonoBehaviour
     private bool isAtk;
     private bool isMove;
 
-    private bool alreadyCollided = false; // 히트 시 충돌 플래그 설정
+    //private bool alreadyCollided = false; // 히트 시 충돌 플래그 설정
 
     public static event Action<Monster> OnMonsterDie;
 
