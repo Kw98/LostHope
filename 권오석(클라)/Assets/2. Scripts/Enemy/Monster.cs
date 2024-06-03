@@ -20,8 +20,9 @@ public class Monster : MonoBehaviour
     protected NavMeshAgent nav;
 
     private bool isChase;
-    private bool isAtk;
-    private bool isMove;
+    protected bool isAtk;
+    protected bool isMove;
+    protected bool isDead;
 
     //private bool alreadyCollided = false; // 히트 시 충돌 플래그 설정
 
@@ -88,7 +89,7 @@ public class Monster : MonoBehaviour
         }
     }
 
-    private void FreezeVelocity()
+    protected void FreezeVelocity()
     {
         if (isChase)
         {
@@ -99,7 +100,7 @@ public class Monster : MonoBehaviour
 
     private void Targeting()
     {
-        if (monsterType != Type.Boss)
+        if (!isDead && monsterType != Type.Boss)
         {
             float targetRadius = 0.5f;
             float targetRange = 5f;
@@ -154,7 +155,7 @@ public class Monster : MonoBehaviour
         isAtk = false;
     }
 
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
         FreezeVelocity();
     }
@@ -201,6 +202,7 @@ public class Monster : MonoBehaviour
         else
         {
             gameObject.layer = 11;
+            isDead = true;
             isChase = false;
             nav.enabled = false;
             animator.SetTrigger("onDead");
@@ -210,7 +212,7 @@ public class Monster : MonoBehaviour
             rb.AddForce(reactVec * 5, ForceMode.Impulse);
 
             if (monsterType != Type.Boss)
-                Destroy(gameObject, 1f);
+                Destroy(gameObject, 1.5f);
 
             OnMonsterDie?.Invoke(this);
         }
