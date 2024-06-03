@@ -254,6 +254,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        StopRotation();
+        StopToWall();
+    }
+
     private void StopRotation() // 아이템 습득 후 회전 방지
     {
         rb.angularVelocity = Vector3.zero;
@@ -265,11 +271,6 @@ public class Player : MonoBehaviour
         toWall = Physics.Raycast(transform.position, transform.forward, 0.7f, LayerMask.GetMask("Wall"));
     }
 
-    private void FixedUpdate()
-    {
-        StopRotation();
-        StopToWall();
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "MonsterAtk")
@@ -305,8 +306,6 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "Weapon")
             nearObject = other.gameObject;
-
-        //Debug.Log(nearObject.name);
     }
 
     private void OnTriggerExit(Collider other)
@@ -314,4 +313,9 @@ public class Player : MonoBehaviour
         if (other.tag == "Weapon")
             nearObject = null;
     }
+
+    //public Weapon GetCurrentWeapon()
+    //{
+    //    return equipWeapon;
+    //}
 }

@@ -6,8 +6,10 @@ using System;
 
 public class Monster : MonoBehaviour
 {
+    public enum Type { A, Boss };
+    public Type monsterType;
+    public Transform target;
     [SerializeField] private BoxCollider meleeArea;
-    [SerializeField] private Transform target;
     
     protected float chaseDistance; // 플레이어 감지 범위
     public Define.MonsterData data = new Define.MonsterData();
@@ -39,7 +41,9 @@ public class Monster : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
-        isMove = true;
+
+        if (monsterType != Type.Boss)
+            isMove = true;
     }
 
     private void OnDrawGizmos()
@@ -95,24 +99,27 @@ public class Monster : MonoBehaviour
 
     private void Targeting()
     {
-        float targetRadius = 0.5f;
-        float targetRange = 5f;
-
-        RaycastHit rayHits;
-        bool search = Physics.SphereCast(transform.position
-                                            , targetRadius
-                                            , transform.forward
-                                            , out rayHits
-                                            , targetRange
-                                            , LayerMask.GetMask("Player"));
-
-        if (search && !isAtk)
+        if (monsterType != Type.Boss)
         {
-            float distance = Vector3.Distance(transform.position
-                                              , rayHits.collider.transform.position);
-            if (distance < 2)
+            float targetRadius = 0.5f;
+            float targetRange = 5f;
+
+            RaycastHit rayHits;
+            bool search = Physics.SphereCast(transform.position
+                                                , targetRadius
+                                                , transform.forward
+                                                , out rayHits
+                                                , targetRange
+                                                , LayerMask.GetMask("Player"));
+
+            if (search && !isAtk)
             {
-                Invoke("OnAtk", 0.3f);
+                float distance = Vector3.Distance(transform.position
+                                                  , rayHits.collider.transform.position);
+                if (distance < 2)
+                {
+                    Invoke("OnAtk", 0.3f);
+                }
             }
         }
     }
@@ -202,7 +209,8 @@ public class Monster : MonoBehaviour
             reactVec += Vector3.up;
             rb.AddForce(reactVec * 5, ForceMode.Impulse);
 
-            Destroy(gameObject, 1f);
+            if (monsterType != Type.Boss)
+                Destroy(gameObject, 1f);
 
             OnMonsterDie?.Invoke(this);
         }

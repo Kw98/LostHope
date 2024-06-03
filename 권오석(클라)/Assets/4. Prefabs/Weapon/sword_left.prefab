@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6938253462742415269}
   m_Layer: 14
   m_Name: GameObject
-  m_TagString: Weapon
+  m_TagString: Melee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: -6880367066958040784}
   m_Layer: 14
   m_Name: sword_left
-  m_TagString: Weapon
+  m_TagString: Melee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
