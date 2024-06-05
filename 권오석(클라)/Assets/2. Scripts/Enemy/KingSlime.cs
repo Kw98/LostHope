@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//무기스왑 액션 포함 하여 무기에 따른 공격이 나가야함 + 타켓을 안따라옴 ㅅㅂ
 public class KingSlime : Monster
 {
     [SerializeField] private GameObject[] weapons;
     [SerializeField] private GameObject subWeapon;
     [SerializeField] private bool[] hasWeapons;
+    [SerializeField] private GameObject currentWeapon;
 
     [SerializeField] private int dataIndex;
 
-    private bool isLook;
-    private Vector3 lookVec;
     private Vector3 dashVec;
 
     private bool isAtkMoving = false;
@@ -20,48 +18,19 @@ public class KingSlime : Monster
     private float atkMoveSpeed = 5f;
     private bool isDash;
 
-
     // Start is called before the first frame update
     void Start()
     {
         Init();
         StartCoroutine(Think());
-        isLook = true;
-        nav.isStopped = true;
-    }
+        isMove = true;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (isDead)
-        {
-            StopAllCoroutines();
-            return;
-        }
-
-        if (isLook)
-        {
-            float h = Input.GetAxisRaw("Horizontal");
-            float v = Input.GetAxisRaw("Vertical");
-            lookVec = new Vector3(h, 0, v) * 0.5f;
-            transform.LookAt(target.position + lookVec);
-        }
-        else
-            nav.SetDestination(dashVec);
-
-        if (isAtkMoving) // 근접 공격 시 전진성
-        {
-            transform.position = Vector3.Lerp(transform.position, atkPosition, atkMoveSpeed * Time.deltaTime);
-            if (Vector3.Distance(transform.position, atkPosition) < 0.1f)
-            {
-                isAtkMoving = false;
-            }
-        }
+        SwapWeapon(0);
     }
 
     public override void Init()
     {
-        chaseDistance = 8;
+        chaseDistance = 10;
         data.CurHP = 50;
 
         JsonData.MonsterJsonData jData = JsonData.Instance.mj.monster[dataIndex];
@@ -73,60 +42,152 @@ public class KingSlime : Monster
         base.Init();
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        if (isDead)
+        {
+            StopAllCoroutines();
+            return;
+        }
+
+        if (isMove)
+        {
+            Vector3 direction = (target.position - transform.position).normalized;
+            Vector3 movement = direction * data.Speed * Time.deltaTime;
+            transform.position += movement;
+            transform.LookAt(target.position);
+
+            animator.SetBool("isWalk", true);
+        }
+
+        if (isAtkMoving) // 근접 공격 시 전진성
+        {
+            transform.position = Vector3.Lerp(transform.position, atkPosition, atkMoveSpeed * Time.deltaTime);
+            if (Vector3.Distance(transform.position, atkPosition) < 0.1f)
+            {
+                isAtkMoving = false;
+            }
+        }
+    }
+
     IEnumerator Think()
     {
-        yield return new WaitForSeconds(0.5f);
-
-        int ranAction = Random.Range(0, 5);
-
-        switch (ranAction)
+        int random = Random.Range(0, 3);
+        switch (random)
         {
             case 0:
+                isMove = false;
+                break;
 
             case 1:
-                StartCoroutine(MeleeAtk());
+                isMove = true;
+                StartCoroutine(RandomMovement());
                 break;
-            case 2:
 
-            case 3:
-                StartCoroutine(RangeAtk());
-                break;
-            case 4:
-                StartCoroutine(DashAtk());
+            case 2:
+                StartCoroutine(Attack());
                 break;
         }
+
+        yield return new WaitForSeconds(2f);
+    }
+    
+    IEnumerator RandomMovement()
+    {
+        // 무작위로 이동
+        Vector3 randomDirection = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized;
+        Vector3 targetPosition = transform.position + randomDirection * 2f; // 이동 거리
+        transform.position = Vector3.Lerp(transform.position, targetPosition, data.Speed * Time.deltaTime);
+        transform.LookAt(target.position);
+
+        animator.SetBool("isWalk", true);
+
+        yield return new WaitForSeconds(2f);
+    }
+
+    IEnumerator Attack()
+    {
+        float distanceToTarget = Vector3.Distance(transform.position, target.position);
+
+        if (distanceToTarget < 4f)
+        {
+            StartCoroutine(MeleeAtk());
+        }
+        else if (distanceToTarget >= 4f && distanceToTarget < 6f)
+        {
+            StartCoroutine(DashAtk());
+        }
+        else if (distanceToTarget >= 6f && distanceToTarget <= 10f)
+        {
+            StartCoroutine(RangeAtk());
+        }
+
+        yield return new WaitForSeconds(3f);
     }
 
     IEnumerator MeleeAtk()
     {
+        isMove = false;
+        animator.SetBool("isWalk", false);
+
+        SwapWeapon(0);
+
         animator.SetTrigger("doMeleeAtk");
         yield return new WaitForSeconds(2f);
 
+        isMove = true;
+
         StartCoroutine(Think());
     }
+
     IEnumerator RangeAtk()
     {
+        isMove = false;
+        animator.SetBool("isWalk", false);
+
+        SwapWeapon(1);
+
         animator.SetTrigger("doRangeAtk");
         yield return new WaitForSeconds(3f);
 
+        isMove = true;
+
         StartCoroutine(Think());
     }
+
     IEnumerator DashAtk()
     {
-        dashVec = target.position + lookVec;
+        isMove = false;
+        animator.SetBool("isWalk", false);
 
-        isLook = false;
-        nav.isStopped = false;
+        SwapWeapon(0);
+
+        dashVec = target.position;
+
         isDash = true;
 
         animator.SetTrigger("doDashAtk");
         yield return new WaitForSeconds(3f);
 
-        isLook = true;
-        nav.isStopped = true;
         isDash = false;
+        isMove = true;
 
         StartCoroutine(Think());
+    }
+
+    public void SwapWeapon(int weaponIndex)
+    {
+        if (weaponIndex >= 0 && weaponIndex < weapons.Length && hasWeapons[weaponIndex])
+        {
+            if (currentWeapon != null)
+            {
+                currentWeapon.SetActive(false);
+            }
+
+            currentWeapon = weapons[weaponIndex];
+            currentWeapon.SetActive(true);
+        }
     }
 
     public void ActiveMeleeAttack() // 근접 공격 시 전진성

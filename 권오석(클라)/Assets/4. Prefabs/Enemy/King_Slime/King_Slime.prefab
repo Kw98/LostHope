@@ -4216,10 +4216,13 @@ MonoBehaviour:
   monsterType: 1
   target: {fileID: 0}
   meleeArea: {fileID: 0}
+  weapons:
+  - {fileID: 3715267174440723022}
+  - {fileID: 385571671904192802}
+  subWeapon: {fileID: 7178464006061880153}
+  hasWeapons: 0000
+  currentWeapon: {fileID: 0}
   dataIndex: 4
-  bullet: {fileID: 1000012871492402, guid: c56d61f4cf63d834482119e0cc90eff5, type: 3}
-  bulletParent: {fileID: 1026723636740551186}
-  bulletPos: {fileID: 6810873685885271168}
 --- !u!54 &6196088921000728849
 Rigidbody:
   m_ObjectHideFlags: 0

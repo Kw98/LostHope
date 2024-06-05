@@ -19,7 +19,7 @@ public class Monster : MonoBehaviour
     protected Animator animator;
     protected NavMeshAgent nav;
 
-    private bool isChase;
+    protected bool isChase;
     protected bool isAtk;
     protected bool isMove;
     protected bool isDead;
@@ -42,9 +42,6 @@ public class Monster : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
-
-        if (monsterType != Type.Boss)
-            isMove = true;
     }
 
     private void OnDrawGizmos()
@@ -74,7 +71,7 @@ public class Monster : MonoBehaviour
         }
     }
 
-    private void ChasePlayer()
+    protected void ChasePlayer()
     {
         float distanceToTarget = Vector3.Distance(transform.position, target.position);
         if (distanceToTarget < chaseDistance && !isChase)
@@ -98,9 +95,9 @@ public class Monster : MonoBehaviour
         }
     }
 
-    private void Targeting()
+    protected void Targeting()
     {
-        if (!isDead && monsterType != Type.Boss)
+        if (!isDead)
         {
             float targetRadius = 0.5f;
             float targetRange = 5f;
