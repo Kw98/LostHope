@@ -27,6 +27,5 @@ public static class Define
     }
 
     // Other
-    public static int stage = 1;
     public static GameState state = GameState.Stop;
 }

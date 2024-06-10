@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
-public class UI : MonoBehaviour
+public class UI : Singleton<UI>
 {
-    public Player player;
-
     [Header("HP")]
     [SerializeField] private Image curHPImage;
     [SerializeField] private TextMeshProUGUI hpTxt;
@@ -15,33 +14,47 @@ public class UI : MonoBehaviour
     [Header("Level")]
     [SerializeField] private TextMeshProUGUI lvTxt;
 
-    // Start is called before the first frame update
-    void Start()
+    protected override void Awake()
     {
-        if (player != null)
+        base.Awake();
+        if (GameManager.Instance == null)
         {
-            UpdateUI();
+            SceneManager.LoadScene("Title");
         }
     }
 
-    // Update is called once per frame
+    public void OnExit()
+    {
+        SceneManager.LoadScene("Title");
+    }
+
+    public void OnReStart()
+    {
+        SceneManager.LoadScene("Town");
+    }
+
     void Update()
     {
-        if (player != null)
-        {
-            UpdateUI();
-        }
+        if (Define.state != GameState.Play)
+            return;
+
+        UpdateUI();
     }
 
-    private void UpdateUI()
+    public void UpdateUI()
     {
-        //HP
-        float hpFillAmount = (float)player.curHP / player.maxHP;
-        curHPImage.fillAmount = hpFillAmount;
-        hpTxt.text = string.Format("{0}/{1}", player.curHP, player.maxHP);
+        Player p = GameManager.Instance.P;
 
-        //LV
-        string levelString = player.curLevel.ToString().PadLeft(2, '0');
-        lvTxt.text = "LV " + levelString;
+        if (p != null)
+        {
+            //HP
+            float hpFillAmount = (float)p.curHP / p.maxHP;
+            curHPImage.fillAmount = hpFillAmount;
+            hpTxt.text = string.Format("{0}/{1}", p.curHP, p.maxHP);
+
+            //LV
+            string levelString = p.curLevel.ToString().PadLeft(2, '0');
+            lvTxt.text = "LV " + levelString;
+        }
     }
 }

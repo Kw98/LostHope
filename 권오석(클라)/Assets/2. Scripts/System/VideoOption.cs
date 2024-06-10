@@ -58,7 +58,10 @@ public class VideoOption : MonoBehaviour
 
     public void OkBtnClick()
     {
+        Resolution newResolution = resolutions[resolutionNum];
         Screen.SetResolution(resolutions[resolutionNum].width,
             resolutions[resolutionNum].height, screenMode);
+
+        Camera.main.aspect = (float)newResolution.width / newResolution.height;
     }
 }

@@ -24,16 +24,16 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         if (_instance == null)
         {
             _instance = (T)FindAnyObjectByType(typeof(T));
             DontDestroyOnLoad(gameObject);
         }
-        else
+        else if (_instance != this)
         {
-            DontDestroyOnLoad(gameObject);
+            Destroy(gameObject);
         }
     }
 }
