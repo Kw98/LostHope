@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class UI : Singleton<UI>
 {
+    [SerializeField] private Player p;
+
     [Header("HP")]
     [SerializeField] private Image curHPImage;
     [SerializeField] private TextMeshProUGUI hpTxt;
@@ -43,8 +45,6 @@ public class UI : Singleton<UI>
 
     public void UpdateUI()
     {
-        Player p = GameManager.Instance.P;
-
         if (p != null)
         {
             //HP

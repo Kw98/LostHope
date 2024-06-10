@@ -16,8 +16,4 @@ public class GameManager : Singleton<GameManager>
             return p;
         }
     }
-    public void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
 }
