@@ -21,7 +21,7 @@ public class Monster : MonoBehaviour
 
     protected bool isChase;
     protected bool isAtk;
-    protected bool isMove;
+    protected bool isMove = true;
     protected bool isDead;
 
     //private bool alreadyCollided = false; // 히트 시 충돌 플래그 설정
@@ -53,6 +53,9 @@ public class Monster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (monsterType != Type.A)
+            return;
+
         if (GameManager.Instance.P == null)
             return;
 

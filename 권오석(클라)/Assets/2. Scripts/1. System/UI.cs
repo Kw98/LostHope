@@ -16,25 +16,6 @@ public class UI : Singleton<UI>
     [Header("Level")]
     [SerializeField] private TextMeshProUGUI lvTxt;
 
-    protected override void Awake()
-    {
-        base.Awake();
-        if (GameManager.Instance == null)
-        {
-            SceneManager.LoadScene("Title");
-        }
-    }
-
-    public void OnExit()
-    {
-        SceneManager.LoadScene("Title");
-    }
-
-    public void OnReStart()
-    {
-        SceneManager.LoadScene("Town");
-    }
-
     void Update()
     {
         if (Define.state != GameState.Play)

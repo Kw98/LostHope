@@ -777,7 +777,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1231659726632778299}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: BulletParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2007,7 +2007,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1172267533225226068}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: BulletPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}

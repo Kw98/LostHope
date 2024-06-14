@@ -163,7 +163,7 @@ public class KingSlime : Monster
 
         SwapWeapon(0);
 
-        dashVec = target.position;
+        dashVec = (target.position - transform.position).normalized;
 
         isDash = true;
 
@@ -195,5 +195,13 @@ public class KingSlime : Monster
         isAtkMoving = true;
 
         atkPosition = transform.position + transform.forward * 0.7f;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            
+        }
     }
 }
