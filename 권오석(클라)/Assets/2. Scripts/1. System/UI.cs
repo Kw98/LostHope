@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public class UI : Singleton<UI>
 {
@@ -18,9 +17,6 @@ public class UI : Singleton<UI>
 
     void Update()
     {
-        if (Define.state != GameState.Play)
-            return;
-
         UpdateUI();
     }
 

@@ -39,6 +39,11 @@ public class Player : MonoBehaviour
     private bool isAtkMoving = false;
     private Vector3 atkPosition;
     private float atkMoveSpeed = 5f;
+    //AtkCombe
+    private int atkCombo;
+    private float comboResetTime = 1.5f;
+    private Coroutine resetComboCoroutine;
+    private bool isCheckInput = false;
 
     //Other
     private Animator animator;
@@ -179,15 +184,55 @@ public class Player : MonoBehaviour
         if (equipWeapon == null)
             return;
 
+        if (atkCombo >= 4)
+            atkCombo = 0;
+
         fireDelay += Time.deltaTime;
         isFireReady = equipWeapon.atkSpeed < fireDelay;
 
         if (atk && isFireReady && !isDash && !isSwap)
         {
             equipWeapon.Use();
-            animator.SetTrigger(equipWeapon.type == Weapon.Type.Melee ? "Melee-Attack" : "Range-Attack");
+
+            if (equipWeapon.type == Weapon.Type.Melee)
+            {
+                animator.SetTrigger("Melee-Attack");
+                animator.SetInteger("AtkCombo", atkCombo);
+            }
+            else
+            {
+                animator.SetTrigger("Range-Attack");
+            }
+            atkCombo++;
             fireDelay = 0;
         }
+        if (resetComboCoroutine != null)
+        {
+            StopCoroutine(resetComboCoroutine);
+        }
+        resetComboCoroutine = StartCoroutine(ResetComboAfterDelay());
+    }
+
+    private IEnumerator ResetComboAfterDelay()
+    {
+        yield return new WaitForSeconds(comboResetTime);
+        atkCombo = 0;
+    }
+
+    private IEnumerator CheckInputDuringAnimation()
+    {
+        isCheckInput = true;
+        yield return new WaitForSeconds(0.5f); // 입력을 받을 시간
+        if (atkCombo >= 1)
+        {
+            Attack();
+        }
+        isCheckInput = false;
+    }
+
+    public void CheckAttackInput()
+    {
+        StartCoroutine(CheckInputDuringAnimation());
     }
 
     public void ActiveMeleeAttack() // 근접 공격 시 전진성
