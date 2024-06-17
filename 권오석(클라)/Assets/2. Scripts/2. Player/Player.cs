@@ -30,7 +30,6 @@ public class Player : MonoBehaviour
     private bool interaction;
     private bool swapWeapon1;
     private bool swapWeapon2;
-    private bool isSwap;
 
     //Attack
     private bool atk;
@@ -41,7 +40,6 @@ public class Player : MonoBehaviour
     private float atkMoveSpeed = 5f;
     //AtkCombe
     private int atkCombo;
-    private float comboResetTime = 1.5f;
     private Coroutine resetComboCoroutine;
     private bool isCheckInput = false;
 
@@ -104,7 +102,7 @@ public class Player : MonoBehaviour
         if (isDash)
             moveVec = dashVec;
 
-        if (isSwap || !isFireReady)
+        if (!isFireReady)
             return;
 
         if (!toWall)
@@ -133,7 +131,7 @@ public class Player : MonoBehaviour
 
     private void Dash() // 대쉬
     {
-        if (Input.GetButtonDown("Dash") && moveVec != Vector3.zero && !onDash && !isSwap && !toWall)
+        if (Input.GetButtonDown("Dash") && moveVec != Vector3.zero && !onDash && !toWall)
         {
             Vector3 dashDirection = transform.forward;
             float dashDistance = 2.5f; // 대쉬 거리
@@ -187,42 +185,45 @@ public class Player : MonoBehaviour
         if (atkCombo >= 4)
             atkCombo = 0;
 
+        // 일정 시간 후 콤보 초기화
+        if (resetComboCoroutine != null)
+        {
+            StopCoroutine(resetComboCoroutine);
+        }
+        resetComboCoroutine = StartCoroutine(ResetComboAfterDelay());
+
         fireDelay += Time.deltaTime;
         isFireReady = equipWeapon.atkSpeed < fireDelay;
 
-        if (atk && isFireReady && !isDash && !isSwap)
+        if (atk && isFireReady && !isDash)
         {
             equipWeapon.Use();
 
             if (equipWeapon.type == Weapon.Type.Melee)
             {
                 animator.SetTrigger("Melee-Attack");
-                animator.SetInteger("AtkCombo", atkCombo);
+                animator.SetInteger("MeleeCombo", atkCombo);
             }
-            else
+            else if (equipWeapon.type == Weapon.Type.Range)
             {
                 animator.SetTrigger("Range-Attack");
             }
             atkCombo++;
             fireDelay = 0;
         }
-        if (resetComboCoroutine != null)
-        {
-            StopCoroutine(resetComboCoroutine);
-        }
-        resetComboCoroutine = StartCoroutine(ResetComboAfterDelay());
     }
 
     private IEnumerator ResetComboAfterDelay()
     {
-        yield return new WaitForSeconds(comboResetTime);
+        yield return new WaitForSeconds(2f); // 콤보 초기화 시간
         atkCombo = 0;
+        animator.SetInteger("MeleeCombo", atkCombo);
     }
 
     private IEnumerator CheckInputDuringAnimation()
     {
         isCheckInput = true;
-        yield return new WaitForSeconds(0.5f); // 입력을 받을 시간
+        yield return new WaitForSeconds(0.5f); // 입력 시간
         if (atkCombo >= 1)
         {
             Attack();
@@ -256,7 +257,7 @@ public class Player : MonoBehaviour
         if (swapWeapon1) weaponIndex = 0; // 근접무기
         if (swapWeapon2) weaponIndex = 1; // 권총
 
-        if ((swapWeapon1 || swapWeapon2) && !isDash && !isSwap)
+        if ((swapWeapon1 || swapWeapon2) && !isDash)
         {
             if (equipWeapon != null)
                 equipWeapon.gameObject.SetActive(false);
@@ -271,15 +272,7 @@ public class Player : MonoBehaviour
                 subWeapon.SetActive(false);
 
             animator.SetTrigger("doSwap");
-            isSwap = true;
-
-            Invoke("EndSwap", 1.3f);
         }
-    }
-
-    private void EndSwap()
-    {
-        isSwap = false;
     }
 
     private void Interaction() // 아이템 줍기

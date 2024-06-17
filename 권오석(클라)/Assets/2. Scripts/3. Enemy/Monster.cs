@@ -24,14 +24,12 @@ public class Monster : MonoBehaviour
     protected bool isMove = true;
     protected bool isDead;
 
-    //private bool alreadyCollided = false; // 히트 시 충돌 플래그 설정
-
     public static event Action<Monster> OnMonsterDie;
 
     private void Awake()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
+        if (player != null && monsterType != Type.Boss)
         {
             target = player.transform;
         }
@@ -98,7 +96,7 @@ public class Monster : MonoBehaviour
         }
     }
 
-    protected void Targeting()
+    private void Targeting()
     {
         if (!isDead)
         {
@@ -162,9 +160,6 @@ public class Monster : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //if (alreadyCollided)
-            //return;
-
         if (other.tag == "Melee")
         {
             Weapon weapon = other.GetComponent<Weapon>();
@@ -173,8 +168,6 @@ public class Monster : MonoBehaviour
             Vector3 reactVec = transform.position - other.transform.position;
 
             StartCoroutine(OnDamage(reactVec));
-
-            //alreadyCollided = true;
         }
         else if (other.tag == "Bullet")
         {
@@ -185,10 +178,7 @@ public class Monster : MonoBehaviour
             Destroy(other.gameObject);
 
             StartCoroutine(OnDamage(reactVec));
-
-            //alreadyCollided = true;
         }
-        //alreadyCollided = false;
     }
 
     IEnumerator OnDamage(Vector3 reactVec)

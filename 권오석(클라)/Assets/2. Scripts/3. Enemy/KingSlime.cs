@@ -22,15 +22,13 @@ public class KingSlime : Monster
     void Start()
     {
         Init();
-        StartCoroutine(Think());
-        isMove = true;
 
         SwapWeapon(0);
     }
 
     public override void Init()
     {
-        chaseDistance = 10;
+        chaseDistance = 13;
         data.CurHP = 50;
 
         JsonData.MonsterJsonData jData = JsonData.Instance.mj.monster[dataIndex];
@@ -51,14 +49,39 @@ public class KingSlime : Monster
             return;
         }
 
-        if (isMove)
+        if (target == null)
         {
-            Vector3 direction = (target.position - transform.position).normalized;
-            Vector3 movement = direction * data.Speed * Time.deltaTime;
-            transform.position += movement;
-            transform.LookAt(target.position);
+            float distanceToPlayer = Vector3.Distance(transform.position, 
+                                                GameManager.Instance.P.transform.position);
 
-            animator.SetBool("isWalk", true);
+            // 감지 범위 내 타겟 설정
+            if (distanceToPlayer <= chaseDistance)
+            {
+                target = GameManager.Instance.P.transform;
+            }
+        }
+        else
+        {
+            float distanceToTarget = Vector3.Distance(transform.position, target.position);
+
+            // 벗어난 경우 타겟 null
+            if (distanceToTarget > chaseDistance)
+            {
+                target = null;
+            }
+        }
+
+        if (target != null)
+        {
+            if (isMove)
+            {
+                Vector3 direction = (target.position - transform.position).normalized;
+                Vector3 movement = direction * data.Speed * Time.deltaTime;
+                transform.position += movement;
+                transform.LookAt(target.position);
+
+                animator.SetBool("isWalk", true);
+            }
         }
 
         if (isAtkMoving) // 근접 공격 시 전진성
@@ -73,37 +96,48 @@ public class KingSlime : Monster
 
     IEnumerator Think()
     {
-        int random = Random.Range(0, 3);
+        int random = Random.Range(0, 2);
         switch (random)
         {
-            case 0:
-                isMove = false;
-                break;
+            //case 0:
+            //    isMove = false;
+            //    break;
 
-            case 1:
-                isMove = true;
+            case 0:
+                //isMove = true;
                 StartCoroutine(RandomMovement());
                 break;
 
-            case 2:
+            case 1:
                 StartCoroutine(Attack());
                 break;
         }
 
         yield return new WaitForSeconds(2f);
     }
-    
+
     IEnumerator RandomMovement()
     {
-        // 무작위로 이동
+        // 무작위로 이동할 방향 및 목표 위치 설정
         Vector3 randomDirection = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized;
         Vector3 targetPosition = transform.position + randomDirection * 2f; // 이동 거리
-        transform.position = Vector3.Lerp(transform.position, targetPosition, data.Speed * Time.deltaTime);
-        transform.LookAt(target.position);
+
+        float elapsedTime = 0f;
+        float duration = 2f; // 이동 시간
 
         animator.SetBool("isWalk", true);
 
-        yield return new WaitForSeconds(2f);
+        // 목표 위치로 점진적으로 이동
+        while (elapsedTime < duration)
+        {
+            transform.position = Vector3.Lerp(transform.position, targetPosition, (elapsedTime / duration));
+            transform.LookAt(target.position);
+            elapsedTime += Time.deltaTime;
+            yield return null; // 다음 프레임까지 대기
+        }
+
+        transform.position = targetPosition;
+        animator.SetBool("isWalk", false);
     }
 
     IEnumerator Attack()
@@ -121,6 +155,10 @@ public class KingSlime : Monster
         else if (distanceToTarget >= 6f && distanceToTarget <= 10f)
         {
             StartCoroutine(RangeAtk());
+        }
+        else
+        {
+            StartCoroutine(RandomMovement());
         }
 
         yield return new WaitForSeconds(3f);
@@ -195,13 +233,5 @@ public class KingSlime : Monster
         isAtkMoving = true;
 
         atkPosition = transform.position + transform.forward * 0.7f;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            
-        }
     }
 }
