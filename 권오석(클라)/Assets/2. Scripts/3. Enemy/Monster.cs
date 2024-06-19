@@ -18,6 +18,7 @@ public class Monster : MonoBehaviour
     protected Rigidbody rb;
     protected Animator animator;
     protected NavMeshAgent nav;
+    protected bool toWall; // 벽 충돌확인
 
     protected bool isChase;
     protected bool isAtk;
@@ -156,6 +157,13 @@ public class Monster : MonoBehaviour
     protected void FixedUpdate()
     {
         FreezeVelocity();
+        StopToWall();
+    }
+
+    private void StopToWall() // 벽 충돌 확인
+    {
+        Debug.DrawRay(transform.position, transform.forward * 0.7f, Color.green);
+        toWall = Physics.Raycast(transform.position, transform.forward, 0.7f, LayerMask.GetMask("Wall"));
     }
 
     private void OnTriggerEnter(Collider other)

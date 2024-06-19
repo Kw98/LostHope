@@ -16,7 +16,8 @@ public class KingSlime : Monster
     private bool isAtkMoving = false;
     private Vector3 atkPosition;
     private float atkMoveSpeed = 5f;
-    private bool isDash;
+
+    private bool isThinking;
 
     // Start is called before the first frame update
     void Start()
@@ -69,20 +70,31 @@ public class KingSlime : Monster
             {
                 target = null;
             }
-        }
-
-        if (target != null)
-        {
-            if (isMove)
+            else
             {
-                Vector3 direction = (target.position - transform.position).normalized;
-                Vector3 movement = direction * data.Speed * Time.deltaTime;
-                transform.position += movement;
-                transform.LookAt(target.position);
+                Vector3 directionToTarget = (target.position - transform.position).normalized;
+                Quaternion lookRotation = Quaternion.LookRotation(new Vector3(directionToTarget.x, 0, directionToTarget.z));
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
 
-                animator.SetBool("isWalk", true);
+                if (!isThinking)
+                {
+                    StartCoroutine(Think());
+                }
             }
         }
+
+        //if (target != null)
+        //{
+        //    if (isMove)
+        //    {
+        //        Vector3 direction = (target.position - transform.position).normalized;
+        //        Vector3 movement = direction * data.Speed * Time.deltaTime;
+        //        transform.position += movement;
+        //        transform.LookAt(target.position);
+
+        //        animator.SetBool("isWalk", true);
+        //    }
+        //}
 
         if (isAtkMoving) // 근접 공격 시 전진성
         {
@@ -96,15 +108,12 @@ public class KingSlime : Monster
 
     IEnumerator Think()
     {
+        isThinking = true;
+
         int random = Random.Range(0, 2);
         switch (random)
         {
-            //case 0:
-            //    isMove = false;
-            //    break;
-
             case 0:
-                //isMove = true;
                 StartCoroutine(RandomMovement());
                 break;
 
@@ -114,29 +123,27 @@ public class KingSlime : Monster
         }
 
         yield return new WaitForSeconds(2f);
+        isThinking = false;
     }
 
     IEnumerator RandomMovement()
     {
-        // 무작위로 이동할 방향 및 목표 위치 설정
-        Vector3 randomDirection = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized;
-        Vector3 targetPosition = transform.position + randomDirection * 2f; // 이동 거리
-
+        float randomDuration = Random.Range(1f, 2f);
         float elapsedTime = 0f;
-        float duration = 2f; // 이동 시간
+
+        Vector3 randomDirection = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
+        Vector3 startPosition = transform.position;
+        Vector3 targetPosition = startPosition + randomDirection * data.Speed * randomDuration;
 
         animator.SetBool("isWalk", true);
 
-        // 목표 위치로 점진적으로 이동
-        while (elapsedTime < duration)
+        while (elapsedTime < randomDuration)
         {
-            transform.position = Vector3.Lerp(transform.position, targetPosition, (elapsedTime / duration));
-            transform.LookAt(target.position);
+            transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / randomDuration);
             elapsedTime += Time.deltaTime;
-            yield return null; // 다음 프레임까지 대기
+            yield return null;
         }
 
-        transform.position = targetPosition;
         animator.SetBool("isWalk", false);
     }
 
@@ -166,52 +173,28 @@ public class KingSlime : Monster
 
     IEnumerator MeleeAtk()
     {
-        isMove = false;
-        animator.SetBool("isWalk", false);
-
         SwapWeapon(0);
 
         animator.SetTrigger("doMeleeAtk");
         yield return new WaitForSeconds(2f);
-
-        isMove = true;
-
-        StartCoroutine(Think());
     }
 
     IEnumerator RangeAtk()
     {
-        isMove = false;
-        animator.SetBool("isWalk", false);
-
         SwapWeapon(1);
 
         animator.SetTrigger("doRangeAtk");
         yield return new WaitForSeconds(3f);
-
-        isMove = true;
-
-        StartCoroutine(Think());
     }
 
     IEnumerator DashAtk()
     {
-        isMove = false;
-        animator.SetBool("isWalk", false);
-
         SwapWeapon(0);
 
         dashVec = (target.position - transform.position).normalized;
 
-        isDash = true;
-
         animator.SetTrigger("doDashAtk");
         yield return new WaitForSeconds(3f);
-
-        isDash = false;
-        isMove = true;
-
-        StartCoroutine(Think());
     }
 
     public void SwapWeapon(int weaponIndex)
@@ -232,6 +215,13 @@ public class KingSlime : Monster
     {
         isAtkMoving = true;
 
-        atkPosition = transform.position + transform.forward * 0.7f;
+        atkPosition = transform.position + transform.forward * 1f;
+    }
+
+    public void ActiveDashAttack() // 대쉬 공격 시 전진성
+    {
+        isAtkMoving = true;
+
+        atkPosition = transform.position + transform.forward * 7f;
     }
 }

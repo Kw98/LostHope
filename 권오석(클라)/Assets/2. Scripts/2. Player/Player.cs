@@ -351,9 +351,4 @@ public class Player : MonoBehaviour
         if (other.tag == "Weapon")
             nearObject = null;
     }
-
-    //public Weapon GetCurrentWeapon()
-    //{
-    //    return equipWeapon;
-    //}
 }
