@@ -1071,9 +1071,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5581363294179112326}
   - component: {fileID: 8215882448450840056}
-  m_Layer: 14
+  m_Layer: 12
   m_Name: GameObject
-  m_TagString: Melee
+  m_TagString: MonsterAtk
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2021,9 +2021,9 @@ GameObject:
   m_Component:
   - component: {fileID: 848672684364196394}
   - component: {fileID: 2525878379370240568}
-  m_Layer: 14
+  m_Layer: 12
   m_Name: GameObject
-  m_TagString: Melee
+  m_TagString: MonsterAtk
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2068,9 +2068,9 @@ GameObject:
   - component: {fileID: 969047730124942677}
   - component: {fileID: 4120732669932730181}
   - component: {fileID: 5178379765046550732}
-  m_Layer: 14
+  m_Layer: 12
   m_Name: Boss_sword_right
-  m_TagString: Melee
+  m_TagString: MonsterAtk
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3920,9 +3920,9 @@ GameObject:
   - component: {fileID: 8858906016933010016}
   - component: {fileID: 7516620179535089819}
   - component: {fileID: 3659469185992270701}
-  m_Layer: 14
+  m_Layer: 12
   m_Name: Boss_sword_left
-  m_TagString: Melee
+  m_TagString: MonsterAtk
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4151,6 +4151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6954369373912284760}
   - component: {fileID: 7539478804739940365}
+  - component: {fileID: 9099905750489435036}
   - component: {fileID: 3226504163988746914}
   - component: {fileID: 6196088921000728849}
   - component: {fileID: 6776185833901212468}
@@ -4200,6 +4201,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &9099905750489435036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7766794785655219426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 580692c261c542c4bb16167db1ff4ae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minX: 78
+  maxX: 99
+  minY: -1
+  maxY: 1
+  minZ: 78
+  maxZ: 99
 --- !u!114 &3226504163988746914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4215,13 +4234,11 @@ MonoBehaviour:
   monsterType: 1
   target: {fileID: 0}
   meleeArea: {fileID: 0}
-  weapons:
+  dataIndex: 4
+  mainWeapons:
   - {fileID: 3715267174440723022}
   - {fileID: 385571671904192802}
   subWeapon: {fileID: 7178464006061880153}
-  hasWeapons: 0000
-  currentWeapon: {fileID: 0}
-  dataIndex: 4
 --- !u!54 &6196088921000728849
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -1,13 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\kos09\\Desktop\\C# Unity\\TeamProject\\\uAD8C\uC624\uC11D(\uD074\uB77C)\\",
+  "WorkspaceRootPath": "C:\\Users\\kos09\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\Unity\\TeamProject\\\uAD8C\uC624\uC11D(\uD074\uB77C)\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7B07BB79-4E3E-4C35-8BEE-C6FF538249B1}|Assembly-CSharp.csproj|c:\\users\\kos09\\desktop\\c# unity\\teamproject\\\uAD8C\uC624\uC11D(\uD074\uB77C)\\assets\\2. scripts\\3. enemy\\kingslime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7B07BB79-4E3E-4C35-8BEE-C6FF538249B1}|Assembly-CSharp.csproj|c:\\users\\kos09\\onedrive\\\uBC14\uD0D5 \uD654\uBA74\\unity\\teamproject\\\uAD8C\uC624\uC11D(\uD074\uB77C)\\assets\\2. scripts\\3. enemy\\kingslime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7B07BB79-4E3E-4C35-8BEE-C6FF538249B1}|Assembly-CSharp.csproj|solutionrelative:assets\\2. scripts\\3. enemy\\kingslime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7B07BB79-4E3E-4C35-8BEE-C6FF538249B1}|Assembly-CSharp.csproj|c:\\users\\kos09\\desktop\\c# unity\\teamproject\\\uAD8C\uC624\uC11D(\uD074\uB77C)\\assets\\2. scripts\\3. enemy\\monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7B07BB79-4E3E-4C35-8BEE-C6FF538249B1}|Assembly-CSharp.csproj|c:\\users\\kos09\\onedrive\\\uBC14\uD0D5 \uD654\uBA74\\unity\\teamproject\\\uAD8C\uC624\uC11D(\uD074\uB77C)\\assets\\2. scripts\\2. player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B07BB79-4E3E-4C35-8BEE-C6FF538249B1}|Assembly-CSharp.csproj|solutionrelative:assets\\2. scripts\\2. player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B07BB79-4E3E-4C35-8BEE-C6FF538249B1}|Assembly-CSharp.csproj|c:\\users\\kos09\\onedrive\\\uBC14\uD0D5 \uD654\uBA74\\unity\\teamproject\\\uAD8C\uC624\uC11D(\uD074\uB77C)\\assets\\2. scripts\\3. enemy\\monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7B07BB79-4E3E-4C35-8BEE-C6FF538249B1}|Assembly-CSharp.csproj|solutionrelative:assets\\2. scripts\\3. enemy\\monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -18,32 +22,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "KingSlime.cs",
+              "DocumentMoniker": "C:\\Users\\kos09\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\Unity\\TeamProject\\\uAD8C\uC624\uC11D(\uD074\uB77C)\\Assets\\2. Scripts\\3. Enemy\\KingSlime.cs",
+              "RelativeDocumentMoniker": "Assets\\2. Scripts\\3. Enemy\\KingSlime.cs",
+              "ToolTip": "C:\\Users\\kos09\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\Unity\\TeamProject\\\uAD8C\uC624\uC11D(\uD074\uB77C)\\Assets\\2. Scripts\\3. Enemy\\KingSlime.cs",
+              "RelativeToolTip": "Assets\\2. Scripts\\3. Enemy\\KingSlime.cs",
+              "ViewState": "AQIAAFgAAAAAAAAAAAAuwHIAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-21T05:00:22.585Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Monster.cs",
-              "DocumentMoniker": "C:\\Users\\kos09\\Desktop\\C# Unity\\TeamProject\\\uAD8C\uC624\uC11D(\uD074\uB77C)\\Assets\\2. Scripts\\3. Enemy\\Monster.cs",
+              "DocumentMoniker": "C:\\Users\\kos09\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\Unity\\TeamProject\\\uAD8C\uC624\uC11D(\uD074\uB77C)\\Assets\\2. Scripts\\3. Enemy\\Monster.cs",
               "RelativeDocumentMoniker": "Assets\\2. Scripts\\3. Enemy\\Monster.cs",
-              "ToolTip": "C:\\Users\\kos09\\Desktop\\C# Unity\\TeamProject\\\uAD8C\uC624\uC11D(\uD074\uB77C)\\Assets\\2. Scripts\\3. Enemy\\Monster.cs",
+              "ToolTip": "C:\\Users\\kos09\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\Unity\\TeamProject\\\uAD8C\uC624\uC11D(\uD074\uB77C)\\Assets\\2. Scripts\\3. Enemy\\Monster.cs",
               "RelativeToolTip": "Assets\\2. Scripts\\3. Enemy\\Monster.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAYwCsAAAArAAAA",
+              "ViewState": "AQIAAJkAAAAAAAAAAAAYwKgAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-11T12:27:23.663Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "KingSlime.cs",
-              "DocumentMoniker": "C:\\Users\\kos09\\Desktop\\C# Unity\\TeamProject\\\uAD8C\uC624\uC11D(\uD074\uB77C)\\Assets\\2. Scripts\\3. Enemy\\KingSlime.cs",
-              "RelativeDocumentMoniker": "Assets\\2. Scripts\\3. Enemy\\KingSlime.cs",
-              "ToolTip": "C:\\Users\\kos09\\Desktop\\C# Unity\\TeamProject\\\uAD8C\uC624\uC11D(\uD074\uB77C)\\Assets\\2. Scripts\\3. Enemy\\KingSlime.cs",
-              "RelativeToolTip": "Assets\\2. Scripts\\3. Enemy\\KingSlime.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAADwvxkAAAAWAAAA",
+              "DocumentIndex": 1,
+              "Title": "Player.cs",
+              "DocumentMoniker": "C:\\Users\\kos09\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\Unity\\TeamProject\\\uAD8C\uC624\uC11D(\uD074\uB77C)\\Assets\\2. Scripts\\2. Player\\Player.cs",
+              "RelativeDocumentMoniker": "Assets\\2. Scripts\\2. Player\\Player.cs",
+              "ToolTip": "C:\\Users\\kos09\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\Unity\\TeamProject\\\uAD8C\uC624\uC11D(\uD074\uB77C)\\Assets\\2. Scripts\\2. Player\\Player.cs",
+              "RelativeToolTip": "Assets\\2. Scripts\\2. Player\\Player.cs",
+              "ViewState": "AQIAAO0AAAAAAAAAAAAYwA8BAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T11:55:11.79Z",
+              "WhenOpened": "2024-06-21T04:25:18.079Z",
               "EditorCaption": ""
             }
           ]

@@ -4,19 +4,14 @@ using UnityEngine;
 
 public class BossStageBoundary : MonoBehaviour
 {
-    private BoxCollider boundary;
+    [SerializeField] private float minX, maxX, minY, maxY, minZ, maxZ;
 
-    // Start is called before the first frame update
-    void Start()
+    void Update()
     {
-        boundary = GetComponent<BoxCollider>();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            boundary.enabled = true;
-        }
+        Vector3 pos = transform.position;
+        pos.x = Mathf.Clamp(pos.x, minX, maxX);
+        pos.y = Mathf.Clamp(pos.y, minY, maxY);
+        pos.z = Mathf.Clamp(pos.z, minZ, maxZ);
+        transform.position = pos;
     }
 }

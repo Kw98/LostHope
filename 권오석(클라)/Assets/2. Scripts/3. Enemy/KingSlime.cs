@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class KingSlime : Monster
 {
-    [SerializeField] private GameObject[] weapons;
-    [SerializeField] private GameObject subWeapon;
-    [SerializeField] private bool[] hasWeapons;
-    [SerializeField] private GameObject currentWeapon;
-
     [SerializeField] private int dataIndex;
 
     private Vector3 dashVec;
@@ -19,12 +14,38 @@ public class KingSlime : Monster
 
     private bool isThinking;
 
+    [Header("Weapon")]
+    [SerializeField] private GameObject[] mainWeapons;
+    [SerializeField] private GameObject subWeapon;
+
+    private int currentWeaponIndex;
+
+    private void ChangeWeapon(int weaponIndex)
+    {
+        if (currentWeaponIndex != weaponIndex)
+        {
+            mainWeapons[currentWeaponIndex].SetActive(false);
+
+            if (currentWeaponIndex == 0 && subWeapon != null)
+            {
+                subWeapon.SetActive(false);
+            }
+
+            mainWeapons[weaponIndex].SetActive(true);
+
+            if (weaponIndex == 0 && subWeapon != null)
+            {
+                subWeapon.SetActive(true);
+            }
+
+            currentWeaponIndex = weaponIndex;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         Init();
-
-        SwapWeapon(0);
     }
 
     public override void Init()
@@ -39,6 +60,16 @@ public class KingSlime : Monster
         data.Speed = jData.speed;
 
         base.Init();
+
+        currentWeaponIndex = 0;
+        for (int i = 0; i < mainWeapons.Length; i++)
+        {
+            mainWeapons[i].SetActive(i == currentWeaponIndex);
+        }
+        if (subWeapon != null)
+        {
+            subWeapon.SetActive(currentWeaponIndex == 0);
+        }
     }
 
     // Update is called once per frame
@@ -52,7 +83,7 @@ public class KingSlime : Monster
 
         if (target == null)
         {
-            float distanceToPlayer = Vector3.Distance(transform.position, 
+            float distanceToPlayer = Vector3.Distance(transform.position,
                                                 GameManager.Instance.P.transform.position);
 
             // 감지 범위 내 타겟 설정
@@ -82,19 +113,6 @@ public class KingSlime : Monster
                 }
             }
         }
-
-        //if (target != null)
-        //{
-        //    if (isMove)
-        //    {
-        //        Vector3 direction = (target.position - transform.position).normalized;
-        //        Vector3 movement = direction * data.Speed * Time.deltaTime;
-        //        transform.position += movement;
-        //        transform.LookAt(target.position);
-
-        //        animator.SetBool("isWalk", true);
-        //    }
-        //}
 
         if (isAtkMoving) // 근접 공격 시 전진성
         {
@@ -173,42 +191,25 @@ public class KingSlime : Monster
 
     IEnumerator MeleeAtk()
     {
-        SwapWeapon(0);
-
+        ChangeWeapon(0);
         animator.SetTrigger("doMeleeAtk");
         yield return new WaitForSeconds(2f);
     }
 
     IEnumerator RangeAtk()
     {
-        SwapWeapon(1);
-
+        ChangeWeapon(1);
         animator.SetTrigger("doRangeAtk");
         yield return new WaitForSeconds(3f);
     }
 
     IEnumerator DashAtk()
     {
-        SwapWeapon(0);
-
+        ChangeWeapon(0);
         dashVec = (target.position - transform.position).normalized;
 
         animator.SetTrigger("doDashAtk");
         yield return new WaitForSeconds(3f);
-    }
-
-    public void SwapWeapon(int weaponIndex)
-    {
-        if (weaponIndex >= 0 && weaponIndex < weapons.Length && hasWeapons[weaponIndex])
-        {
-            if (currentWeapon != null)
-            {
-                currentWeapon.SetActive(false);
-            }
-
-            currentWeapon = weapons[weaponIndex];
-            currentWeapon.SetActive(true);
-        }
     }
 
     public void ActiveMeleeAttack() // 근접 공격 시 전진성
