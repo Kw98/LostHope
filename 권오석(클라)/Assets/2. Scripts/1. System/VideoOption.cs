@@ -23,7 +23,7 @@ public class VideoOption : MonoBehaviour
     {
         for (int i = 0; i < Screen.resolutions.Length; i++)
         {
-            if (Screen.resolutions[i].refreshRate == 60)
+            if (Screen.resolutions[i].refreshRate == 165)
                 resolutions.Add(Screen.resolutions[i]);
         }
 

@@ -9,7 +9,7 @@ public class Monster : MonoBehaviour
     public enum Type { A, Boss };
     public Type monsterType;
     public Transform target;
-    [SerializeField] private BoxCollider meleeArea;
+    public BoxCollider meleeArea;
     
     protected float chaseDistance; // 플레이어 감지 범위
     public Define.MonsterData data = new Define.MonsterData();

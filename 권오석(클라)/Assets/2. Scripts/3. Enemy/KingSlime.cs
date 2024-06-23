@@ -212,6 +212,16 @@ public class KingSlime : Monster
         yield return new WaitForSeconds(3f);
     }
 
+    public void EnableAttackCollider()
+    {
+        meleeArea.enabled = true;
+    }
+
+    public void DisableAttackCollider()
+    {
+        meleeArea.enabled = false;
+    }
+
     public void ActiveMeleeAttack() // 근접 공격 시 전진성
     {
         isAtkMoving = true;

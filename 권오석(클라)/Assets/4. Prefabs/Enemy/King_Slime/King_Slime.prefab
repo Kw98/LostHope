@@ -327,7 +327,7 @@ Transform:
   - {fileID: 5331809266335448507}
   - {fileID: 3051444350248848509}
   m_Father: {fileID: 6954369373912284760}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &373803876434603555
 GameObject:
@@ -2312,7 +2312,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6954369373912284760}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4426832810012400639
 GameObject:
@@ -2984,6 +2984,51 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0084774345, y: 0.22330406, z: 0.15902764}
     m_Extent: {x: 0.132661, y: 0.099230856, z: 0.082488656}
   m_DirtyAABB: 0
+--- !u!1 &5499842243728252376
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8512414675008759571}
+  - component: {fileID: 168551494581153791}
+  m_Layer: 10
+  m_Name: MonsterAtk
+  m_TagString: MonsterAtk
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8512414675008759571
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5499842243728252376}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.35, z: 0.6500015}
+  m_LocalScale: {x: 1.25, y: 1.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6954369373912284760}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &168551494581153791
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5499842243728252376}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5516166941825880990
 GameObject:
   m_ObjectHideFlags: 0
@@ -4108,7 +4153,7 @@ Transform:
   - {fileID: 1609791724669397491}
   - {fileID: 2934738380839300447}
   m_Father: {fileID: 6954369373912284760}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7594816771578720454
 GameObject:
@@ -4174,6 +4219,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8512414675008759571}
   - {fileID: 8037976662825055213}
   - {fileID: 6810873685885271168}
   - {fileID: 3229838312511102668}
@@ -4233,7 +4279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterType: 1
   target: {fileID: 0}
-  meleeArea: {fileID: 0}
+  meleeArea: {fileID: 168551494581153791}
   dataIndex: 4
   mainWeapons:
   - {fileID: 3715267174440723022}
