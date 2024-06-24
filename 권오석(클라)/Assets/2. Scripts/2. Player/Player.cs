@@ -311,20 +311,33 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "MonsterAtk")
+        if (other.tag == "MonsterAtk" || other.tag == "Bullet")
         {
-            Monster monster = other.GetComponentInParent<Monster>();
-            if (monster != null)
+            if (other.tag == "MonsterAtk")
             {
-                int damage = monster.data.Power;
-                curHP -= damage;
-                Debug.Log("Player HP : " + curHP);
-                StartCoroutine(OnDamage());
+                Monster monster = other.GetComponentInParent<Monster>();
+                if (monster != null)
+                {
+                    int damage = monster.data.Power;
+                    curHP -= damage;
+                    Debug.Log("Player HP : " + curHP);
+                    StartCoroutine(OnDamage());
+                }
+            }
+            else if (other.tag == "Bullet")
+            {
+                Bullet bullet = other.GetComponent<Bullet>();
+                if (bullet != null)
+                {
+                    curHP -= bullet.damage;
+                    Debug.Log("Player HP : " + curHP);
+                    StartCoroutine(OnDamage());
+                }
             }
         }
     }
 
-    IEnumerator OnDamage()
+    public IEnumerator OnDamage()
     {
         if (curHP > 0)
         {

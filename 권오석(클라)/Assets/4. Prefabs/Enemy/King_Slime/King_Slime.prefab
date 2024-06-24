@@ -551,7 +551,7 @@ MonoBehaviour:
   meleeArea: {fileID: 0}
   bulletParent: {fileID: 1026723636740551186}
   bulletPos: {fileID: 6810873685885271168}
-  bullet: {fileID: 1000012871492402, guid: c56d61f4cf63d834482119e0cc90eff5, type: 3}
+  bullet: {fileID: 1000012871492402, guid: 42283fba7dd5bcb4eb12d4c855171cee, type: 3}
 --- !u!1 &388580045806373429
 GameObject:
   m_ObjectHideFlags: 0
@@ -4285,6 +4285,8 @@ MonoBehaviour:
   - {fileID: 3715267174440723022}
   - {fileID: 385571671904192802}
   subWeapon: {fileID: 7178464006061880153}
+  bulletPrefab: {fileID: 1000012871492402, guid: 42283fba7dd5bcb4eb12d4c855171cee, type: 3}
+  firePoint: {fileID: 6810873685885271168}
 --- !u!54 &6196088921000728849
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -20,27 +20,9 @@ public class KingSlime : Monster
 
     private int currentWeaponIndex;
 
-    private void ChangeWeapon(int weaponIndex)
-    {
-        if (currentWeaponIndex != weaponIndex)
-        {
-            mainWeapons[currentWeaponIndex].SetActive(false);
-
-            if (currentWeaponIndex == 0 && subWeapon != null)
-            {
-                subWeapon.SetActive(false);
-            }
-
-            mainWeapons[weaponIndex].SetActive(true);
-
-            if (weaponIndex == 0 && subWeapon != null)
-            {
-                subWeapon.SetActive(true);
-            }
-
-            currentWeaponIndex = weaponIndex;
-        }
-    }
+    [Header("Bullet")]
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform firePoint;
 
     // Start is called before the first frame update
     void Start()
@@ -189,6 +171,28 @@ public class KingSlime : Monster
         yield return new WaitForSeconds(3f);
     }
 
+    private void ChangeWeapon(int weaponIndex)
+    {
+        if (currentWeaponIndex != weaponIndex)
+        {
+            mainWeapons[currentWeaponIndex].SetActive(false);
+
+            if (currentWeaponIndex == 0 && subWeapon != null)
+            {
+                subWeapon.SetActive(false);
+            }
+
+            mainWeapons[weaponIndex].SetActive(true);
+
+            if (weaponIndex == 0 && subWeapon != null)
+            {
+                subWeapon.SetActive(true);
+            }
+
+            currentWeaponIndex = weaponIndex;
+        }
+    }
+
     IEnumerator MeleeAtk()
     {
         ChangeWeapon(0);
@@ -234,5 +238,12 @@ public class KingSlime : Monster
         isAtkMoving = true;
 
         atkPosition = transform.position + transform.forward * 7f;
+    }
+
+    public void FireBullet()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+        rb.velocity = firePoint.forward * 20f; // ÃÑ¾ËÀÇ ¼Óµµ
     }
 }
