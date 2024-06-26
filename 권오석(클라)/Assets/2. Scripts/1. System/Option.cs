@@ -37,20 +37,23 @@ public class Option : MonoBehaviour
         GameIsPaused = false;
     }
 
-    public void ToSettingMenu()
-    {
-        Debug.Log("0");
-    }
-
     public void ToMain()
     {
-        Debug.Log("0");
         Time.timeScale = 1f;
         SceneManager.LoadScene("Title");
+    }
+
+    public void ToTown()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Town");
     }
 
     public void QuitGame()
     {
         Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 }

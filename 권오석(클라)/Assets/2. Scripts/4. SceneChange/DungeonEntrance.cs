@@ -35,6 +35,6 @@ public class DungeonEntrance : MonoBehaviour
     private void EnterDungeon()
     {
         Loading.LoadScene("Stage_1");
-        //SceneManager.LoadScene("UI", LoadSceneMode.Additive);
+        //SceneManager.LoadScene("PauseMenu", LoadSceneMode.Additive);
     }
 }

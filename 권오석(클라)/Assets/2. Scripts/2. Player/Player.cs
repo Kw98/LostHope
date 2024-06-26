@@ -85,11 +85,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void LevelUp()
-    {
-        curLevel++;
-        Debug.Log("Level UP! Lv : " + curLevel);
-    }
+    //private void LevelUp()
+    //{
+    //    curLevel++;
+    //    Debug.Log("Level UP! Lv : " + curLevel);
+    //}
 
     private void Move() // ¿Ãµø
     {
