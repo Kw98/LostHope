@@ -175,7 +175,10 @@ public class Monster : MonoBehaviour
             Debug.Log("Melee : " + data.CurHP);
             Vector3 reactVec = transform.position - other.transform.position;
 
-            StartCoroutine(OnDamage(reactVec));
+            if (monsterType != Type.Boss)
+                StartCoroutine(OnDamage(reactVec));
+            else if (monsterType == Type.Boss)
+                StartCoroutine(BossDamage());
         }
         else if (other.tag == "Bullet")
         {
@@ -185,7 +188,11 @@ public class Monster : MonoBehaviour
             Vector3 reactVec = transform.position - other.transform.position;
             Destroy(other.gameObject);
 
-            StartCoroutine(OnDamage(reactVec));
+            if (monsterType != Type.Boss)
+                StartCoroutine(OnDamage(reactVec));
+            else if (monsterType == Type.Boss)
+                StartCoroutine(BossDamage());
+
         }
     }
 
@@ -217,7 +224,25 @@ public class Monster : MonoBehaviour
 
             OnMonsterDie?.Invoke(this);
         }
-        FindObjectOfType<MonsterUI>().UpdateUI();
+        //FindObjectOfType<MonsterUI>().UpdateUI();
+    }
+
+    IEnumerator BossDamage()
+    {
+        yield return new WaitForSeconds(0.1f);
+        if (data.CurHP > 0)
+        {
+            animator.SetTrigger("GetHit");
+            yield return new WaitForSeconds(1f);
+        }
+        else
+        {
+            gameObject.layer = 11;
+            isDead = true;
+            animator.SetTrigger("onDead");
+
+            Invoke("Dead", 2f);
+        }
     }
     public void Dead()
     {

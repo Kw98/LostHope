@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KingSlime : Monster
 {
@@ -24,10 +25,15 @@ public class KingSlime : Monster
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
 
+    [Header("HP")]
+    [SerializeField] private Image curHPImage;
+    [SerializeField] private GameObject bossUI;
+
     // Start is called before the first frame update
     void Start()
     {
         Init();
+        data.MaxHP = data.CurHP;
     }
 
     public override void Init()
@@ -65,7 +71,7 @@ public class KingSlime : Monster
             StopAllCoroutines();
             return;
         }
-
+        BossUI();
         if (target == null)
         {
             float distanceToPlayer = Vector3.Distance(transform.position,
@@ -75,6 +81,7 @@ public class KingSlime : Monster
             if (distanceToPlayer <= chaseDistance)
             {
                 target = GameManager.Instance.P.transform;
+                bossUI.gameObject.SetActive(true);
             }
         }
         else
@@ -85,6 +92,7 @@ public class KingSlime : Monster
             if (distanceToTarget > chaseDistance)
             {
                 target = null;
+                bossUI.gameObject.SetActive(false);
             }
             else
             {
@@ -248,5 +256,11 @@ public class KingSlime : Monster
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.velocity = firePoint.forward * 20f; // ÃÑ¾ËÀÇ ¼Óµµ
+    }
+
+    private void BossUI()
+    {
+        float hpFillAmount = (float)data.CurHP / data.MaxHP;
+        curHPImage.fillAmount = hpFillAmount;
     }
 }

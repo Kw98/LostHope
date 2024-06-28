@@ -44,7 +44,6 @@ public class DoorController : MonoBehaviour
     private void OpenDoor()
     {
         isOpen = true;
-        Debug.Log("문이 열렸습니다.");
 
         Destroy(gameObject);
     }

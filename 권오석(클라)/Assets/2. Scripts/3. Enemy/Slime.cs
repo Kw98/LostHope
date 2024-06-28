@@ -10,6 +10,7 @@ public class Slime : Monster
     void Start()
     {
         Init();
+        data.MaxHP = data.CurHP;
     }
 
     public override void Init()
