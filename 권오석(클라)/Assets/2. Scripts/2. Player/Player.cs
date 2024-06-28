@@ -350,7 +350,14 @@ public class Player : MonoBehaviour
             animator.SetTrigger("onDead");
 
             Destroy(gameObject, 1f);
+
+            Dead();
         }
+    }
+
+    public void Dead()
+    {
+        UI.Instance.DeadPanel();
     }
 
     private void OnTriggerStay(Collider other)

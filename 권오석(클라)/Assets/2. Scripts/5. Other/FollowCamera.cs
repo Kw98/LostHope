@@ -10,11 +10,17 @@ public class FollowCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.P == null)
+            return;
+
         transform.position = target.position + offset;
     }
 
     void LateUpdate()
     {
+        if (GameManager.Instance.P == null)
+            return;
+
         Vector3 direction = (GameManager.Instance.P.transform.position - transform.position).normalized;
         RaycastHit[] hits = Physics.RaycastAll(transform.position, direction, Mathf.Infinity,
                             1 << LayerMask.NameToLayer("Wall"));

@@ -15,6 +15,10 @@ public class UI : Singleton<UI>
     [Header("Level")]
     [SerializeField] private TextMeshProUGUI lvTxt;
 
+    [Header("Panel")]
+    [SerializeField] private GameObject deadPanel;
+    [SerializeField] private GameObject clearPanel;
+
     void Update()
     {
         UpdateUI();
@@ -33,5 +37,15 @@ public class UI : Singleton<UI>
             string levelString = p.curLevel.ToString().PadLeft(2, '0');
             lvTxt.text = "LV " + levelString;
         }
+    }
+
+    public void DeadPanel()
+    {
+        deadPanel.SetActive(true);
+    }
+
+    public void ClearPanel()
+    {
+        clearPanel.SetActive(true);
     }
 }

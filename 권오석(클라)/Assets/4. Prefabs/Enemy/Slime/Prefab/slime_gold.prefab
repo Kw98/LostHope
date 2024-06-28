@@ -387,8 +387,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dfde25e36f7d7e409eb3bd58f95affe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeArea: {fileID: 2249091546587130273}
+  monsterType: 0
   target: {fileID: 0}
+  meleeArea: {fileID: 2249091546587130273}
   dataIndex: 1
 --- !u!54 &1527318092162380706
 Rigidbody:
@@ -595,7 +596,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2600631485962084336
 RectTransform:
   m_ObjectHideFlags: 0

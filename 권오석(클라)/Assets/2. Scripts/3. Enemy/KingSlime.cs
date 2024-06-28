@@ -57,6 +57,9 @@ public class KingSlime : Monster
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.P == null)
+            return;
+
         if (isDead)
         {
             StopAllCoroutines();

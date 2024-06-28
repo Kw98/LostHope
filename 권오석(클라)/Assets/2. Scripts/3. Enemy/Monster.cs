@@ -212,8 +212,15 @@ public class Monster : MonoBehaviour
             if (monsterType != Type.Boss)
                 Destroy(gameObject, 1.5f);
 
+            if (monsterType == Type.Boss)
+                Dead();
+
             OnMonsterDie?.Invoke(this);
         }
         FindObjectOfType<MonsterUI>().UpdateUI();
+    }
+    public void Dead()
+    {
+        UI.Instance.ClearPanel();
     }
 }

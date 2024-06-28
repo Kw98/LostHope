@@ -26,6 +26,9 @@ public class Item : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.P == null)
+            return;
+
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
         if (distanceToPlayer > distance)

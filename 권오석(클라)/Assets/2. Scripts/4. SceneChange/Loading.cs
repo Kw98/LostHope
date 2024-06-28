@@ -19,6 +19,13 @@ public class Loading : MonoBehaviour
         SceneManager.LoadScene("Loading");
     }
 
+    //public static void UILoad(string sceneName)
+    //{
+    //    SceneManager.LoadScene(sceneName);
+    //    SceneManager.LoadScene("PauseMenu", LoadSceneMode.Additive);
+    //}
+
+
     private void Start()
     {
         StartCoroutine(LoadScene());
