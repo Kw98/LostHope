@@ -16,7 +16,7 @@ GameObject:
   m_Layer: 0
   m_Name: Drop Weapon_Sword
   m_TagString: Weapon
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -201,11 +201,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f6eda06c9e7d2eb4ab42db7de3a30c61, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.125
+      value: -0.155
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f6eda06c9e7d2eb4ab42db7de3a30c61, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.95
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f6eda06c9e7d2eb4ab42db7de3a30c61, type: 3}
       propertyPath: m_LocalPosition.z

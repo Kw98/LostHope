@@ -733,7 +733,7 @@ MonoBehaviour:
   - {fileID: 9121033404747908255}
   - {fileID: 3881989917818562873}
   subWeapon: {fileID: 4856912944813721579}
-  hasWeapons: 0001
+  hasWeapons: 0101
   followCamera: {fileID: 0}
   maxHP: 0
   curHP: 0
