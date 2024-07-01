@@ -19,6 +19,10 @@ public class UI : Singleton<UI>
     [SerializeField] private GameObject deadPanel;
     [SerializeField] private GameObject clearPanel;
 
+    [Header("Ammo")]
+    [SerializeField] private Weapon weapon;
+    [SerializeField] private TextMeshProUGUI ammoTxt;
+
     void Update()
     {
         UpdateUI();
@@ -36,6 +40,9 @@ public class UI : Singleton<UI>
             //LV
             string levelString = p.curLevel.ToString().PadLeft(2, '0');
             lvTxt.text = "LV " + levelString;
+
+            //Ammo
+            ammoTxt.text = weapon.currentAmmo + " / " + weapon.maxAmmo + " | " + weapon.reserveAmmo;
         }
     }
 

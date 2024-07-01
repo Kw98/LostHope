@@ -15,6 +15,36 @@ public class Weapon : MonoBehaviour
     public Transform bulletPos;
     public GameObject bullet;
 
+    public int maxAmmo = 10;
+    public int currentAmmo;
+    public int reserveAmmo = 10;
+    public float reloadTime = 2f;
+    private bool isReloading = false;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        currentAmmo = maxAmmo;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (isReloading)
+            return;
+
+        if (type == Type.Range && currentAmmo != 10 && currentAmmo <= 0  || Input.GetButtonDown("Reload"))
+        {
+            StartCoroutine(Reload());
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            AddReserveAmmo(10);
+        }
+    }
+
     public void Use()
     {
         if (type == Type.Melee)
@@ -24,7 +54,14 @@ public class Weapon : MonoBehaviour
         }
         else if (type == Type.Range)
         {
-            StartCoroutine("RangeAttack");
+            if (currentAmmo > 0)
+            {
+                StartCoroutine("RangeAttack");
+            }
+            else
+            {
+                Debug.Log("Out of ammo!");
+            }
         }
     }
 
@@ -43,6 +80,37 @@ public class Weapon : MonoBehaviour
         b.transform.SetParent(bulletParent);
         Rigidbody bRb = b.GetComponent<Rigidbody>();
         bRb.velocity = bulletPos.up * 30;
+        currentAmmo--;
         yield return null;
+    }
+
+    IEnumerator Reload()
+    {
+        isReloading = true;
+        Debug.Log("Reloading...");
+        GameManager.Instance.P.Reload(); // 局聪皋捞记 贸府
+
+        yield return new WaitForSeconds(reloadTime);
+
+        int ammoToReload = maxAmmo - currentAmmo;
+        if (reserveAmmo >= ammoToReload)
+        {
+            currentAmmo += ammoToReload;
+            reserveAmmo -= ammoToReload;
+        }
+        else
+        {
+            currentAmmo += reserveAmmo;
+            reserveAmmo = 0;
+        }
+
+        isReloading = false;
+        Debug.Log("Reloaded");
+    }
+
+    public void AddReserveAmmo(int amount)
+    {
+        reserveAmmo += amount;
+        Debug.Log("Added reserve ammo: " + amount + " rounds");
     }
 }

@@ -181,6 +181,11 @@ public class Player : MonoBehaviour
 
         if (equipWeapon == null)
             return;
+        if (equipWeapon.currentAmmo == 0)
+        {
+            Debug.Log("Reloading...");
+            return;
+        }
 
         if (atkCombo >= 4)
             atkCombo = 0;
@@ -211,6 +216,11 @@ public class Player : MonoBehaviour
             atkCombo++;
             fireDelay = 0;
         }
+    }
+
+    public void Reload()
+    {
+        animator.SetTrigger("doReload");
     }
 
     private IEnumerator ResetComboAfterDelay()
@@ -270,8 +280,6 @@ public class Player : MonoBehaviour
                 subWeapon.SetActive(true);
             else
                 subWeapon.SetActive(false);
-
-            animator.SetTrigger("doSwap");
         }
     }
 
@@ -281,13 +289,23 @@ public class Player : MonoBehaviour
 
         if (interaction && nearObject != null && !isDash)
         {
-            if (nearObject.tag == "Weapon")
+            Item item = nearObject.GetComponent<Item>();
+            if (item != null)
             {
-                Item item = nearObject.GetComponent<Item>();
-                int weaponIndex = item.value;
-                hasWeapons[weaponIndex] = true;
+                if (nearObject.tag == "Weapon")
+                {
+                    int weaponIndex = item.value;
+                    hasWeapons[weaponIndex] = true;
 
-                Destroy(nearObject);
+                    Destroy(nearObject);
+                }
+                else if (nearObject.tag == "Ammo")
+                {
+                    int ammoAmount = item.value;
+                    equipWeapon.AddReserveAmmo(ammoAmount);
+
+                    Destroy(nearObject);
+                }
             }
         }
     }

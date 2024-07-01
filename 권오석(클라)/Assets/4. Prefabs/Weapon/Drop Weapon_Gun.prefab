@@ -187,7 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   value: 1
-  distance: 2
+  distance: 3
 --- !u!1001 &1989599373846545242
 PrefabInstance:
   m_ObjectHideFlags: 0

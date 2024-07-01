@@ -93,7 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   value: 0
-  distance: 2
+  distance: 3
 --- !u!1 &8777415949984666413
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,6 +246,18 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f6eda06c9e7d2eb4ab42db7de3a30c61, type: 3}
       propertyPath: m_Name
       value: sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927742080658077590, guid: f6eda06c9e7d2eb4ab42db7de3a30c61, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.306
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927742080658077590, guid: f6eda06c9e7d2eb4ab42db7de3a30c61, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.941
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927742080658077590, guid: f6eda06c9e7d2eb4ab42db7de3a30c61, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.475
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6eda06c9e7d2eb4ab42db7de3a30c61, type: 3}

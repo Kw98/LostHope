@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public enum Type { Weapon, Heart }
+    public enum Type { Weapon, Ammo }
     public Type type;
     public int value;
 
-    public float distance = 2f;
+    public float distance = 3f;
 
     private Transform player;
 

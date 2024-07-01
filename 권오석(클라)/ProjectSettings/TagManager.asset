@@ -13,6 +13,7 @@ TagManager:
   - Bullet
   - Monster
   - MonsterAtk
+  - Ammo
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - MonsterAtk
   - Torch
   - Weapon
-  - 
+  - Ammo
   - 
   - 
   - 
