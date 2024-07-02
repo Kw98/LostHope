@@ -149,3 +149,7 @@ MonoBehaviour:
   bulletParent: {fileID: 0}
   bulletPos: {fileID: 0}
   bullet: {fileID: 0}
+  maxAmmo: 10
+  currentAmmo: 0
+  reserveAmmo: 10
+  reloadTime: 2

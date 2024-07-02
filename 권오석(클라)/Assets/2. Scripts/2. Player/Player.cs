@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     private bool isAtkMoving = false;
     private Vector3 atkPosition;
     private float atkMoveSpeed = 5f;
+    public BoxCollider meleeArea;
     //AtkCombe
     private int atkCombo;
     private Coroutine resetComboCoroutine;
@@ -218,6 +219,17 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void OnAtkCollider()
+    {
+        meleeArea.enabled = true;
+    }
+
+    public void OffAtkCollider()
+    {
+        meleeArea.enabled = false;
+    }
+
+
     public void Reload()
     {
         animator.SetTrigger("doReload");
@@ -301,8 +313,11 @@ public class Player : MonoBehaviour
                 }
                 else if (nearObject.tag == "Ammo")
                 {
-                    int ammoAmount = item.value;
-                    equipWeapon.AddReserveAmmo(ammoAmount);
+                    int ammoAmount = item.value; 
+                    if (equipWeapon != null && equipWeaponIndex == 1)
+                    {
+                        equipWeapon.AddReserveAmmo(ammoAmount);
+                    }
 
                     Destroy(nearObject);
                 }
@@ -380,13 +395,13 @@ public class Player : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Weapon")
+        if (other.tag == "Weapon" || other.tag == "Ammo")
             nearObject = other.gameObject;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Weapon")
+        if (other.tag == "Weapon" || other.tag == "Ammo")
             nearObject = null;
     }
 }

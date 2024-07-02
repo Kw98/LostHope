@@ -1,60 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\kos09\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\Unity\\TeamProject\\\uAD8C\uC624\uC11D(\uD074\uB77C)\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{7B07BB79-4E3E-4C35-8BEE-C6FF538249B1}|Assembly-CSharp.csproj|c:\\users\\kos09\\onedrive\\\uBC14\uD0D5 \uD654\uBA74\\unity\\teamproject\\\uAD8C\uC624\uC11D(\uD074\uB77C)\\assets\\2. scripts\\5. other\\store.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7B07BB79-4E3E-4C35-8BEE-C6FF538249B1}|Assembly-CSharp.csproj|solutionrelative:assets\\2. scripts\\5. other\\store.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7B07BB79-4E3E-4C35-8BEE-C6FF538249B1}|Assembly-CSharp.csproj|c:\\users\\kos09\\onedrive\\\uBC14\uD0D5 \uD654\uBA74\\unity\\teamproject\\\uAD8C\uC624\uC11D(\uD074\uB77C)\\assets\\2. scripts\\5. other\\storeui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7B07BB79-4E3E-4C35-8BEE-C6FF538249B1}|Assembly-CSharp.csproj|solutionrelative:assets\\2. scripts\\5. other\\storeui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
-      "Orientation": 1,
+      "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedHeight": 191,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "StoreUI.cs",
-              "DocumentMoniker": "C:\\Users\\kos09\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\Unity\\TeamProject\\\uAD8C\uC624\uC11D(\uD074\uB77C)\\Assets\\2. Scripts\\5. Other\\StoreUI.cs",
-              "RelativeDocumentMoniker": "Assets\\2. Scripts\\5. Other\\StoreUI.cs",
-              "ToolTip": "C:\\Users\\kos09\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\Unity\\TeamProject\\\uAD8C\uC624\uC11D(\uD074\uB77C)\\Assets\\2. Scripts\\5. Other\\StoreUI.cs",
-              "RelativeToolTip": "Assets\\2. Scripts\\5. Other\\StoreUI.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA8AAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-30T02:30:27.884Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedHeight": 209,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Store.cs",
-              "DocumentMoniker": "C:\\Users\\kos09\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\Unity\\TeamProject\\\uAD8C\uC624\uC11D(\uD074\uB77C)\\Assets\\2. Scripts\\5. Other\\Store.cs",
-              "RelativeDocumentMoniker": "Assets\\2. Scripts\\5. Other\\Store.cs",
-              "ToolTip": "C:\\Users\\kos09\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\Unity\\TeamProject\\\uAD8C\uC624\uC11D(\uD074\uB77C)\\Assets\\2. Scripts\\5. Other\\Store.cs",
-              "RelativeToolTip": "Assets\\2. Scripts\\5. Other\\Store.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-29T04:21:39.166Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }

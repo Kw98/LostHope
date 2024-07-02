@@ -781,6 +781,7 @@ MonoBehaviour:
   monsterType: 0
   target: {fileID: 0}
   meleeArea: {fileID: 8184229899214042248}
+  ammoBox: {fileID: 6623276018947756069, guid: 497f030b0a03a19478d58a138b36fb1a, type: 3}
   dataIndex: 3
 --- !u!54 &1497977724940875546
 Rigidbody:

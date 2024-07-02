@@ -39,7 +39,7 @@ public class Weapon : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.F1))
+        if (type == Type.Range && Input.GetKeyDown(KeyCode.F1))
         {
             AddReserveAmmo(10);
         }

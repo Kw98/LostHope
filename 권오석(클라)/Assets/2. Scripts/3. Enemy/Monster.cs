@@ -27,12 +27,21 @@ public class Monster : MonoBehaviour
 
     public static event Action<Monster> OnMonsterDie;
 
+    public GameObject ammoBox;
+    public Transform dropParent;
+
     private void Awake()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null && monsterType != Type.Boss)
         {
             target = player.transform;
+        }
+
+        GameObject dropParentObject = GameObject.FindGameObjectWithTag("DropParent");
+        if (dropParentObject != null)
+        {
+            dropParent = dropParentObject.transform;
         }
     }
 
@@ -217,14 +226,17 @@ public class Monster : MonoBehaviour
             rb.AddForce(reactVec * 5, ForceMode.Impulse);
 
             if (monsterType != Type.Boss)
+            {
+                DropAmmoBox();
                 Destroy(gameObject, 1.5f);
+            }
 
             if (monsterType == Type.Boss)
                 Dead();
 
             OnMonsterDie?.Invoke(this);
         }
-        //FindObjectOfType<MonsterUI>().UpdateUI();
+        FindObjectOfType<MonsterUI>().UpdateUI();
     }
 
     IEnumerator BossDamage()
@@ -244,6 +256,19 @@ public class Monster : MonoBehaviour
             Invoke("Dead", 2f);
         }
     }
+
+    void DropAmmoBox()
+    {
+        if (dropParent != null)
+        {
+            Instantiate(ammoBox, transform.position, Quaternion.identity, dropParent);
+        }
+        else
+        {
+            Instantiate(ammoBox, transform.position, Quaternion.identity);
+        }
+    }
+
     public void Dead()
     {
         UI.Instance.ClearPanel();
