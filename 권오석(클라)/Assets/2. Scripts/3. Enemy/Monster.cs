@@ -6,7 +6,7 @@ using System;
 
 public class Monster : MonoBehaviour
 {
-    public enum Type { A, Boss };
+    public enum Type { Normal, Elite, Boss };
     public Type monsterType;
     public Transform target;
     public BoxCollider meleeArea;
@@ -28,6 +28,7 @@ public class Monster : MonoBehaviour
     public static event Action<Monster> OnMonsterDie;
 
     public GameObject ammoBox;
+    public GameObject healthItem;
     public Transform dropParent;
 
     private void Awake()
@@ -61,7 +62,7 @@ public class Monster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (monsterType != Type.A)
+        if (monsterType == Type.Boss)
             return;
 
         if (GameManager.Instance.P == null)
@@ -180,7 +181,7 @@ public class Monster : MonoBehaviour
         if (other.tag == "Melee")
         {
             Weapon weapon = other.GetComponent<Weapon>();
-            data.CurHP -= weapon.damage;
+            data.CurHP -= weapon.meleeDamage;
             Debug.Log("Melee : " + data.CurHP);
             Vector3 reactVec = transform.position - other.transform.position;
 
@@ -225,7 +226,13 @@ public class Monster : MonoBehaviour
             reactVec += Vector3.up;
             rb.AddForce(reactVec * 5, ForceMode.Impulse);
 
-            if (monsterType != Type.Boss)
+            if (monsterType == Type.Elite)
+            {
+                DropHealthItem();
+                Destroy(gameObject, 1.5f);
+            }
+
+            if (monsterType == Type.Normal)
             {
                 DropAmmoBox();
                 Destroy(gameObject, 1.5f);
@@ -257,7 +264,7 @@ public class Monster : MonoBehaviour
         }
     }
 
-    void DropAmmoBox()
+    private void DropAmmoBox()
     {
         if (dropParent != null)
         {
@@ -266,6 +273,18 @@ public class Monster : MonoBehaviour
         else
         {
             Instantiate(ammoBox, transform.position, Quaternion.identity);
+        }
+    }
+
+    private void DropHealthItem()
+    {
+        if (dropParent != null)
+        {
+            Instantiate(healthItem, transform.position, Quaternion.identity, dropParent);
+        }
+        else
+        {
+            Instantiate(healthItem, transform.position, Quaternion.identity);
         }
     }
 

@@ -15,6 +15,7 @@ TagManager:
   - MonsterAtk
   - Ammo
   - DropParent
+  - HealthPotion
   layers:
   - Default
   - TransparentFX
@@ -33,7 +34,7 @@ TagManager:
   - Weapon
   - Ammo
   - DropParent
-  - 
+  - HealthPotion
   - 
   - 
   - 

@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class Option : MonoBehaviour
 {
     [Header("Option")]
-    [SerializeField] private GameObject pauseMenuCanvas;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject state;
     public static bool GameIsPaused = false;
 
     // Update is called once per frame
@@ -27,14 +28,16 @@ public class Option : MonoBehaviour
 
     public void Pause()
     {
-        pauseMenuCanvas.SetActive(true);
+        pauseMenu.SetActive(true);
+        state.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
 
     public void Resume()
     {
-        pauseMenuCanvas.SetActive(false);
+        pauseMenu.SetActive(false);
+        state.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }

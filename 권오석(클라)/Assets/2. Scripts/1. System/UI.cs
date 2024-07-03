@@ -23,6 +23,9 @@ public class UI : Singleton<UI>
     [SerializeField] private Weapon weapon;
     [SerializeField] private TextMeshProUGUI ammoTxt;
 
+    private Bullet bullet;
+
+    // Update is called once per frame
     void Update()
     {
         UpdateUI();
@@ -38,7 +41,7 @@ public class UI : Singleton<UI>
             hpTxt.text = string.Format("{0}/{1}", p.curHP, p.maxHP);
 
             //LV
-            string levelString = p.curLevel.ToString().PadLeft(2, '0');
+            string levelString = p.level.ToString().PadLeft(2, '0');
             lvTxt.text = "LV " + levelString;
 
             //Ammo
@@ -56,5 +59,32 @@ public class UI : Singleton<UI>
     {
         clearPanel.SetActive(true);
         Time.timeScale = 0f;
+    }
+
+    public void UpgradeHp()
+    {
+        if (p.statPoint > 0)
+        {
+            p.maxHP += 5;
+            p.statPoint -= 1;
+        }
+    }
+
+    public void UpgradeMeleeDamage()
+    {
+        if (p.statPoint > 0)
+        {
+            weapon.IncreaseMeleeDamage(1);
+            p.statPoint -= 1;
+        }
+    }
+
+    public void UpgradeRangeDamage()
+    {
+        if (p.statPoint > 0)
+        {
+            bullet.IncreaseRangeDamage(1);
+            p.statPoint -= 1;
+        }
     }
 }

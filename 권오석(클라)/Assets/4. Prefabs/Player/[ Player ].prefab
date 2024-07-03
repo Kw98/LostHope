@@ -738,7 +738,10 @@ MonoBehaviour:
   followCamera: {fileID: 0}
   maxHP: 0
   curHP: 0
-  curLevel: 0
+  level: 0
+  curExp: 0
+  maxExp: 0
+  statPoint: 0
   meleeArea: {fileID: 5084056038036619206}
 --- !u!54 &1231659725528256751
 Rigidbody:
@@ -2623,7 +2626,7 @@ BoxCollider:
   m_GameObject: {fileID: 6593028097854172737}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.1, y: 2, z: 0.5}
   m_Center: {x: 0, y: 1, z: 0}

@@ -12,8 +12,12 @@ public class Player : MonoBehaviour
     [Header("Player")]
     public int maxHP;
     public int curHP;
-    public int curLevel;
     private float speed;
+    public int level;
+    public int curExp;
+    public int maxExp;
+    public int statPoint;
+    private int healAmount;
 
     //Move
     private bool sprint;
@@ -60,8 +64,15 @@ public class Player : MonoBehaviour
     {
         maxHP = 30;
         curHP = maxHP;
-        curLevel = 1;
+
         speed = 3;
+
+        level = 1;
+        curExp = 0;
+        maxExp = 100;
+        statPoint = 0;
+
+        healAmount = 20;
     }
 
     // Update is called once per frame
@@ -86,11 +97,27 @@ public class Player : MonoBehaviour
         }
     }
 
-    //private void LevelUp()
-    //{
-    //    curLevel++;
-    //    Debug.Log("Level UP! Lv : " + curLevel);
-    //}
+    public void GainExp(int amount)
+    {
+        curExp += amount;
+        CheckLevelup();
+    }
+
+    private void CheckLevelup()
+    {
+        if (curExp >= maxExp)
+        {
+            LevelUp();
+        }
+    }
+
+    private void LevelUp()
+    {
+        level++;
+        curExp = 0;
+        maxExp += 50;
+        statPoint += 3;
+    }
 
     private void Move() // ÀÌµ¿
     {
@@ -311,13 +338,10 @@ public class Player : MonoBehaviour
 
                     Destroy(nearObject);
                 }
-                else if (nearObject.tag == "Ammo")
+                else if (nearObject.tag == "Ammo" && equipWeapon != null && equipWeaponIndex == 1 && hasWeapons[1])
                 {
-                    int ammoAmount = item.value; 
-                    if (equipWeapon != null && equipWeaponIndex == 1)
-                    {
-                        equipWeapon.AddReserveAmmo(ammoAmount);
-                    }
+                    int ammoAmount = item.value;
+                    equipWeapon.AddReserveAmmo(ammoAmount);
 
                     Destroy(nearObject);
                 }
@@ -368,6 +392,22 @@ public class Player : MonoBehaviour
                 }
             }
         }
+
+        if (other.tag == "HealthPotion")
+        {
+            RestoreHealth(healAmount);
+            Destroy(other.gameObject);
+        }
+    }
+
+    void RestoreHealth(int amount)
+    {
+        curHP += amount;
+        if (curHP > maxHP)
+        {
+            curHP = maxHP;
+        }
+        Debug.Log("Health Restored. Current Health: " + curHP);
     }
 
     public IEnumerator OnDamage()

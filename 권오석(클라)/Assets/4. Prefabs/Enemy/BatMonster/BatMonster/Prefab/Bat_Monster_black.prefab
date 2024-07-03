@@ -778,10 +778,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a42dd7dadcee3d4cb598e08449e96e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterType: 0
+  monsterType: 1
   target: {fileID: 0}
   meleeArea: {fileID: 8184229899214042248}
   ammoBox: {fileID: 6623276018947756069, guid: 497f030b0a03a19478d58a138b36fb1a, type: 3}
+  healthItem: {fileID: 5551136397511952012, guid: aac13da6cf2bf8742b98d91e4e640c63, type: 3}
+  dropParent: {fileID: 0}
   dataIndex: 3
 --- !u!54 &1497977724940875546
 Rigidbody:

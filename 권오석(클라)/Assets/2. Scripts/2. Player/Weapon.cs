@@ -6,7 +6,7 @@ public class Weapon : MonoBehaviour
 {
     public enum Type { Melee, Range }
     public Type type;
-    public int damage;
+    public int meleeDamage;
     public float atkSpeed;
 
     public BoxCollider meleeArea;
@@ -112,5 +112,10 @@ public class Weapon : MonoBehaviour
     {
         reserveAmmo += amount;
         Debug.Log("Added reserve ammo: " + amount + " rounds");
+    }
+
+    public void IncreaseMeleeDamage(int amount)
+    {
+        meleeDamage += amount;
     }
 }
