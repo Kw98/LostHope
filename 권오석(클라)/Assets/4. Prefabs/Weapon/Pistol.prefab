@@ -46,12 +46,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  damage: 0
+  meleeDamage: 0
   atkSpeed: 0.8
   meleeArea: {fileID: 0}
   bulletParent: {fileID: 0}
   bulletPos: {fileID: 0}
   bullet: {fileID: 1000012871492402, guid: c56d61f4cf63d834482119e0cc90eff5, type: 3}
+  maxAmmo: 10
+  currentAmmo: 0
+  reserveAmmo: 10
+  reloadTime: 2
 --- !u!1 &7768333222802396754
 GameObject:
   m_ObjectHideFlags: 0

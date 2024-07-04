@@ -6,10 +6,13 @@ public class Weapon : MonoBehaviour
 {
     public enum Type { Melee, Range }
     public Type type;
-    public int meleeDamage;
-    public float atkSpeed;
 
-    public BoxCollider meleeArea;
+    [Header("Melee")]
+    public int meleeDamage = 2;
+    public float atkSpeed = 0.8f;
+
+    [Header("Range")]
+    public int rangeDamage = 3;
 
     public Transform bulletParent;
     public Transform bulletPos;
@@ -21,10 +24,13 @@ public class Weapon : MonoBehaviour
     public float reloadTime = 2f;
     private bool isReloading = false;
 
+    private Player p;
+
     // Start is called before the first frame update
     void Start()
     {
         currentAmmo = maxAmmo;
+        p = GameManager.Instance.P;
     }
 
     // Update is called once per frame
@@ -49,7 +55,6 @@ public class Weapon : MonoBehaviour
     {
         if (type == Type.Melee)
         {
-            StopCoroutine("MeleeAttack");
             StartCoroutine("MeleeAttack");
         }
         else if (type == Type.Range)
@@ -68,10 +73,10 @@ public class Weapon : MonoBehaviour
     IEnumerator MeleeAttack()
     {
         yield return new WaitForSeconds(0.15f);
-        meleeArea.enabled = true;
+        p.meleeArea.enabled = true;
 
         yield return new WaitForSeconds(0.2f);
-        meleeArea.enabled = false;
+        p.meleeArea.enabled = false;
     }
 
     IEnumerator RangeAttack()
@@ -80,6 +85,12 @@ public class Weapon : MonoBehaviour
         b.transform.SetParent(bulletParent);
         Rigidbody bRb = b.GetComponent<Rigidbody>();
         bRb.velocity = bulletPos.up * 30;
+
+        Bullet bulletScript = b.GetComponent<Bullet>();
+        if (bulletScript != null)
+        {
+            bulletScript.damage = rangeDamage;
+        }
         currentAmmo--;
         yield return null;
     }
@@ -116,6 +127,17 @@ public class Weapon : MonoBehaviour
 
     public void IncreaseMeleeDamage(int amount)
     {
-        meleeDamage += amount;
+        if (type == Type.Melee)
+        {
+            meleeDamage += amount;
+        }
+    }
+
+    public void IncreaseRangeDamage(int amount)
+    {
+        if (type == Type.Range)
+        {
+            rangeDamage += amount;
+        }
     }
 }

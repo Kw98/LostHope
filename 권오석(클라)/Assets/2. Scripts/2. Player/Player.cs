@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
         level = 1;
         curExp = 0;
         maxExp = 100;
-        statPoint = 0;
+        statPoint = 3;
 
         healAmount = 20;
     }
@@ -78,6 +78,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Time.timeScale == 0f)
+            return;
+
         Move();
         Turn();
         Dash();
@@ -400,7 +403,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void RestoreHealth(int amount)
+    private void RestoreHealth(int amount)
     {
         curHP += amount;
         if (curHP > maxHP)

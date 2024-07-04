@@ -14,13 +14,20 @@ public class UI : Singleton<UI>
 
     [Header("Level")]
     [SerializeField] private TextMeshProUGUI lvTxt;
+    [SerializeField] private Image curExpImage;
+
+    [Header("Status")]
+    [SerializeField] private TextMeshProUGUI statPointTxt;
+    [SerializeField] private TextMeshProUGUI hpPointTxt;
+    [SerializeField] private TextMeshProUGUI meleeTxt;
+    [SerializeField] private TextMeshProUGUI rangeTxt;
 
     [Header("Panel")]
     [SerializeField] private GameObject deadPanel;
     [SerializeField] private GameObject clearPanel;
 
     [Header("Ammo")]
-    [SerializeField] private Weapon weapon;
+    [SerializeField] private Weapon[] weapon;
     [SerializeField] private TextMeshProUGUI ammoTxt;
 
     private Bullet bullet;
@@ -43,9 +50,18 @@ public class UI : Singleton<UI>
             //LV
             string levelString = p.level.ToString().PadLeft(2, '0');
             lvTxt.text = "LV " + levelString;
+            float expFillAmount = (float)p.curExp / p.maxExp;
+            curExpImage.fillAmount = expFillAmount;
 
             //Ammo
-            ammoTxt.text = weapon.currentAmmo + " / " + weapon.maxAmmo + " | " + weapon.reserveAmmo;
+            ammoTxt.text = weapon[1].currentAmmo + " / " + weapon[1].maxAmmo 
+                            + " | " + weapon[1].reserveAmmo;
+
+            //Status
+            statPointTxt.text = "" + p.statPoint;
+            hpPointTxt.text = "" + p.maxHP;
+            meleeTxt.text = "" + weapon[0].meleeDamage;
+            rangeTxt.text = "" + weapon[1].rangeDamage;
         }
     }
 
@@ -74,7 +90,7 @@ public class UI : Singleton<UI>
     {
         if (p.statPoint > 0)
         {
-            weapon.IncreaseMeleeDamage(1);
+            weapon[0].IncreaseMeleeDamage(1);
             p.statPoint -= 1;
         }
     }
@@ -83,7 +99,7 @@ public class UI : Singleton<UI>
     {
         if (p.statPoint > 0)
         {
-            bullet.IncreaseRangeDamage(1);
+            weapon[1].IncreaseRangeDamage(1);
             p.statPoint -= 1;
         }
     }
