@@ -29,6 +29,7 @@ public class Monster : MonoBehaviour
 
     public GameObject ammoBox;
     public GameObject healthItem;
+    public GameObject expItem;
     public Transform dropParent;
 
     private void Awake()
@@ -226,15 +227,17 @@ public class Monster : MonoBehaviour
             reactVec += Vector3.up;
             rb.AddForce(reactVec * 5, ForceMode.Impulse);
 
-            if (monsterType == Type.Elite)
-            {
-                DropHealthItem();
-                Destroy(gameObject, 1.5f);
-            }
-
             if (monsterType == Type.Normal)
             {
                 DropAmmoBox();
+                DropExpItem();
+                Destroy(gameObject, 1.5f);
+            }
+
+            if (monsterType == Type.Elite)
+            {
+                DropHealthItem();
+                DropExpItem();
                 Destroy(gameObject, 1.5f);
             }
 
@@ -285,6 +288,18 @@ public class Monster : MonoBehaviour
         else
         {
             Instantiate(healthItem, transform.position, Quaternion.identity);
+        }
+    }
+
+    private void DropExpItem()
+    {
+        if (dropParent != null)
+        {
+            Instantiate(expItem, transform.position, Quaternion.identity, dropParent);
+        }
+        else
+        {
+            Instantiate(expItem, transform.position, Quaternion.identity);
         }
     }
 

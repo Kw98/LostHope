@@ -4828,6 +4828,7 @@ RectTransform:
   - {fileID: 376644713}
   - {fileID: 129562530}
   - {fileID: 650029764}
+  - {fileID: 2141626921}
   m_Father: {fileID: 1492080802}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14270,43 +14271,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 442594, guid: 24579a71f306fa349abdad24a69e4d08, type: 3}
   m_PrefabInstance: {fileID: 1501332575}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &791659520
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 791659521}
-  m_Layer: 5
-  m_Name: '[ EXP ]'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &791659521
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 791659520}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2141626921}
-  m_Father: {fileID: 1492080802}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &792030104
 GameObject:
   m_ObjectHideFlags: 0
@@ -22304,34 +22268,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 151936, guid: d84c952f29bb78d4a8e60bd9fafb87c0, type: 3}
   m_PrefabInstance: {fileID: 1334103098}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1334322733 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6593028097854172737, guid: efa6f58559742254fbc936d9121d4691, type: 3}
-  m_PrefabInstance: {fileID: 1231659725680139854}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1334322736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1334322733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1db0b0d9db001044391e3f1dce9ae809, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  meleeDamage: 2
-  atkSpeed: 0.8
-  rangeDamage: 3
-  bulletParent: {fileID: 0}
-  bulletPos: {fileID: 0}
-  bullet: {fileID: 0}
-  maxAmmo: 10
-  currentAmmo: 0
-  reserveAmmo: 10
-  reloadTime: 2
 --- !u!1001 &1335010248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25322,7 +25258,6 @@ RectTransform:
   - {fileID: 1977115709}
   - {fileID: 2068963888}
   - {fileID: 603477362}
-  - {fileID: 791659521}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -35525,7 +35460,7 @@ GameObject:
   - component: {fileID: 2141626923}
   - component: {fileID: 2141626922}
   m_Layer: 5
-  m_Name: BG
+  m_Name: Exp_BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35538,14 +35473,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141626920}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 763249652}
-  m_Father: {fileID: 791659521}
-  m_RootOrder: 0
+  m_Father: {fileID: 241651131}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -35574,13 +35509,13 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 5effb79ddeba7704cb78b0965a9935a6, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 0
+  m_UseSpriteMesh: 1
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &2141626923
 CanvasRenderer:

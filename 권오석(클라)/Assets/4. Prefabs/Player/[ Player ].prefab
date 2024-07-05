@@ -2595,6 +2595,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4325463230370483795}
   - component: {fileID: 5084056038036619206}
+  - component: {fileID: 1334322736}
   m_Layer: 8
   m_Name: MeleeAtkArea
   m_TagString: Melee
@@ -2630,6 +2631,29 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1, y: 2, z: 0.5}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1334322736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6593028097854172737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db0b0d9db001044391e3f1dce9ae809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  meleeDamage: 2
+  atkSpeed: 0.8
+  rangeDamage: 3
+  bulletParent: {fileID: 0}
+  bulletPos: {fileID: 0}
+  bullet: {fileID: 0}
+  maxAmmo: 10
+  currentAmmo: 0
+  reserveAmmo: 10
+  reloadTime: 2
 --- !u!1 &6618143901170178072
 GameObject:
   m_ObjectHideFlags: 0

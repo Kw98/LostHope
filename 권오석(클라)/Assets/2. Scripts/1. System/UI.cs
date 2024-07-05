@@ -50,6 +50,8 @@ public class UI : Singleton<UI>
             //LV
             string levelString = p.level.ToString().PadLeft(2, '0');
             lvTxt.text = "LV " + levelString;
+
+            //Exp
             float expFillAmount = (float)p.curExp / p.maxExp;
             curExpImage.fillAmount = expFillAmount;
 

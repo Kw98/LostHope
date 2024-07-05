@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public int maxExp;
     public int statPoint;
     private int healAmount;
+    private int expAmount;
 
     //Move
     private bool sprint;
@@ -73,6 +74,7 @@ public class Player : MonoBehaviour
         statPoint = 3;
 
         healAmount = 20;
+        expAmount = 30;
     }
 
     // Update is called once per frame
@@ -98,28 +100,6 @@ public class Player : MonoBehaviour
                 isAtkMoving = false;
             }
         }
-    }
-
-    public void GainExp(int amount)
-    {
-        curExp += amount;
-        CheckLevelup();
-    }
-
-    private void CheckLevelup()
-    {
-        if (curExp >= maxExp)
-        {
-            LevelUp();
-        }
-    }
-
-    private void LevelUp()
-    {
-        level++;
-        curExp = 0;
-        maxExp += 50;
-        statPoint += 3;
     }
 
     private void Move() // ÀÌµ¿
@@ -399,6 +379,13 @@ public class Player : MonoBehaviour
         if (other.tag == "HealthPotion")
         {
             RestoreHealth(healAmount);
+            Debug.Log(healAmount + "|" + curHP + "/" + maxHP);
+            Destroy(other.gameObject);
+        }
+        else if (other.tag == "Exp")
+        {
+            RestoreExp(expAmount);
+            Debug.Log(expAmount + "|" + curExp + "/" + maxExp);
             Destroy(other.gameObject);
         }
     }
@@ -411,6 +398,28 @@ public class Player : MonoBehaviour
             curHP = maxHP;
         }
         Debug.Log("Health Restored. Current Health: " + curHP);
+    }
+    private void RestoreExp(int amount)
+    {
+        curExp += amount;
+        if (curExp >= maxExp)
+        {
+            curExp -= maxExp;
+            LevelUp();
+        }
+        Debug.Log("Exp Restored. Current Exp: " + curExp);
+    }
+
+    private void LevelUp()
+    {
+        level++;
+        maxExp = NextLevelExp();
+        statPoint += 3;
+    }
+
+    private int NextLevelExp()
+    {
+        return Mathf.RoundToInt(maxExp * 1.2f);
     }
 
     public IEnumerator OnDamage()
