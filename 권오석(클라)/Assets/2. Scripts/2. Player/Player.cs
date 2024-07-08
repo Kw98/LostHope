@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
         level = 1;
         curExp = 0;
         maxExp = 100;
-        statPoint = 1;
+        statPoint = 10;
 
         healAmount = 20;
         expAmount = 30;
@@ -414,7 +414,7 @@ public class Player : MonoBehaviour
         level++;
         maxExp = NextLevelExp();
         maxHP += 2;
-        statPoint += 3;
+        statPoint += 1;
         curHP = maxHP;
     }
 

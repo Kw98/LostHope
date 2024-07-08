@@ -7,7 +7,6 @@ public class StoreUI : Singleton<StoreUI>
     public static bool GameIsPaused = false;
 
     [SerializeField] private GameObject storeUI;
-    [SerializeField] private GameObject[] itemBT;
     [SerializeField] private GameObject[] itemObj;
 
     public void OpenStore()
@@ -27,6 +26,5 @@ public class StoreUI : Singleton<StoreUI>
     public void Buy(int index)
     {
         itemObj[index].SetActive(true);
-        itemBT[index].SetActive(false);
     }
 }

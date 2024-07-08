@@ -162,11 +162,11 @@ public class KingSlime : Monster
     {
         float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
-        if (distanceToTarget < 4f)
+        if (distanceToTarget < 3f)
         {
             StartCoroutine(MeleeAtk());
         }
-        else if (distanceToTarget >= 4f && distanceToTarget < 6f)
+        else if (distanceToTarget >= 3f && distanceToTarget < 6f)
         {
             StartCoroutine(DashAtk());
         }

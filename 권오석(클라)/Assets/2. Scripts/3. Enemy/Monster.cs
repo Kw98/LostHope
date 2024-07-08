@@ -30,7 +30,8 @@ public class Monster : MonoBehaviour
     public GameObject ammoBox;
     public GameObject healthItem;
     public GameObject expItem;
-    public Transform dropParent;
+    public GameObject heavyGun;
+    public GameObject dropParent;
 
     private void Awake()
     {
@@ -40,11 +41,7 @@ public class Monster : MonoBehaviour
             target = player.transform;
         }
 
-        GameObject dropParentObject = GameObject.FindGameObjectWithTag("DropParent");
-        if (dropParentObject != null)
-        {
-            dropParent = dropParentObject.transform;
-        }
+        dropParent = GameObject.FindGameObjectWithTag("DropParent");
     }
 
     public virtual void Init()
@@ -207,7 +204,45 @@ public class Monster : MonoBehaviour
         }
     }
 
-    IEnumerator OnDamage()
+    private void DropAmmoBox()
+    {
+        Vector3 dropPosition = transform.position;
+        dropPosition.y = -0.1f;
+        dropPosition.x += 1;
+
+        GameObject ammoBoxInstance = Instantiate(ammoBox, dropPosition, Quaternion.identity);
+        SetParent(dropParent, ammoBoxInstance);
+    }
+
+    private void DropHealthPotion()
+    {
+        Vector3 dropPosition = transform.position;
+        dropPosition.y = -0.1f;
+        dropPosition.x += 1;
+
+        GameObject healthPotionInstance = Instantiate(healthItem, dropPosition, Quaternion.identity);
+        SetParent(dropParent, healthPotionInstance);
+    }
+
+    private void DropExpItem()
+    {
+        Vector3 dropPosition = transform.position;
+        dropPosition.y = -0.1f;
+        dropPosition.z -= 1;
+
+        GameObject expItemInstance = Instantiate(expItem, dropPosition, Quaternion.identity);
+        SetParent(dropParent, expItemInstance);
+    }
+
+    private void SetParent(GameObject parent, GameObject child)
+    {
+        if (parent != null)
+        {
+            child.transform.parent = parent.transform;
+        }
+    }
+
+    private IEnumerator OnDamage()
     {
         yield return new WaitForSeconds(0.1f);
         if (data.CurHP > 0)
@@ -225,15 +260,15 @@ public class Monster : MonoBehaviour
 
             if (monsterType == Type.Normal)
             {
-                DropAmmoBox();
                 DropExpItem();
+                DropAmmoBox();
                 Destroy(gameObject, 1.5f);
             }
 
             if (monsterType == Type.Elite)
             {
-                DropHealthItem();
                 DropExpItem();
+                DropHealthPotion();
                 Destroy(gameObject, 1.5f);
             }
 
@@ -245,7 +280,7 @@ public class Monster : MonoBehaviour
         FindObjectOfType<MonsterUI>().UpdateUI();
     }
 
-    IEnumerator BossDamage()
+    private IEnumerator BossDamage()
     {
         yield return new WaitForSeconds(0.1f);
         if (data.CurHP > 0)
@@ -263,41 +298,6 @@ public class Monster : MonoBehaviour
         }
     }
 
-    private void DropAmmoBox()
-    {
-        if (dropParent != null)
-        {
-            Instantiate(ammoBox, transform.position, Quaternion.identity, dropParent);
-        }
-        else
-        {
-            Instantiate(ammoBox, transform.position, Quaternion.identity);
-        }
-    }
-
-    private void DropHealthItem()
-    {
-        if (dropParent != null)
-        {
-            Instantiate(healthItem, transform.position, Quaternion.identity, dropParent);
-        }
-        else
-        {
-            Instantiate(healthItem, transform.position, Quaternion.identity);
-        }
-    }
-
-    private void DropExpItem()
-    {
-        if (dropParent != null)
-        {
-            Instantiate(expItem, transform.position, Quaternion.identity, dropParent);
-        }
-        else
-        {
-            Instantiate(expItem, transform.position, Quaternion.identity);
-        }
-    }
 
     public void Dead()
     {
