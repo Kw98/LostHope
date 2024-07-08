@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  value: 10
+  value: 3
   distance: 3
 --- !u!1 &6623276020275213961
 GameObject:

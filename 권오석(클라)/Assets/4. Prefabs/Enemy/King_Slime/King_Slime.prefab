@@ -936,12 +936,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  damage: 0
+  meleeDamage: 2
   atkSpeed: 0.8
-  meleeArea: {fileID: 0}
+  rangeDamage: 3
   bulletParent: {fileID: 1026723636740551186}
   bulletPos: {fileID: 6810873685885271168}
   bullet: {fileID: 1000012871492402, guid: 42283fba7dd5bcb4eb12d4c855171cee, type: 3}
+  maxAmmo: 10
+  currentAmmo: 0
+  reserveAmmo: 10
+  reloadTime: 2
 --- !u!1 &388580045806373429
 GameObject:
   m_ObjectHideFlags: 0
@@ -2545,12 +2549,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  damage: 1
+  meleeDamage: 2
   atkSpeed: 0.8
-  meleeArea: {fileID: 2525878379370240568}
+  rangeDamage: 3
   bulletParent: {fileID: 0}
   bulletPos: {fileID: 0}
   bullet: {fileID: 0}
+  maxAmmo: 10
+  currentAmmo: 0
+  reserveAmmo: 10
+  reloadTime: 2
 --- !u!1 &3744962117391064105
 GameObject:
   m_ObjectHideFlags: 0
@@ -4442,12 +4450,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  damage: 1
+  meleeDamage: 2
   atkSpeed: 0.8
-  meleeArea: {fileID: 8215882448450840056}
+  rangeDamage: 3
   bulletParent: {fileID: 0}
   bulletPos: {fileID: 0}
   bullet: {fileID: 0}
+  maxAmmo: 10
+  currentAmmo: 0
+  reserveAmmo: 10
+  reloadTime: 2
 --- !u!1 &7284424097801542645
 GameObject:
   m_ObjectHideFlags: 0
@@ -4668,9 +4680,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6e29f2de06a9f48b1c4dd46e2242f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterType: 1
+  monsterType: 2
   target: {fileID: 0}
   meleeArea: {fileID: 168551494581153791}
+  ammoBox: {fileID: 0}
+  healthItem: {fileID: 0}
+  expItem: {fileID: 0}
+  dropParent: {fileID: 0}
   dataIndex: 4
   mainWeapons:
   - {fileID: 3715267174440723022}

@@ -187,7 +187,7 @@ public class Monster : MonoBehaviour
             Vector3 reactVec = transform.position - other.transform.position;
 
             if (monsterType != Type.Boss)
-                StartCoroutine(OnDamage(reactVec));
+                StartCoroutine(OnDamage());
             else if (monsterType == Type.Boss)
                 StartCoroutine(BossDamage());
         }
@@ -200,14 +200,14 @@ public class Monster : MonoBehaviour
             Destroy(other.gameObject);
 
             if (monsterType != Type.Boss)
-                StartCoroutine(OnDamage(reactVec));
+                StartCoroutine(OnDamage());
             else if (monsterType == Type.Boss)
                 StartCoroutine(BossDamage());
 
         }
     }
 
-    IEnumerator OnDamage(Vector3 reactVec)
+    IEnumerator OnDamage()
     {
         yield return new WaitForSeconds(0.1f);
         if (data.CurHP > 0)
@@ -222,10 +222,6 @@ public class Monster : MonoBehaviour
             isChase = false;
             nav.enabled = false;
             animator.SetTrigger("onDead");
-
-            reactVec = reactVec.normalized;
-            reactVec += Vector3.up;
-            rb.AddForce(reactVec * 5, ForceMode.Impulse);
 
             if (monsterType == Type.Normal)
             {

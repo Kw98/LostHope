@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
         level = 1;
         curExp = 0;
         maxExp = 100;
-        statPoint = 3;
+        statPoint = 1;
 
         healAmount = 20;
         expAmount = 30;
@@ -298,10 +298,9 @@ public class Player : MonoBehaviour
             equipWeapon = weapons[weaponIndex].GetComponent<Weapon>();
             equipWeapon.gameObject.SetActive(true);
 
-            if (swapWeapon1 == true) // 보조무기 활성화
-                subWeapon.SetActive(true);
-            else
-                subWeapon.SetActive(false);
+            subWeapon.SetActive(swapWeapon1);
+            UI.Instance.curWeapon[0].SetActive(swapWeapon1);
+            UI.Instance.curWeapon[1].SetActive(swapWeapon2);
         }
     }
 
@@ -414,7 +413,9 @@ public class Player : MonoBehaviour
     {
         level++;
         maxExp = NextLevelExp();
+        maxHP += 2;
         statPoint += 3;
+        curHP = maxHP;
     }
 
     private int NextLevelExp()

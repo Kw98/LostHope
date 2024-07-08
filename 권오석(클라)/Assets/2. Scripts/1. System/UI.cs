@@ -26,9 +26,11 @@ public class UI : Singleton<UI>
     [SerializeField] private GameObject deadPanel;
     [SerializeField] private GameObject clearPanel;
 
-    [Header("Ammo")]
+    [Header("Weapon")]
     [SerializeField] private Weapon[] weapon;
     [SerializeField] private TextMeshProUGUI ammoTxt;
+    public GameObject[] curWeapon;
+
 
     private Bullet bullet;
 
