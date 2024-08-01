@@ -730,19 +730,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03b2fa14d617f584cbf71fe36ea576f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasWeapons: 0101
   weapons:
   - {fileID: 9121033404747908255}
   - {fileID: 3881989917818562873}
   subWeapon: {fileID: 4856912944813721579}
-  hasWeapons: 0101
-  followCamera: {fileID: 0}
+  meleeArea: {fileID: 5084056038036619206}
   maxHP: 0
   curHP: 0
   level: 0
   curExp: 0
   maxExp: 0
   statPoint: 0
-  meleeArea: {fileID: 5084056038036619206}
+  followCamera: {fileID: 0}
+  atkResetTime: 4
+  atkCombo: 0
 --- !u!54 &1231659725528256751
 Rigidbody:
   m_ObjectHideFlags: 0

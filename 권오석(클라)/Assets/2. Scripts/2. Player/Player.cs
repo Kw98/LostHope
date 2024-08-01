@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     private int expAmount;
 
     [Title("Components")]
-    [SerializeField, TabGroup("Components")] Camera followCamera;
+    [SerializeField, TabGroup("Components", "Component")] Camera followCamera;
 
     //Move
     private bool sprint;
@@ -48,11 +48,8 @@ public class Player : MonoBehaviour
     private bool isAtkMoving = false;
     private Vector3 atkPosition;
     private float atkMoveSpeed = 5f;
-    
-    //AtkCombe
-    private int atkCombo;
-    private Coroutine resetComboCoroutine;
-    private bool isCheckInput = false;
+    public float atkResetTime = 4f;
+    public int atkCombo = 0;
 
     //Other
     private Animator animator;
@@ -203,15 +200,15 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (atkCombo >= 4)
-            atkCombo = 0;
-
-        // 일정 시간 후 콤보 초기화
-        if (resetComboCoroutine != null)
+        if (atkCombo >= 4 || atkResetTime <= 0)
         {
-            StopCoroutine(resetComboCoroutine);
+            atkCombo = 0;
+            atkResetTime = 4f;
         }
-        resetComboCoroutine = StartCoroutine(ResetComboAfterDelay());
+        if (atkCombo >= 1)
+        {
+            atkResetTime -= Time.deltaTime;
+        }
 
         fireDelay += Time.deltaTime;
         isFireReady = equipWeapon.atkSpeed < fireDelay;
@@ -223,7 +220,7 @@ public class Player : MonoBehaviour
             if (equipWeapon.type == Weapon.Type.Melee)
             {
                 animator.SetTrigger("Melee-Attack");
-                animator.SetInteger("MeleeCombo", atkCombo);
+                animator.SetFloat("MeleeCombo", atkCombo);
             }
             else if (equipWeapon.type == Weapon.Type.Range)
             {
@@ -231,6 +228,7 @@ public class Player : MonoBehaviour
             }
             atkCombo++;
             fireDelay = 0;
+            atkResetTime = 4f;
         }
     }
 
@@ -244,33 +242,9 @@ public class Player : MonoBehaviour
         meleeArea.enabled = false;
     }
 
-
     public void Reload()
     {
         animator.SetTrigger("doReload");
-    }
-
-    private IEnumerator ResetComboAfterDelay()
-    {
-        yield return new WaitForSeconds(2f); // 콤보 초기화 시간
-        atkCombo = 0;
-        animator.SetInteger("MeleeCombo", atkCombo);
-    }
-
-    private IEnumerator CheckInputDuringAnimation()
-    {
-        isCheckInput = true;
-        yield return new WaitForSeconds(0.5f); // 입력 시간
-        if (atkCombo >= 1)
-        {
-            Attack();
-        }
-        isCheckInput = false;
-    }
-
-    public void CheckAttackInput()
-    {
-        StartCoroutine(CheckInputDuringAnimation());
     }
 
     public void ActiveMeleeAttack() // 근접 공격 시 전진성
