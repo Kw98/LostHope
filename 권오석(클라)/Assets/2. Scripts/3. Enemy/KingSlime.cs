@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Sirenix.OdinInspector;
 
 public class KingSlime : Monster
 {
-    [SerializeField] private int dataIndex;
-
     private Vector3 dashVec;
 
     private bool isAtkMoving = false;
@@ -14,20 +13,20 @@ public class KingSlime : Monster
     private float atkMoveSpeed = 5f;
 
     private bool isThinking;
-
-    [Header("Weapon")]
-    [SerializeField] private GameObject[] mainWeapons;
-    [SerializeField] private GameObject subWeapon;
-
     private int currentWeaponIndex;
 
-    [Header("Bullet")]
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Transform firePoint;
+    [Title("KingSlime Setting")]
+    [SerializeField] private int dataIndex;
 
-    [Header("HP")]
-    [SerializeField] private Image curHPImage;
-    [SerializeField] private GameObject bossUI;
+    [SerializeField, TabGroup("Weapon", "Weapon")] private GameObject[] mainWeapons;
+    [SerializeField, TabGroup("Weapon", "Weapon")] private GameObject subWeapon;
+
+
+    [SerializeField, TabGroup("Bullet", "Bullet")] private GameObject bulletPrefab;
+    [SerializeField, TabGroup("Bullet", "Bullet")] private Transform firePoint;
+
+    [SerializeField, TabGroup("UI", "UI")] private Image curHPImage;
+    [SerializeField, TabGroup("UI", "UI")] private GameObject bossUI;
 
     // Start is called before the first frame update
     void Start()

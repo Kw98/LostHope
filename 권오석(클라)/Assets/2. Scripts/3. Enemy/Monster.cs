@@ -3,14 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using System;
+using Sirenix.OdinInspector;
 
 public class Monster : MonoBehaviour
 {
     public enum Type { Normal, Elite, Boss };
-    public Type monsterType;
-    public Transform target;
-    public BoxCollider meleeArea;
-    
+
+    [Title("Monster Settings")]
+    [EnumToggleButtons] public Type monsterType;
+    [TabGroup("Monster Settings", "Settings")] public Transform target;
+    [TabGroup("Monster Settings", "Settings")]public BoxCollider meleeArea;
+
+    [TabGroup("Monster Drops", "Drops")] public GameObject ammoBox;
+    [TabGroup("Monster Drops", "Drops")] public GameObject healthItem;
+    [TabGroup("Monster Drops", "Drops")] public GameObject expItem;
+    [TabGroup("Monster Drops", "Drops")] public GameObject heavyGun;
+    [TabGroup("Monster Drops", "Drops")] public GameObject dropParent;
+
     protected float chaseDistance; // 플레이어 감지 범위
     public Define.MonsterData data = new Define.MonsterData();
     protected MonsterAtk monsterAtk;
@@ -26,12 +35,6 @@ public class Monster : MonoBehaviour
     protected bool isDead;
 
     public static event Action<Monster> OnMonsterDie;
-
-    public GameObject ammoBox;
-    public GameObject healthItem;
-    public GameObject expItem;
-    public GameObject heavyGun;
-    public GameObject dropParent;
 
     private void Awake()
     {

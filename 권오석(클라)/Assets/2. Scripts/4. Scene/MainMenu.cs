@@ -2,18 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Sirenix.OdinInspector;
 
 public class MainMenu : MonoBehaviour
 {
-    [Header("Main")]
-    [SerializeField] private GameObject startButton;
-    [SerializeField] private GameObject optionButton;
-    [SerializeField] private GameObject exitGame;
+    [Title("Main Menu")]  // 제목을 추가하여 섹션을 명확히 구분합니다.
+    [SerializeField, BoxGroup("Main")] private GameObject startButton;
+    [SerializeField, BoxGroup("Main")] private GameObject optionButton;
+    [SerializeField, BoxGroup("Main")] private GameObject exitGame;
 
-    [Header("Option")]
-    [SerializeField] private GameObject optionsMenu;
-    [SerializeField] private GameObject blurPanel;
-    [SerializeField] private GameObject optionExit;
+    [Title("Options Menu")]
+    [SerializeField, BoxGroup("Option")] private GameObject optionsMenu;
+    [SerializeField, BoxGroup("Option")] private GameObject blurPanel;
+    [SerializeField, BoxGroup("Option")] private GameObject optionExit;
+
 
     void Start()
     {

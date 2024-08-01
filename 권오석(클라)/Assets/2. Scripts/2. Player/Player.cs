@@ -1,24 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private GameObject[] weapons;
-    [SerializeField] private GameObject subWeapon;
-    [SerializeField] private bool[] hasWeapons;
-    [SerializeField] Camera followCamera;
+    [Title("Weapons")]
+    [SerializeField, TabGroup("Weapons")] private bool[] hasWeapons;
+    [SerializeField, TabGroup("Weapons")] private GameObject[] weapons;
+    [SerializeField, TabGroup("Weapons")] private GameObject subWeapon;
+    [SerializeField, TabGroup("Weapons")] public BoxCollider meleeArea;
 
-    [Header("Player")]
-    public int maxHP;
-    public int curHP;
+    [Title("Player Stats")]
+    [TabGroup("Stats", "Health")] public int maxHP;
+    [TabGroup("Stats", "Health")] public int curHP;
+    [TabGroup("Stats", "Experience")] public int level;
+    [TabGroup("Stats", "Experience")] public int curExp;
+    [TabGroup("Stats", "Experience")] public int maxExp;
+    [TabGroup("Stats", "Experience")] public int statPoint;
     private float speed;
-    public int level;
-    public int curExp;
-    public int maxExp;
-    public int statPoint;
     private int healAmount;
     private int expAmount;
+
+    [Title("Components")]
+    [SerializeField, TabGroup("Components")] Camera followCamera;
 
     //Move
     private bool sprint;
@@ -43,7 +48,7 @@ public class Player : MonoBehaviour
     private bool isAtkMoving = false;
     private Vector3 atkPosition;
     private float atkMoveSpeed = 5f;
-    public BoxCollider meleeArea;
+    
     //AtkCombe
     private int atkCombo;
     private Coroutine resetComboCoroutine;
