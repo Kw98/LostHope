@@ -31,9 +31,6 @@ public class UI : Singleton<UI>
     [SerializeField] private TextMeshProUGUI ammoTxt;
     public GameObject[] curWeapon;
 
-
-    private Bullet bullet;
-
     // Update is called once per frame
     void Update()
     {

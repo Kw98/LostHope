@@ -70,7 +70,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    IEnumerator MeleeAttack()
+    private IEnumerator MeleeAttack()
     {
         yield return new WaitForSeconds(0.15f);
         p.meleeArea.enabled = true;
@@ -79,7 +79,7 @@ public class Weapon : MonoBehaviour
         p.meleeArea.enabled = false;
     }
 
-    IEnumerator RangeAttack()
+    private IEnumerator RangeAttack()
     {
         GameObject b = Instantiate(bullet, bulletPos.position, bulletPos.rotation);
         b.transform.SetParent(bulletParent);
@@ -95,7 +95,7 @@ public class Weapon : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator Reload()
+    private IEnumerator Reload()
     {
         isReloading = true;
         Debug.Log("Reloading...");

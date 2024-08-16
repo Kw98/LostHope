@@ -22,8 +22,7 @@ public class JsonData : Singleton<JsonData>
 
     public MonsterJson mj;
 
-    // Start is called before the first frame update
-    private void Awake()
+    protected override void Awake()
     {
         mj = JsonUtility.FromJson<MonsterJson>(monsterJson.text);
     }

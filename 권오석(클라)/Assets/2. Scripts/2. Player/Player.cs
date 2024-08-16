@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     [Title("Components")]
     [SerializeField, TabGroup("Components", "Component")] Camera followCamera;
 
-    //Move
+    // Move
     private bool sprint;
     private bool isDash;
     private bool onDash;
@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
     private Vector3 moveVec;
     private Vector3 dashVec;
 
-    //Weapon
+    // Weapon
     private GameObject nearObject;
     private Weapon equipWeapon;
     private int equipWeaponIndex = -1;
@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     private bool swapWeapon1;
     private bool swapWeapon2;
 
-    //Attack
+    // Attack
     private bool atk;
     private float fireDelay;
     private bool isFireReady = true;
@@ -51,18 +51,19 @@ public class Player : MonoBehaviour
     public float atkResetTime = 4f;
     public int atkCombo = 0;
 
-    //Other
+    // Other
     private Animator animator;
     private Rigidbody rb;
-    private bool toWall; // 벽 충돌확인
+    private bool toWall; // 벽 충돌 확인
 
+    // Animator와 Rigidbody 컴포넌트를 초기화
     private void Awake()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
     }
-    
-    // Start is called before the first frame update
+
+    // 플레이어의 초기 상태와 변수 값을 설정
     void Start()
     {
         maxHP = 30;
@@ -79,7 +80,7 @@ public class Player : MonoBehaviour
         expAmount = 30;
     }
 
-    // Update is called once per frame
+    // 플레이어의 이동, 회전, 대쉬, 공격, 무기 교체 및 상호작용을 처리
     void Update()
     {
         if (Time.timeScale == 0f)
@@ -94,7 +95,7 @@ public class Player : MonoBehaviour
         Swap();
         Interaction();
 
-        if (isAtkMoving) // 근접 공격 시 전진성
+        if (isAtkMoving) // 근접 공격 시 전진성 처리
         {
             transform.position = Vector3.Lerp(transform.position, atkPosition, atkMoveSpeed * Time.deltaTime);
             if (Vector3.Distance(transform.position, atkPosition) < 0.1f)
@@ -104,7 +105,8 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Move() // 이동
+    // 플레이어의 이동 처리
+    private void Move()
     {
         float hMove = Input.GetAxisRaw("Horizontal");
         float vMove = Input.GetAxisRaw("Vertical");
@@ -125,7 +127,8 @@ public class Player : MonoBehaviour
         animator.SetBool("isSprint", sprint);
     }
 
-    private void Turn() // 캐릭터 회전
+    // 플레이어가 마우스 위치나 이동 방향으로 회전
+    private void Turn()
     {
         transform.LookAt(transform.position + moveVec);
 
@@ -142,7 +145,8 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Dash() // 대쉬
+    // 대쉬 동작 처리
+    private void Dash()
     {
         if (Input.GetButtonDown("Dash") && moveVec != Vector3.zero && !onDash && !toWall)
         {
@@ -168,7 +172,8 @@ public class Player : MonoBehaviour
         isDash = false;
     }
 
-    private IEnumerator Dash(Vector3 direction, float distance) // 대쉬
+    // 대쉬 코루틴 처리
+    private IEnumerator Dash(Vector3 direction, float distance)
     {
         float dashTime = 0.3f; // 대쉬 지속 시간
         float elapsedTime = 0f;
@@ -183,12 +188,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    // 대쉬 종료 처리
     private void EndDash()
     {
         onDash = false;
     }
 
-    private void Attack() // 공격
+    // 공격 처리
+    private void Attack()
     {
         atk = Input.GetButtonDown("Fire1");
 
@@ -232,29 +239,22 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void OnAtkCollider()
-    {
-        meleeArea.enabled = true;
-    }
-
-    public void OffAtkCollider()
-    {
-        meleeArea.enabled = false;
-    }
-
+    // 재장전 애니메이션 트리거
     public void Reload()
     {
         animator.SetTrigger("doReload");
     }
 
-    public void ActiveMeleeAttack() // 근접 공격 시 전진성
+    // 근접 공격 시 전진성 처리
+    public void ActiveMeleeAttack()
     {
         isAtkMoving = true;
 
         atkPosition = transform.position + transform.forward * 0.7f;
     }
 
-    private void Swap() // 무기 교체
+    // 무기 교체 처리
+    private void Swap()
     {
         swapWeapon1 = Input.GetButtonDown("Swap1");
         swapWeapon2 = Input.GetButtonDown("Swap2");
@@ -283,7 +283,8 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Interaction() // 아이템 줍기
+    // 아이템 줍기 처리
+    private void Interaction()
     {
         interaction = Input.GetButtonDown("Interaction");
 
@@ -316,17 +317,20 @@ public class Player : MonoBehaviour
         StopToWall();
     }
 
-    private void StopRotation() // 아이템 습득 후 회전 방지
+    // 아이템 습득 후 회전 방지
+    private void StopRotation()
     {
         rb.angularVelocity = Vector3.zero;
     }
 
-    private void StopToWall() // 벽 충돌 확인
+    // 벽 충돌 확인
+    private void StopToWall()
     {
         Debug.DrawRay(transform.position, transform.forward * 0.7f, Color.green);
         toWall = Physics.Raycast(transform.position, transform.forward, 0.7f, LayerMask.GetMask("Wall"));
     }
 
+    // 충돌 처리
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "MonsterAtk" || other.tag == "Bullet")
@@ -368,6 +372,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    // 체력 회복 처리
     private void RestoreHealth(int amount)
     {
         curHP += amount;
@@ -377,6 +382,8 @@ public class Player : MonoBehaviour
         }
         Debug.Log("Health Restored. Current Health: " + curHP);
     }
+
+    // 경험치 회복 처리
     private void RestoreExp(int amount)
     {
         curExp += amount;
@@ -388,6 +395,7 @@ public class Player : MonoBehaviour
         Debug.Log("Exp Restored. Current Exp: " + curExp);
     }
 
+    // 레벨 업 처리
     private void LevelUp()
     {
         level++;
@@ -397,11 +405,13 @@ public class Player : MonoBehaviour
         curHP = maxHP;
     }
 
+    // 다음 레벨의 경험치 계산
     private int NextLevelExp()
     {
         return Mathf.RoundToInt(maxExp * 1.2f);
     }
 
+    // 피해 처리
     public IEnumerator OnDamage()
     {
         if (curHP > 0)
@@ -420,17 +430,20 @@ public class Player : MonoBehaviour
         }
     }
 
+    // 사망 처리
     public void Dead()
     {
         UI.Instance.DeadPanel();
     }
 
+    // 트리거 충돌 시 처리
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Weapon" || other.tag == "Ammo")
             nearObject = other.gameObject;
     }
 
+    // 트리거 충돌 종료 시 처리
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Weapon" || other.tag == "Ammo")
