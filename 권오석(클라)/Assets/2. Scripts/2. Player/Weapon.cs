@@ -26,20 +26,20 @@ public class Weapon : MonoBehaviour
 
     private Player p;
 
-    // Start is called before the first frame update
+    // 무기 초기화
     void Start()
     {
         currentAmmo = maxAmmo;
         p = GameManager.Instance.P;
     }
 
-    // Update is called once per frame
+    // 무기 상태 업데이트
     void Update()
     {
         if (isReloading)
             return;
 
-        if (type == Type.Range && currentAmmo != 10 && currentAmmo <= 0  || Input.GetButtonDown("Reload"))
+        if (type == Type.Range && currentAmmo != 10 && currentAmmo <= 0 || Input.GetButtonDown("Reload"))
         {
             StartCoroutine(Reload());
             return;
@@ -51,6 +51,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    // 무기 사용
     public void Use()
     {
         if (type == Type.Melee)
@@ -70,6 +71,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    // 근접 공격 처리 코루틴
     private IEnumerator MeleeAttack()
     {
         yield return new WaitForSeconds(0.15f);
@@ -79,6 +81,7 @@ public class Weapon : MonoBehaviour
         p.meleeArea.enabled = false;
     }
 
+    // 원거리 공격 처리 코루틴
     private IEnumerator RangeAttack()
     {
         GameObject b = Instantiate(bullet, bulletPos.position, bulletPos.rotation);
@@ -91,10 +94,11 @@ public class Weapon : MonoBehaviour
         {
             bulletScript.damage = rangeDamage;
         }
-        currentAmmo--;
+        currentAmmo--; 
         yield return null;
     }
 
+    // 무기 재장전 처리
     private IEnumerator Reload()
     {
         isReloading = true;
@@ -119,12 +123,14 @@ public class Weapon : MonoBehaviour
         Debug.Log("Reloaded");
     }
 
+    // 예비 탄약 추가
     public void AddReserveAmmo(int amount)
     {
         reserveAmmo += amount;
         Debug.Log("Added reserve ammo: " + amount + " rounds");
     }
 
+    // 근접 공격력 증가
     public void IncreaseMeleeDamage(int amount)
     {
         if (type == Type.Melee)
@@ -133,6 +139,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    // 원거리 공격력 증가
     public void IncreaseRangeDamage(int amount)
     {
         if (type == Type.Range)

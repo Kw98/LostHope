@@ -12,7 +12,7 @@ public class Monster : MonoBehaviour
     [Title("Monster Settings")]
     [EnumToggleButtons] public Type monsterType;
     [TabGroup("Monster Settings", "Settings")] public Transform target;
-    [TabGroup("Monster Settings", "Settings")]public BoxCollider meleeArea;
+    [TabGroup("Monster Settings", "Settings")] public BoxCollider meleeArea;
 
     [TabGroup("Monster Drops", "Drops")] public GameObject ammoBox;
     [TabGroup("Monster Drops", "Drops")] public GameObject healthItem;
@@ -27,7 +27,7 @@ public class Monster : MonoBehaviour
     protected Rigidbody rb;
     protected Animator animator;
     protected NavMeshAgent nav;
-    protected bool toWall; // 벽 충돌확인
+    protected bool toWall; // 벽 충돌 확인
 
     protected bool isChase;
     protected bool isAtk;
@@ -36,6 +36,7 @@ public class Monster : MonoBehaviour
 
     public static event Action<Monster> OnMonsterDie;
 
+    // 초기화 작업
     private void Awake()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -47,6 +48,7 @@ public class Monster : MonoBehaviour
         dropParent = GameObject.FindGameObjectWithTag("DropParent");
     }
 
+    // 몬스터 초기화
     public virtual void Init()
     {
         rb = GetComponent<Rigidbody>();
@@ -54,13 +56,14 @@ public class Monster : MonoBehaviour
         nav = GetComponent<NavMeshAgent>();
     }
 
+    // 감지 범위를 Gizmos로 표시
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, chaseDistance);
     }
 
-    // Update is called once per frame
+    // 매 프레임마다 호출
     void Update()
     {
         if (monsterType == Type.Boss)
@@ -84,6 +87,7 @@ public class Monster : MonoBehaviour
         }
     }
 
+    // 플레이어 추적
     protected void ChasePlayer()
     {
         float distanceToTarget = Vector3.Distance(transform.position, target.position);
@@ -99,6 +103,7 @@ public class Monster : MonoBehaviour
         }
     }
 
+    // 몬스터의 속도 제어
     protected void FreezeVelocity()
     {
         if (isChase)
@@ -108,6 +113,7 @@ public class Monster : MonoBehaviour
         }
     }
 
+    // 타겟팅 처리
     private void Targeting()
     {
         if (!isDead)
@@ -135,16 +141,19 @@ public class Monster : MonoBehaviour
         }
     }
 
+    // 근접 공격 활성화
     public void OnAtkCollider()
     {
         meleeArea.enabled = true;
     }
 
+    // 근접 공격 비활성화
     public void OffAtkCollider()
     {
         meleeArea.enabled = false;
     }
 
+    // 공격 처리
     private void OnAtk()
     {
         isMove = false;
@@ -155,28 +164,33 @@ public class Monster : MonoBehaviour
         Invoke("OnChase", 1.5f);
     }
 
+    // 추적 재개
     private void OnChase()
     {
         isMove = true;
     }
 
+    // 공격 종료
     private void offAtk()
     {
         isAtk = false;
     }
 
+    // 물리 업데이트
     protected void FixedUpdate()
     {
         FreezeVelocity();
         StopToWall();
     }
 
-    private void StopToWall() // 벽 충돌 확인
+    // 벽 충돌 확인
+    private void StopToWall()
     {
         Debug.DrawRay(transform.position, transform.forward * 0.7f, Color.green);
         toWall = Physics.Raycast(transform.position, transform.forward, 0.7f, LayerMask.GetMask("Wall"));
     }
 
+    // 충돌 처리
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Melee")
@@ -203,10 +217,10 @@ public class Monster : MonoBehaviour
                 StartCoroutine(OnDamage());
             else if (monsterType == Type.Boss)
                 StartCoroutine(BossDamage());
-
         }
     }
 
+    // 탄약 상자 드롭
     private void DropAmmoBox()
     {
         Vector3 dropPosition = transform.position;
@@ -217,6 +231,7 @@ public class Monster : MonoBehaviour
         SetParent(dropParent, ammoBoxInstance);
     }
 
+    // 체력 포션 드롭
     private void DropHealthPotion()
     {
         Vector3 dropPosition = transform.position;
@@ -227,6 +242,7 @@ public class Monster : MonoBehaviour
         SetParent(dropParent, healthPotionInstance);
     }
 
+    // 경험치 아이템 드롭
     private void DropExpItem()
     {
         Vector3 dropPosition = transform.position;
@@ -237,6 +253,7 @@ public class Monster : MonoBehaviour
         SetParent(dropParent, expItemInstance);
     }
 
+    // 드롭 아이템의 부모 설정
     private void SetParent(GameObject parent, GameObject child)
     {
         if (parent != null)
@@ -245,6 +262,7 @@ public class Monster : MonoBehaviour
         }
     }
 
+    // 일반 몬스터의 피해 처리
     private IEnumerator OnDamage()
     {
         yield return new WaitForSeconds(0.1f);
@@ -283,6 +301,7 @@ public class Monster : MonoBehaviour
         FindObjectOfType<MonsterUI>().UpdateUI();
     }
 
+    // 보스 몬스터의 피해 처리
     private IEnumerator BossDamage()
     {
         yield return new WaitForSeconds(0.1f);
@@ -301,7 +320,7 @@ public class Monster : MonoBehaviour
         }
     }
 
-
+    // 몬스터 사망 처리
     public void Dead()
     {
         UI.Instance.ClearPanel();

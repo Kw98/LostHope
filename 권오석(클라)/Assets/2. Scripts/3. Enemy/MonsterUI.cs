@@ -11,12 +11,12 @@ public class MonsterUI : MonoBehaviour
     [Header("HP")]
     [SerializeField] private Image curHPImage;
 
-    private Transform camera;
+    private Transform _camera;
 
     // Start is called before the first frame update
     void Start()
     {
-        camera = Camera.main.transform;
+        _camera = Camera.main.transform;
 
         monster = GetComponentInParent<Monster>();
 
@@ -32,8 +32,8 @@ public class MonsterUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(transform.position + camera.rotation * Vector3.forward,
-                            camera.rotation * Vector3.up);
+        transform.LookAt(transform.position + _camera.rotation * Vector3.forward,
+                            _camera.rotation * Vector3.up);
 
         if (monster != null)
         {
